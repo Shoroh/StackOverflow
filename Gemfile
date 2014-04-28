@@ -56,10 +56,12 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'factory_girl_rails'
   gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-commands-cucumber'
 end
 
 group :test do
-  gem 'shoulda-matchers'
-  gem 'cucumber-rails'
+  gem 'shoulda-matchers', require: false
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
