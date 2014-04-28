@@ -54,14 +54,14 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :test, :development do
   gem 'rspec-rails', '~> 3.0.0.beta'
-  gem 'factory_girl_rails'
-  gem 'spring'
-  gem 'spring-commands-rspec'
-  gem 'spring-commands-cucumber'
-end
-
-group :test do
+  gem "factory_girl_rails", "~> 4.0"
   gem 'shoulda-matchers', require: false
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'spring-commands-rspec'
+  gem 'spring-commands-cucumber'
+  gem 'spring'
+end
+
+group :test do
 end
