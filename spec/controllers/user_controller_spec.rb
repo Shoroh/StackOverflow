@@ -25,23 +25,5 @@ describe Devise::RegistrationsController do
 
   end
 
-  describe "POST 'create'" do
-
-    before :each do
-      @user = build(:user)
-    end
-
-    it "sends new message to User Class" do
-      params = {
-        username: "Shoroh362",
-        email:    "shoroh@gmail.com",
-        password: "123456789",
-        password_confirmation: "123456789"
-      }
-      post :create, user: params
-    end
-
-
-  end
 
 end

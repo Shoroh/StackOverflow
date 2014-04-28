@@ -14,7 +14,3 @@ end
 Then(/^I should be registered in application$/) do
   expect(User.find_by_email("shoroh362@gmail.com")).not_to be_nil
 end
-
-Then(/^I should be logged in$/) do
-  pending ""
-end
