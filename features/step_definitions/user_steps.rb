@@ -12,9 +12,9 @@ When(/^I fill the registering form with valid data$/) do
 end
 
 Then(/^I should be registered in application$/) do
-  pending # express the regexp above with the code you wish you had
+
 end
 
 Then(/^I should be logged in$/) do
-  pending # express the regexp above with the code you wish you had
+
 end
