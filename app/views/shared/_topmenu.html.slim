@@ -1,5 +1,6 @@
 nav.navbar.navbar-default role="navigation"
   div.container
     = link_to 'Stack Overflow', root_path, class: 'navbar-brand'
+    = link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-default navbar-btn navbar-right"
     button.btn.btn-default.navbar-btn.navbar-right
       | Sign in
