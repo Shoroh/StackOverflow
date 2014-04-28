@@ -17,7 +17,7 @@ describe "devise/registrations/new.html.erb" do
   end
 
   it "has username field" do
-    expect(rendered).to have_selector('#user_username')
+    expect(rendered).to have_selector('#user_name')
   end
 
   it "has password field" do

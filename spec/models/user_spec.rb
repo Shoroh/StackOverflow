@@ -13,9 +13,9 @@ describe User do
     expect(user.email).to eq("shoroh362@gmail.com")
   end
 
-  it "has username" do
-    user.username = "Shoroh"
-    expect(user.username).to eq("Shoroh")
+  it "has name" do
+    user.name = "Shoroh"
+    expect(user.name).to eq("Shoroh")
   end
 
   it "has password" do
@@ -29,6 +29,6 @@ describe User do
   end
 
   it { should validate_uniqueness_of(:email) }
-  it { should validate_uniqueness_of(:username) }
+  it { should validate_uniqueness_of(:name) }
 
 end
