@@ -1,6 +1,12 @@
 require "spec_helper"
+include Warden::Test::Helpers
 
 feature "Question" do
+
+  before(:each) do
+    @user = create(:user)
+    login_as @user, :scope => :user
+  end
 
   scenario "User see 'ask question' button on root page" do
     visit "/"
@@ -13,11 +19,12 @@ feature "Question" do
   end
 
   scenario "User creates a new questions" do
-    visit "/questions/new"
+    visit new_question_path
 
     fill_in "Title", :with => "My Question"
     fill_in "Body", with: 'How to patch KDE under freeBSD?'
     click_button "Create Question"
+    expect(@user.questions.first.title).to eq('My Question')
     expect(page).to have_css '.notice', text: 'Question was successfully created.'
   end
 

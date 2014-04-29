@@ -11,4 +11,6 @@ describe User do
 
   it { should ensure_length_of(:password).is_at_least(8) }
 
+  it { should have_many(:questions) }
+
 end
