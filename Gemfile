@@ -56,7 +56,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem "factory_girl_rails", "~> 4.0"
   gem 'shoulda-matchers', require: false
-  gem 'cucumber-rails', require: false
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'spring-commands-rspec'
   gem 'spring-commands-cucumber'

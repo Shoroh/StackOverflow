@@ -1,0 +1,17 @@
+h3 New Question
+
+= form_for @question, role: "form" do |f|
+  - if @question.errors.any?
+    #error_explanation
+      h2= pluralize(@question.errors.count, "error")
+        | prohibited this post from being saved:
+      ul
+        - @question.errors.full_messages.each do |msg|
+          li= msg
+  = f.label :title
+  = f.text_field :title
+
+  = f.label :body
+  = f.text_field :body
+
+  = f.submit "Create Question"

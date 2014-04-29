@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe QuestionController do
+describe QuestionsController do
 
   describe "GET 'index'" do
     it "returns http success" do
