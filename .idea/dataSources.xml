@@ -25,6 +25,14 @@
       <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddff9dffedfebdfe9dfe1dff5dfe5dffcdfefdff8dfecdfe6dfe5dffddff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
       <libraries />
     </data-source>
+    <data-source source="LOCAL" name="Rails Stack Overflow: cucumber" uuid="d2378bd5-819e-41f1-adf2-af43b6159b25">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:Stack_Overflow_test</jdbc-url>
+      <user-name>shelestov</user-name>
+      <user-password>df98df99df9bdf9bdf9bdf93df9ddf92</user-password>
+      <libraries />
+    </data-source>
   </component>
 </project>
 

@@ -13,4 +13,8 @@ nav.navbar.navbar-default role="navigation"
             li
               = link_to 'Log out', destroy_user_session_path, method: :delete
     - else
-      = link_to 'Sign in', new_user_session_path, class: "btn btn-default navbar-btn navbar-right" unless current_page?(controller: 'devise/sessions', action: 'new')
+      - unless current_page?(controller: 'devise/sessions', action: 'new') or current_page?(controller: 'devise/registrations', action: 'new')
+        button.btn.btn-default.navbar-btn.navbar-right data-target="#signin_modal" data-toggle="modal"
+          | Sign in
+        = render 'devise/sessions/modal'
+
