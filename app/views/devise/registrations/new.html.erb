@@ -4,21 +4,23 @@
     <%= devise_error_messages! %>
 
     <div class="form-group"><%= f.label :name %>
-      <br/>
-      <%= f.text_field :name, autofocus: true, class: "form-control" %></div>
+      <%= f.text_field :name, autofocus: true, class: "form-control" %>
+      <span class="help-block">you couldn't change it in further</span>
+    </div>
 
 
     <div class="form-group"><%= f.label :email %>
-      <br/>
-      <%= f.email_field :email, autofocus: true, class: "form-control" %></div>
+      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      <span class="help-block">it will be your login for sign in</span>
+    </div>
 
     <div class="form-group"><%= f.label :password %>
-      <br/>
-      <%= f.password_field :password, autocomplete: "off", class: "form-control" %></div>
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      <span class="help-block">8 letters at least</span>
+    </div>
 
     <div class="form-group"><%= f.label :password_confirmation %>
-      <br/>
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %></div>
 
-    <div class="form-group"><%= f.submit "Sign up", class: "btn btn-default" %> or <%= render "devise/shared/links" %></div>
+    <div class="form-group"><%= f.submit "Sign up", class: "btn btn-primary" %></div>
 <% end %>

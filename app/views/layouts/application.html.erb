@@ -12,19 +12,22 @@
 
 <div class="container">
 
-<%= render 'shared/error_messages' %>
+  <%= render 'shared/error_messages' %>
 
-  <div class="row">
-    <div class="col-md-9">
-      <%= yield %>
-    </div>
-    <div class="col-md-3">
-      <%= yield :sidebar %>
+  <div id="main" role="main">
+    <div class="row">
+      <div class="col-md-9">
+        <%= yield %>
+      </div>
+      <div class="col-md-3">
+        <%= yield :sidebar %>
+      </div>
     </div>
   </div>
+
 </div>
 
-<%= render'shared/footer' %>
+<%= render 'shared/footer' %>
 
 </body>
 </html>
