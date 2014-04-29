@@ -8,10 +8,11 @@ h3 New Question
       ul
         - @question.errors.full_messages.each do |msg|
           li= msg
-  = f.label :title
-  = f.text_field :title
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :body
+    = f.text_area :body, class: "form-control"
 
-  = f.label :body
-  = f.text_field :body
-
-  = f.submit "Create Question"
+  = f.submit "Create Question", class: "btn btn-info"
