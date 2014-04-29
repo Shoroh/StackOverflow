@@ -15,3 +15,9 @@
 /log/*.log
 /tmp
 /config/database.yml
+
+# Mac OS files
+.DS_Store
+
+# Ignore RubiMine project folder
+/.idea
