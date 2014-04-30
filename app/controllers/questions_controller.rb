@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show]
-  before_action :authenticate_user!, :only => [:new, :create]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
 
   def index
     @title = "Recent Questions"
@@ -14,6 +14,9 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
+  def edit
+  end
+
   def create
     @question = current_user.questions.build(question_params)
 
@@ -23,6 +26,26 @@ class QuestionsController < ApplicationController
       else
         format.html { render action: 'new' }
       end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @question.update(question_params)
+        format.html { redirect_to @question, :flash => {:info => "Question was successfully updated!"} }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @question.destroy
+    respond_to do |format|
+      format.html { redirect_to questions_path, :flash => {:info => "Question was successfully deleted!"} }
+      format.json { head :no_content }
     end
   end
 
