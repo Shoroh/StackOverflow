@@ -6,6 +6,16 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
+  # What controller is now actively
+  def controller?(*controller)
+    controller.include?(params[:controller])
+  end
+
+  # What action is now actively
+  def action?(*action)
+    action.include?(params[:action])
+  end
+
   protected
 
   def configure_permitted_parameters

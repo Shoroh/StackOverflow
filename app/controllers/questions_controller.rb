@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html { redirect_to @question, :flash => {:info => "Question was successfully created!" }}
       else
         format.html { render action: 'new' }
       end

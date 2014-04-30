@@ -25,7 +25,7 @@ feature "Question" do
     fill_in "Body", with: 'How to patch KDE under freeBSD?'
     click_button "Create Question"
     expect(@user.questions.first.title).to eq('My Question')
-    expect(page).to have_css '.notice', text: 'Question was successfully created.'
+    expect(page).to have_css '.alert', text: 'Question was successfully created!'
   end
 
   scenario "User click to Questions link and get index of questions page" do

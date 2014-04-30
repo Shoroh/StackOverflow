@@ -1,6 +1,7 @@
-- if notice
-  p.notice
-    = notice
-- if alert
-  p.alert
-    = alert
+-flash.each do |key, value|
+  - if key == 'notice'
+    - key = 'success'
+  div class= "alert alert-#{key}"
+    button.close type="button" data-dismiss="alert" aria-hidden="true"
+      | &times;
+    = value

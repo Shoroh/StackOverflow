@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   devise_for :users
+
+  # List of registered users
+  get 'users' => 'users#index'
+
   root to: 'welcome#index'
 
   resources :questions
