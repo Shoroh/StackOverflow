@@ -1,0 +1,7 @@
+- @questions.each do |q|
+  .question-summary id="question-summary-#{q.id}"
+    .summary
+      h3
+        = link_to q.title, q, class: "question-hyperlink"
+      .excerpt
+        = q.body.html_safe

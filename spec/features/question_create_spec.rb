@@ -28,4 +28,11 @@ feature "Question" do
     expect(page).to have_css '.notice', text: 'Question was successfully created.'
   end
 
+  scenario "User click to Questions link and get index of questions page" do
+    visit "/"
+    click_link "Questions"
+
+    expect(page).to have_title 'Recent Questions'
+  end
+
 end

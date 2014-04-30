@@ -3,6 +3,8 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, :only => [:new, :create]
 
   def index
+    @title = "Recent Questions"
+    @questions = Question.limit(50)
   end
 
   def show

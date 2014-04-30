@@ -1,6 +1,11 @@
+<% title @title %>
+
 <div class="high_box">
   <p class="text-success">Main part</p>
   <hr/>
+
+  <%= render 'question_summary', locals: {questions: @questions} %>
+
 </div>
 
 <% content_for :sidebar do %>

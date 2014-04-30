@@ -1,5 +1,5 @@
 #submenu
-  a href="#" Questions
+  = link_to 'Questions', questions_path
   a href="#" Tags
   a href="#" Users
   =link_to 'Ask Question', new_question_path, class: "btn btn-info btn-embossed pull-right" unless current_page?(url_for(:controller => '/questions', :action => 'new'))

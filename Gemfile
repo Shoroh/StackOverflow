@@ -53,7 +53,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # gem 'debugger', group: [:development, :test]
 
 group :test, :development do
-  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec-rails', '2.14'
   gem "factory_girl_rails", "~> 4.0"
   gem 'shoulda-matchers', require: false
   gem 'capybara'
@@ -61,6 +61,7 @@ group :test, :development do
   gem 'spring-commands-rspec'
   gem 'spring-commands-cucumber'
   gem 'spring'
+  gem 'minitest'
 end
 
 group :test do
