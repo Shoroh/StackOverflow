@@ -19,6 +19,9 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'slim-rails'
 gem 'select2-rails'
 
+# For best forms
+gem 'simple_form'
+
 # Pagination
 gem 'kaminari'
 
