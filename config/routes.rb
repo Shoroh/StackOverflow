@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
-  get 'welcome/index'
+  # Main page
+  root to: 'welcome#index'
 
   devise_for :users
 
   # List of registered users
   get 'users' => 'users#index'
 
-  root to: 'welcome#index'
+  get 'profile/:user_id' => 'profiles#show'
 
   resources :questions
 
