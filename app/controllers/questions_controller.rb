@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   def index
     @title = "Recent Questions"
-    @questions = Question.limit(50)
+    @questions = Question.limit(50).order(created_at: :desc)
   end
 
   def show

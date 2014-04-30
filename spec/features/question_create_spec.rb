@@ -35,4 +35,9 @@ feature "Question" do
     expect(page).to have_title 'Recent Questions'
   end
 
+  scenario "User see quantity of questions in DB at sidebar" do
+    visit "/questions"
+    expect(page).to have_css "#questions-count"
+  end
+
 end

@@ -1,7 +1,12 @@
 - @questions.each do |q|
   .question-summary id="question-summary-#{q.id}"
     .summary
-      h3
+      h4
         = link_to q.title, q, class: "question-hyperlink"
       .excerpt
-        = q.body.html_safe
+        p= q.body.html_safe
+      small.asked_by
+        ' asked
+        =' time_ago_in_words q.created_at
+        ' ago by
+        = q.user.name

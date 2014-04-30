@@ -1,7 +1,7 @@
 <% title @title %>
 
 <div class="high_box">
-  <p class="text-success">Main part</p>
+  <p>All Questions</p>
   <hr/>
 
   <%= render 'question_summary', locals: {questions: @questions} %>
@@ -9,8 +9,9 @@
 </div>
 
 <% content_for :sidebar do %>
-    <div class="high_box">
-      <p>This is sidebar</p>
-      <hr/>
+    <div class="module" id="questions-count">
+      <div class="summarycount"><%= Question.all.length %></div>
+      <p>questions</p>
     </div>
+
 <% end %>
