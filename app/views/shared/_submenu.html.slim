@@ -1,5 +1,8 @@
 #submenu
-  = link_to 'Questions', questions_path
-  a href="#" Tags
-  = link_to 'Users', users_path
-  =link_to 'Ask Question', new_question_path, class: "btn btn-info btn-embossed pull-right" unless current_page?(url_for(:controller => '/questions', :action => 'new'))
+  .row
+    .col-sm-8.col-md-9.col-xs-8
+      = link_to 'Questions', questions_path, class: "btn btn-xs #{current_page?(questions_path) ? 'btn-carrot' : 'btn-concrete'}"
+      = link_to 'Tags', '#', class: "btn btn-xs btn-concrete"
+      = link_to 'Users', users_path, class: "btn btn-xs #{current_page?(users_path) ? 'btn-carrot' : 'btn-concrete'}"
+    .col-sm-4.col-md-3.col-xs-4
+      =link_to 'Ask Question', new_question_path, class: "btn #{current_page?(new_question_path) ? 'btn-carrot' : 'btn-concrete'} btn-embossed btn-block"

@@ -13,11 +13,6 @@ feature "Question" do
     expect(page).to have_link 'Ask Question'
   end
 
-  scenario "User didn't see 'ask question' button on questions#new page" do
-    visit "/questions/new"
-    expect(page).not_to have_link 'Ask Question'
-  end
-
   scenario "User creates a new questions" do
     visit new_question_path
 
