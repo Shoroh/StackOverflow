@@ -5,10 +5,13 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  # List of registered users
-  get 'users' => 'users#index'
 
-  get 'profile/:user_id' => 'profiles#show'
+
+
+  # Routes for users and their profiles
+  get 'users' => 'users#index'
+  get 'user/:id' => 'users#show', as: :user
+  get 'profile' => 'users#edit', as: :profile
 
   resources :questions
 

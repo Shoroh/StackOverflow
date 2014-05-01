@@ -2,13 +2,13 @@
 
 FactoryGirl.define do
   factory :question do
-    title "How to patch KDE under FreeBSD?"
-    body "It is very interesting!"
-    user_id 1
+    association :user
+    title {Faker::Lorem.sentence(4)}
+    body {Faker::Lorem.paragraph}
   end
   factory :invalid_question, class: Question do
+    association :user
     title nil
     body nil
-    user_id nil
   end
 end

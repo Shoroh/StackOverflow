@@ -14,4 +14,10 @@ describe User do
   it { should have_many(:questions) }
   it { should have_one(:profile) }
 
+  it 'has profile after create' do
+    user = create(:user)
+    expect(user.profile.has_attribute?(:display_name)).to be_true
+  end
+
+
 end

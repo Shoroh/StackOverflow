@@ -60,6 +60,7 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    ffaker (1.24.0)
     gon (5.0.4)
       actionpack (>= 2.3.0)
       json
@@ -132,7 +133,7 @@ GEM
       thor (~> 0.14)
     shoulda-matchers (2.6.0)
       activesupport (>= 3.0.0)
-    simple_form (3.0.2)
+    simple_form (3.1.0.rc1)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     slim (2.0.2)
@@ -184,6 +185,7 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails (~> 4.0)
+  ffaker
   gon
   jbuilder (~> 2.0)
   jquery-rails
@@ -196,7 +198,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   select2-rails
   shoulda-matchers
-  simple_form
+  simple_form (~> 3.1.0.rc1)
   slim-rails
   spring
   spring-commands-cucumber

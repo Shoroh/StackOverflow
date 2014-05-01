@@ -144,12 +144,13 @@ describe QuestionsController do
       end
 
       context 'with invalid attributes' do
+        let(:old_question){question}
         before {patch :update, id: question, question: { title: 'new title', body: nil }}
 
         it 'does not change question attributes' do
           question.reload
-          expect(question.title).to eq('How to patch KDE under FreeBSD?')
-          expect(question.body).to eq('It is very interesting!')
+          expect(question.title).to eq(old_question.title)
+          expect(question.body).to eq(old_question.body)
         end
 
         it 're-renders new view' do

@@ -1,4 +1,3 @@
 ul
 - @users.each do |u|
-  li
-    = u.name
+  li= link_to u.name, u

@@ -1,0 +1,8 @@
+h4
+  =@user.user.name
+  | 's profile
+= simple_form_for @user, wrapper: :horizontal_form, html: {class: 'form-horizontal'}, role: "form" do |f|
+  = f.input :age
+  = f.input :display_name
+  = f.input :facebook_id
+  = f.button :submit, class: 'pull-right btn-embossed'

@@ -20,7 +20,7 @@ gem 'slim-rails'
 gem 'select2-rails'
 
 # For best forms
-gem 'simple_form'
+gem 'simple_form', '~> 3.1.0.rc1'
 
 # Pagination
 gem 'kaminari'
@@ -58,6 +58,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 group :test, :development do
   gem 'rspec-rails', '2.14'
   gem "factory_girl_rails", "~> 4.0"
+  gem 'ffaker'
+end
+
+group :test do
   gem 'shoulda-matchers', require: false
   gem 'capybara'
   gem 'database_cleaner'
@@ -65,7 +69,4 @@ group :test, :development do
   gem 'spring-commands-cucumber'
   gem 'spring'
   gem 'minitest'
-end
-
-group :test do
 end
