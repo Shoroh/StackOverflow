@@ -8,10 +8,12 @@
 
 </div>
 
+<% if current_page?(controller: :questions) %>
 <% content_for :sidebar do %>
     <div class="module" id="questions-count">
       <div class="summarycount"><%= Question.count %></div>
       <p>questions</p>
     </div>
+<% end %>
 
 <% end %>

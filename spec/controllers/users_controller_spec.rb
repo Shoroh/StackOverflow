@@ -1,8 +1,13 @@
 require 'spec_helper'
 
 describe UsersController do
+
   let(:users) {create_list(:user, 3)}
   let(:user) {create(:user)}
+
+  it { should route(:get, '/users').to(controller: 'users', action: 'index') }
+  it { should route(:get, '/user/1').to(controller: 'users', action: 'show', id: 1) }
+  it { should route(:get, '/profile').to(controller: 'users', action: 'edit') }
 
   describe 'GET #index' do
 
@@ -12,9 +17,7 @@ describe UsersController do
       expect(assigns(:users)).to match_array(users)
     end
 
-    it 'renders index view' do
-      expect(response).to render_template :index
-    end
+    it { should render_template('index') }
   end
 
   describe "GET #show" do
@@ -24,9 +27,7 @@ describe UsersController do
       expect(assigns(:user)).to eq user
     end
 
-    it 'renders show view' do
-      expect(response).to render_template :show
-    end
+    it { should render_template('show') }
   end
 
   describe 'GET #edit' do
@@ -36,16 +37,14 @@ describe UsersController do
         get :edit
       end
 
-      it 'renders edit view' do
-        expect(response).to render_template :edit
-      end
+      it { should render_template('edit') }
     end
 
     context 'with User is not authorized' do
-      it 'redirect to sign in page' do
+      before do
         get :edit
-        expect(response).to redirect_to new_user_session_path
       end
+      it { should redirect_to(new_user_session_path) }
     end
   end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-
+  User.create!(name: 'asddad', email: 'asdasd@dsdasd.ru', password: 'secret12', password_confirmation: 'secret12')
   it { should validate_uniqueness_of(:email) }
   it { should validate_uniqueness_of(:name) }
 

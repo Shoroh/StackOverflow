@@ -1,6 +1,15 @@
 require 'spec_helper'
 
 describe QuestionsController do
+
+  it { should route(:get, '/questions').to(controller: 'questions', action: 'index') }
+  it { should route(:get, '/questions/1').to(controller: 'questions', action: 'show', id: 1) }
+  it { should route(:get, '/questions/1/edit').to(controller: 'questions', action: 'edit', id: 1) }
+  it { should route(:get, '/questions/new').to(controller: 'questions', action: 'new') }
+  it { should route(:delete, '/questions/1').to(controller: 'questions', action: 'destroy', id: 1) }
+  it { should route(:patch, '/questions/1').to(controller: 'questions', action: 'update', id: 1) }
+  it { should route(:post, '/questions').to(controller: 'questions', action: 'create') }
+
   let(:question) {create(:question)}
 
   describe 'GET #index' do
@@ -12,9 +21,7 @@ describe QuestionsController do
       expect(assigns(:questions)).to match_array(questions)
     end
 
-    it 'renders index view' do
-      expect(response).to render_template :index
-    end
+    it { should render_template('index') }
   end
 
   describe "GET #show" do
@@ -24,9 +31,7 @@ describe QuestionsController do
       expect(assigns(:question)).to eq question
     end
 
-    it 'renders show view' do
-      expect(response).to render_template :show
-    end
+    it { should render_template('show') }
   end
 
   describe 'GET #new' do
@@ -40,9 +45,7 @@ describe QuestionsController do
         expect(assigns(:question)).to be_a_new(Question)
       end
 
-      it 'renders new view' do
-        expect(response).to render_template :new
-      end
+      it { should render_template('new') }
     end
 
     context 'with User is not authorized' do
@@ -64,9 +67,7 @@ describe QuestionsController do
         expect(assigns(:question)).to eq question
       end
 
-      it 'renders edit view' do
-        expect(response).to render_template :edit
-      end
+      it { should render_template('edit') }
     end
 
     context 'with User is not authorized' do
@@ -149,9 +150,7 @@ describe QuestionsController do
           expect(question.body).to eq(old_question.body)
         end
 
-        it 're-renders new view' do
-          expect(response).to render_template :edit
-        end
+        it { should render_template('edit') }
       end
     end
 

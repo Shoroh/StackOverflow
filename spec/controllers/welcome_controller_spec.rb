@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe WelcomeController do
+  it { should route(:get, '/').to(controller: 'welcome', action: 'index') }
 
   describe "GET 'index'" do
     let(:questions) {create_list(:question, 3)}
@@ -11,9 +12,7 @@ describe WelcomeController do
       expect(assigns(:questions)).to match_array(questions)
     end
 
-    it 'renders index view' do
-      expect(response).to render_template :index
-    end
+    it { should render_template('index') }
   end
 
 end

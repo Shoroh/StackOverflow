@@ -6,9 +6,9 @@ feature "Question" do
     login_user_warden
   end
 
-  scenario "User see 'ask question' button on root page" do
+  scenario "User clicks 'ask question' button on root page" do
     visit "/"
-    expect(page).to have_link 'Ask Question'
+    click_link 'Ask Question'
   end
 
   scenario "User creates a new questions" do
@@ -21,16 +21,21 @@ feature "Question" do
     expect(page).to have_css '.alert', text: 'Question was successfully created!'
   end
 
-  scenario "User click to Questions link and get index of questions page" do
+  scenario "User clicks to Questions link and get index of questions page" do
     visit "/"
     click_link "Questions"
 
     expect(page).to have_title 'Recent Questions'
   end
 
-  scenario "User see quantity of questions in DB at sidebar" do
+  scenario "User sees quantity of questions if Questions-page" do
     visit "/questions"
     expect(page).to have_css "#questions-count"
+  end
+
+  scenario "User doesn't see quantity of questions if not Questions-page" do
+    visit "/"
+    expect(page).to_not have_css "#questions-count"
   end
 
 end
