@@ -32,8 +32,7 @@ describe UsersController do
   describe 'GET #edit' do
     context 'with User is authorized' do
       before do
-        @user = create(:user)
-        sign_in @user
+        login_user
         get :edit
       end
 

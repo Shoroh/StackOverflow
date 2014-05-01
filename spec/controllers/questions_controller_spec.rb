@@ -32,8 +32,7 @@ describe QuestionsController do
   describe 'GET #new' do
     context 'with User is authorized' do
       before do
-        @user = create(:user)
-        sign_in @user
+        login_user
         get :new
       end
 
@@ -49,7 +48,7 @@ describe QuestionsController do
     context 'with User is not authorized' do
       it 'redirect to user sign in view' do
         get :new
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to require_login
       end
     end
   end
@@ -57,8 +56,7 @@ describe QuestionsController do
   describe 'GET #edit' do
     context 'with User is authorized' do
       before do
-        @user = create(:user)
-        sign_in @user
+        login_user
         get :edit, id: question
       end
 
@@ -74,7 +72,7 @@ describe QuestionsController do
     context 'with User is not authorized' do
       it 'redirect to user sign in view' do
         get :edit, id: question
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to require_login
       end
     end
   end
@@ -82,8 +80,7 @@ describe QuestionsController do
   describe 'POST #create' do
     context 'with User is authorized' do
       before do
-        @user = create(:user)
-        sign_in @user
+        login_user
       end
 
       context 'with valid attributes' do
@@ -112,7 +109,7 @@ describe QuestionsController do
     context 'with User is not authorized' do
       it 'redirect to user sign in view' do
         post :create, question: attributes_for(:question)
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to require_login
       end
     end
   end
@@ -120,8 +117,7 @@ describe QuestionsController do
   describe 'PATCH #update' do
     context 'with User is authorized' do
       before do
-        @user = create(:user)
-        sign_in @user
+        login_user
       end
 
       context 'with valid attributes' do
@@ -162,7 +158,7 @@ describe QuestionsController do
     context 'with User is not authorized' do
       it 'redirect to user sign in view' do
         patch :update, id: question, question: { title: 'new title', body: 'new body' }
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to require_login
       end
     end
   end
@@ -170,8 +166,7 @@ describe QuestionsController do
   describe 'DELETE #destroy' do
     context 'with User is authorized' do
       before do
-        @user = create(:user)
-        sign_in @user
+        login_user
         question
       end
 
@@ -188,7 +183,7 @@ describe QuestionsController do
     context 'with User is not authorized' do
       it 'redirect to user sign in view' do
         delete :destroy, id: question
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to require_login
       end
     end
   end

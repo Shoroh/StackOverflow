@@ -1,11 +1,9 @@
 require "spec_helper"
-include Warden::Test::Helpers
 
 feature "Question" do
 
   before(:each) do
-    @user = create(:user)
-    login_as @user, :scope => :user
+    login_user_warden
   end
 
   scenario "User see 'ask question' button on root page" do
