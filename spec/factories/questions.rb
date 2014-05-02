@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :question do
     association :user
-    title {Faker::Lorem.sentence(4)}
+    title {Faker::Lorem.sentence(10)}
     body {Faker::Lorem.paragraph}
   end
   factory :invalid_question, class: Question do

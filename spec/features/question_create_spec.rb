@@ -14,10 +14,10 @@ feature "Question" do
   scenario "User creates a new questions" do
     visit new_question_path
 
-    fill_in "Title", :with => "My Question"
-    fill_in "Body", with: 'How to patch KDE under freeBSD?'
+    fill_in "Title", :with => "How to patch KDE under FreeBSD?"
+    fill_in "Body", with: 'It is elementary, Watson!'
     click_button "Create Question"
-    expect(@user.questions.first.title).to eq('My Question')
+    expect(@user.questions.first.title).to eq('How to patch KDE under FreeBSD?')
     expect(page).to have_css '.alert', text: 'Question was successfully created!'
   end
 

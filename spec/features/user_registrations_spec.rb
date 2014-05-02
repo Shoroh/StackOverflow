@@ -45,7 +45,7 @@ end
 def fill_form_with_valid_data(args={})
   email = args.fetch(:email, 'email@example.com')
   fill_in 'user_email', with: email
-  fill_in 'user_name', with: 'Andrew Sikorsky'
+  fill_in 'user_name', with: 'AndrewSikorsky'
   fill_in 'user_password', with: 'my-super-secret-password'
   fill_in 'user_password_confirmation', with: 'my-super-secret-password'
 end

@@ -6,8 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :name, :uniqueness => true
-  validates :name, :presence => true
+  validates :name, uniqueness: true, presence: true, format: {with: /\A[a-z0-9\-_\w]+\Z/i}, length: 3..60
 
   after_create :set_profile
 

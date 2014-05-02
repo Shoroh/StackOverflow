@@ -128,14 +128,14 @@ describe QuestionsController do
         end
 
         it 'changes question attributes' do
-          patch :update, id: question, question: { title: 'new title', body: 'new body' }
+          patch :update, id: question, question: { title: 'How to patch KDE under FreeBSD?', body: 'It is elementary, Watson!' }
           question.reload
-          expect(question.title).to eq('new title')
-          expect(question.body).to eq('new body')
+          expect(question.title).to eq('How to patch KDE under FreeBSD?')
+          expect(question.body).to eq('It is elementary, Watson!')
         end
 
         it 'redirect to updated question view' do
-          patch :update, id: question, question: { title: 'new title', body: 'new body' }
+          patch :update, id: question, question: { title: 'How to patch KDE under FreeBSD?', body: 'It is elementary, Watson!' }
           expect(response).to redirect_to question_path(assigns(:question))
         end
       end
