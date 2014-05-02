@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require flatui-checkbox
+//= require bootstrap-switch
 //= require_tree .

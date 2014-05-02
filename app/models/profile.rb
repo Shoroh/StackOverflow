@@ -1,6 +1,5 @@
 class Profile < ActiveRecord::Base
-  belongs_to :user, dependent: :destroy
-  accepts_nested_attributes_for :user
+  belongs_to :user
 
   validates :display_name, format: {with: /\A[a-z 0-9\-_\w]+\Z/i}, length: 3..80, allow_blank: true
   validates :facebook_id, format: {with: /\A[a-z\d.]+\Z/i}, length: 5..100, allow_blank: true
