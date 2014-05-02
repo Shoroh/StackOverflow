@@ -58,7 +58,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 group :test, :development do
   gem 'rspec-rails', '2.14'
   gem "factory_girl_rails", "~> 4.0"
-  gem 'ffaker'
+  gem 'faker'
 end
 
 group :test do

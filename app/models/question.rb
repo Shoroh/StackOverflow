@@ -9,16 +9,10 @@ class Question < ActiveRecord::Base
 
   enum status: {
       active:       0,
-      solved:       1,
-      has_answer:   2,
-      featured:     3,
-      deleted:      4,
-      archived:     5,
-      pending:      6
+      pending:      1,
+      deleted:      2
   }
 
-  scope :recent do
-    
-  end
+  scope :recent, -> { active.order(created_at: :desc).limit(10) }
 
 end

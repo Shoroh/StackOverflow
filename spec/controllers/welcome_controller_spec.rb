@@ -4,7 +4,8 @@ describe WelcomeController do
   it { should route(:get, '/').to(controller: 'welcome', action: 'index') }
 
   describe "GET 'index'" do
-    let(:questions) {create_list(:question, 3)}
+    let(:questions) {create_list(:question, 5)}
+    let(:deleted_questions) {create_list(:deleted_question, 5)}
 
     before {get :index}
 

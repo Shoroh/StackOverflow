@@ -5,6 +5,13 @@ FactoryGirl.define do
     association :user
     title {Faker::Lorem.sentence(10)}
     body {Faker::Lorem.paragraph}
+    status 0
+    factory :deleted_question do
+      status 2
+    end
+    factory :pending_question do
+      status 1
+    end
   end
   factory :invalid_question, class: Question do
     association :user
