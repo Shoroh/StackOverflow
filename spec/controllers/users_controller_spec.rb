@@ -7,7 +7,8 @@ describe UsersController do
 
   it { should route(:get, '/users').to(controller: 'users', action: 'index') }
   it { should route(:get, '/user/1').to(controller: 'users', action: 'show', id: 1) }
-  it { should route(:get, '/profile').to(controller: 'users', action: 'edit') }
+  it { should route(:get, '/profile/edit').to(controller: 'users', action: 'edit') }
+  it { should route(:patch, '/profile/edit').to(controller: 'users', action: 'update') }
 
   describe 'GET #index' do
 

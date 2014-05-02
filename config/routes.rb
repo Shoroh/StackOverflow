@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   # Routes for users and their profiles
   get 'users' => 'users#index'
   get 'user/:id' => 'users#show', as: :user
-  get 'profile' => 'users#edit', as: :profile
+  get 'profile/edit' => 'users#edit', as: :profile
+  patch 'profile/edit' => 'users#update'
 
   resources :questions
 

@@ -1,8 +1,8 @@
 h4
-  =@user.user.name
+  =@profile.user.name
   | 's profile
-= simple_form_for @user, wrapper: :horizontal_form, html: {class: 'form-horizontal'}, role: "form" do |f|
+= simple_form_for @profile, wrapper: :horizontal_form, html: {class: 'form-horizontal'}, role: "form" do |f|
   = f.input :age
   = f.input :display_name
   = f.input :facebook_id
-  = f.button :submit, class: 'pull-right btn-embossed'
+  = f.button :submit, class: 'pull-right btn-embossed btn-primary'
