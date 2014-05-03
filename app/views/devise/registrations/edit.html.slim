@@ -1,0 +1,20 @@
+h4 Edit #{current_user.name}'s registration data:
+
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, class: 'form-horizontal'}, wrapper: :horizontal_form) do |f|
+  = f.input :name, disabled: true, hint: "You can't change your name at the moment.", required: false
+  = f.input :email, autofocus: true
+  hr
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      | Currently waiting confirmation for: #{resource.unconfirmed_email}
+  = f.input :password, autocomplete: "off", hint: "leave blank if you don't want to change it", label: 'New Password'
+  = f.input :password_confirmation, autocomplete: "off", label: 'New Pass again'
+  hr
+  = f.input :current_password, autocomplete: "off", hint: "we need your current password to confirm your changes"
+  = f.button :submit, class: 'btn-wide pull-right btn-embossed'
+
+div.unhappy
+  a.spoiler-btn Unhappy?
+  br
+  br
+  .spoiler-body
+    | #{button_to "Delete my account!", registration_path(resource_name), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger btn-embossed"}
