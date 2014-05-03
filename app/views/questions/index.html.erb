@@ -8,6 +8,10 @@
 
 </div>
 
+<% if current_page?(controller: 'questions') %>
+    <%= render'shared/pages' %>
+<% end %>
+
 <% if current_page?(controller: :questions) %>
 <% content_for :sidebar do %>
     <div class="module" id="questions-count">

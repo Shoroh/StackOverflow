@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   def index
     @title = "Recent Questions"
-    @questions = Question.limit(50).order(created_at: :desc)
+    @questions = Question.recent.page(params[:page])
   end
 
   def show

@@ -15,4 +15,6 @@ class Question < ActiveRecord::Base
 
   scope :recent, -> { active.order(created_at: :desc).limit(10) }
 
+  paginates_per 10
+
 end
