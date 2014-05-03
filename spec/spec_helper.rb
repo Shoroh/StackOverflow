@@ -57,4 +57,5 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
   config.include LoginMacros
+  config.include Features, type: :feature
 end

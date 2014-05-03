@@ -67,6 +67,7 @@ end
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'spring-commands-rspec'
   gem 'spring-commands-cucumber'

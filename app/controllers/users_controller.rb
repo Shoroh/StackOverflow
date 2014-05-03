@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:age, :display_name, :facebook_id, user_attributes: [:name, :email, :current_password])
+    params.require(:profile).permit(:age, :display_name, :facebook_id)
   end
 
 end
