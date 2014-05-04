@@ -31,9 +31,6 @@ gem 'gon'
 # User registration
 gem 'devise'
 
-# Pageable
-gem 'kaminari'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -62,6 +59,7 @@ group :test, :development do
   gem 'rspec-rails', '2.14'
   gem "factory_girl_rails", "~> 4.0"
   gem 'faker'
+  gem 'yard'
 end
 
 group :test do
