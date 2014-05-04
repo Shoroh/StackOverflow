@@ -15,6 +15,6 @@
         - else
           - unless current_page?(controller: 'devise/sessions', action: 'new') or current_page?(controller: 'devise/registrations', action: 'new')
             li
-              a.navbar-right data-target="#signin_modal" data-toggle="modal"
-                  span.fui-lock
+              a.navbar-right data-target="#signin_modal" data-toggle="modal" href=""
+                span.fui-lock
               = render 'devise/sessions/modal'
