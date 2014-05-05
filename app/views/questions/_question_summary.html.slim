@@ -3,6 +3,8 @@
     .summary
       h4
         = link_to q.title, q, class: "question-hyperlink"
+        - if q.featured?
+          span.fui-heart
       .excerpt
         p= q.body.html_safe
       small.asked_by

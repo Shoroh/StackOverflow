@@ -13,17 +13,14 @@ feature 'Sort questions on root page' do
   end
 
   scenario "User clicks 'featured' button and sees featured questions" do
-    featured_question = create_list(:featured_question, 3)
-    questions = create_list(:question, 3)
+    featured_questions = create_list(:featured_question, 3)
+    create_list(:question, 3)
     visit '/questions'
 
     click_link 'Featured'
 
+    expect(page.find("#question-summary-#{featured_questions.first.id}")).to have_css('.fui-heart')
     expect(page).to have_title('Featured Questions — Stack Overflow')
-  end
-
-  scenario "User clicks 'popular' button and sees popular questions" do
-    expect(page).to have_title('Popular Questions — Stack Overflow')
   end
 
 end
