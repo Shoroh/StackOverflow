@@ -20,11 +20,11 @@ describe Question do
     expect(Question.recent.count).to eq(2)
   end
 
-  it "should not give deleted questions when 'recent'" do
+  it "should not show deleted questions when 'recent'" do
     expect(Question.recent.last.deleted?).to be_false
   end
 
-  it "should not give pending questions when 'recent'" do
+  it "should not show pending questions when 'recent'" do
     expect(Question.recent.last.pending?).to be_false
   end
 

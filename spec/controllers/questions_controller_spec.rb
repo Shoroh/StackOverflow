@@ -31,6 +31,10 @@ describe QuestionsController do
       expect(assigns(:question)).to eq question
     end
 
+    it 'increment unique_views counter from 0 to 1' do
+      expect(assigns(:question).impressionist_count).to eq(1)
+    end
+
     it { should render_template('show') }
   end
 
