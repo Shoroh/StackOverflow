@@ -1,3 +1,6 @@
+# Additional fields for User, like name, age, etc
+#
+
 class Profile < ActiveRecord::Base
   belongs_to :user
 

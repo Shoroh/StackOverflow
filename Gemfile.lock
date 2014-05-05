@@ -69,7 +69,11 @@ GEM
       actionpack (>= 2.3.0)
       json
     hike (1.2.3)
+    httpclient (2.3.4.1)
     i18n (0.6.9)
+    impressionist (1.5.1)
+      httpclient (~> 2.2)
+      nokogiri (~> 1.5)
     jbuilder (2.0.6)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -199,6 +203,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   faker
   gon
+  impressionist
   jbuilder (~> 2.0)
   jquery-rails
   kaminari

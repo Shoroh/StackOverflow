@@ -2,3 +2,7 @@
 
 h3=@question.title
 p=@question.body.html_safe
+hr
+p
+  ' Views by IP:
+  = @question.impressionist_count

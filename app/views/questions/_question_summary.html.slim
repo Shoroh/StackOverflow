@@ -10,3 +10,6 @@
         =' time_ago_in_words q.created_at
         ' ago by
         = q.user.name
+      small.view_counter
+        ' Views —
+        = q.unique_views
