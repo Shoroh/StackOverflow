@@ -8,14 +8,16 @@ class QuestionsController < ApplicationController
   impressionist :actions=>[:show], :unique => [:impressionable_id, :session_hash, :impressionable_type ]
 
   def index
-    @title = "Recent Questions"
-    @questions = Question.recent.page(params[:page])
-  end
+    sort_option = params[:sort_by]
 
-  def featured
-    @title = "Featured Questions"
-    @questions = Question.featured.page(params[:page])
-    render 'questions/index'
+    case sort_option.to_s
+      when 'featured'
+        @title = "Featured Questions"
+        @questions = Question.featured.page(params[:page])
+      when 'recent' && ''
+        @title = "Recent Questions"
+        @questions = Question.recent.page(params[:page])
+    end
   end
 
   def show

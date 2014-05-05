@@ -15,14 +15,17 @@ class Question < ActiveRecord::Base
       deleted:      2
   }
 
+  # Orders questions by default
+  default_scope -> { order(created_at: :desc) }
+
   # Generate last recent questions:
-  scope :recent, -> { active.order(created_at: :desc) }
+  scope :recent, -> { active }
 
   # Generate featured questions:
-  scope :featured, -> { where(featured: true).order(created_at: :desc) }
+  scope :featured, -> { where(featured: true) }
 
   # Quantity questions per page by default (last 10)
-  paginates_per 10
+  paginates_per 5
 
   # Stats. Used to know how many unique IP_address have seen the page.
   #   Uses impressions_count field in :questions table to cache counter.

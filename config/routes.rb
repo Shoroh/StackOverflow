@@ -15,10 +15,11 @@ Rails.application.routes.draw do
   get 'profile/edit' => 'users#edit', as: :profile
   patch 'profile/edit' => 'users#update'
 
+
   resources :questions, concerns: :pageable do
-    # Sorts questions on index page
-    get '/featured' => 'questions#featured', on: :collection
+    get '/sort/:sort_by(/page/:page)' => 'questions#index', on: :collection, as: :sortable
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
