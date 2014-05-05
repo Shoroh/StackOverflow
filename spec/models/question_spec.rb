@@ -4,6 +4,7 @@ describe Question do
   let!(:question) {create_list(:question, 2)}
   let!(:deleted_question) {create_list(:deleted_question, 2)}
   let!(:pending_question) {create_list(:pending_question, 2)}
+  let!(:featured_question) {create_list(:featured_question, 2)}
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:body) }
@@ -15,9 +16,9 @@ describe Question do
 
   it { should allow_value('active', 'pending', 'deleted').for(:status) }
 
-  it "should give only active questions when 'recent'" do
+  it "should show only active questions when 'recent'" do
     expect(Question.recent.last.active?).to be_true
-    expect(Question.recent.count).to eq(2)
+    expect(Question.recent.count).to eq(4)
   end
 
   it "should not show deleted questions when 'recent'" do
@@ -26,6 +27,11 @@ describe Question do
 
   it "should not show pending questions when 'recent'" do
     expect(Question.recent.last.pending?).to be_false
+  end
+
+  it "should show only featured questions when 'featured'" do
+    expect(Question.featured.last.featured?).to be_true
+    expect(Question.featured.count).to eq(2)
   end
 
 end

@@ -1,8 +1,8 @@
 <% title @title %>
 
 <div class="high_box">
-  <p>All Questions</p>
-  <hr/>
+
+  <%= render 'questions/sort_panel' %>
 
   <%= render 'questions/question_summary', locals: {questions: @questions} %>
 
@@ -20,12 +20,10 @@
     </div>
 
     <div class="tile">
-      asd
-      asdasd
-      asdasd
-      asdasd
-      asdasd
-      asdas
+      This
+      is
+      awesome
+      sidebar
     </div>
 <% end %>
 

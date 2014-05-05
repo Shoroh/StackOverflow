@@ -12,6 +12,12 @@ class QuestionsController < ApplicationController
     @questions = Question.recent.page(params[:page])
   end
 
+  def featured
+    @title = "Featured Questions"
+    @questions = Question.featured.page(params[:page])
+    render 'questions/index'
+  end
+
   def show
   end
 

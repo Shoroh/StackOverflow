@@ -18,11 +18,15 @@ class Question < ActiveRecord::Base
   # Generate last recent questions:
   scope :recent, -> { active.order(created_at: :desc) }
 
+  # Generate featured questions:
+  scope :featured, -> { where(featured: true).order(created_at: :desc) }
+
   # Quantity questions per page by default (last 10)
   paginates_per 10
 
   # Stats. Used to know how many unique IP_address have seen the page.
   #   Uses impressions_count field in :questions table to cache counter.
   is_impressionable :counter_cache => true, column_name: :unique_views, unique: :all
+
 
 end

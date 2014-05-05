@@ -12,6 +12,9 @@ FactoryGirl.define do
     factory :pending_question do
       status 1
     end
+    factory :featured_question do
+      featured true
+    end
   end
   factory :invalid_question, class: Question do
     association :user

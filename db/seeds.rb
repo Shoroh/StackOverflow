@@ -21,6 +21,11 @@ user2 = User.create!(name: 'andrew', email: 'andrew@sikorsky.ru', password: 'sup
 user3 = User.create!(name: 'test', email: 'test@sikorsky.ru', password: 'supersecret', password_confirmation: 'supersecret')
 
 10.times do
+  FactoryGirl.create(:featured_question, user: user1)
+  FactoryGirl.create(:featured_question, user: user2)
+end
+
+10.times do
   FactoryGirl.create(:question, user: user1)
   FactoryGirl.create(:question, user: user2)
 end
@@ -34,3 +39,4 @@ end
   FactoryGirl.create(:pending_question, user: user1)
   FactoryGirl.create(:pending_question, user: user2)
 end
+

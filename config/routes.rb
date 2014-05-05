@@ -4,13 +4,10 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   concern :pageable do
-    get 'page/:page', :action => :index, :on => :collection
+    get 'page/:page', :action => :index, on: :collection
   end
 
   devise_for :users
-
-
-
 
   # Routes for users and their profiles
   get 'users' => 'users#index'
@@ -18,7 +15,10 @@ Rails.application.routes.draw do
   get 'profile/edit' => 'users#edit', as: :profile
   patch 'profile/edit' => 'users#update'
 
-  resources :questions, concerns: :pageable
+  resources :questions, concerns: :pageable do
+    # Sorts questions on index page
+    get '/featured' => 'questions#featured', on: :collection
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

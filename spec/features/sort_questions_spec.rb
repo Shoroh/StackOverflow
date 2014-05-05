@@ -1,0 +1,29 @@
+require 'spec_helper'
+
+feature 'Sort questions on root page' do
+  scenario "User clicks 'recent' button and sees recent questions" do
+    old_question = create(:question)
+    new_question = create(:question)
+    visit '/questions'
+
+    click_link 'Recent'
+
+    expect(new_question.title).to appear_before(old_question.title)
+    expect(page).to have_title('Recent Questions — Stack Overflow')
+  end
+
+  scenario "User clicks 'featured' button and sees featured questions" do
+    featured_question = create_list(:featured_question, 3)
+    questions = create_list(:question, 3)
+    visit '/questions'
+
+    click_link 'Featured'
+
+    expect(page).to have_title('Featured Questions — Stack Overflow')
+  end
+
+  scenario "User clicks 'popular' button and sees popular questions" do
+    expect(page).to have_title('Popular Questions — Stack Overflow')
+  end
+
+end
