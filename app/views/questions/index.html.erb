@@ -7,10 +7,7 @@
   <%= render 'questions/question_summary', locals: {questions: @questions} %>
 
 </div>
-
-<% if current_page?(controller: 'questions') %>
-    <%= render'shared/pages' %>
-<% end %>
+<%= render'shared/pages' %>
 
 <% if current_page?(controller: :questions) %>
 <% content_for :sidebar do %>
