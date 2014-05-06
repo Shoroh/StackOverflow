@@ -31,5 +31,4 @@ class Question < ActiveRecord::Base
   #   Uses impressions_count field in :questions table to cache counter.
   is_impressionable :counter_cache => true, column_name: :unique_views, unique: :all
 
-
 end

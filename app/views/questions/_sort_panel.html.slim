@@ -1,5 +1,5 @@
 .sort_panel
-  = link_to 'Recent', questions_path, class: "btn btn-xs btn-info #{'active' if action? 'index'}"
-  = link_to 'Featured', featured_questions_path, class: "btn btn-xs btn-info #{'active' if action? 'featured'}"
+  = sort_link 'Recent', questions_path
+  = sort_link 'Featured', featured_questions_path
   = link_to 'Popular', '#', class: "btn btn-xs btn-info disabled"
   = link_to 'Unanswered', '#', class: "btn btn-xs btn-info disabled"

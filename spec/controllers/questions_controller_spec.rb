@@ -9,6 +9,7 @@ describe QuestionsController do
   it { should route(:delete, '/questions/1').to(controller: 'questions', action: 'destroy', id: 1) }
   it { should route(:patch, '/questions/1').to(controller: 'questions', action: 'update', id: 1) }
   it { should route(:post, '/questions').to(controller: 'questions', action: 'create') }
+  it { should route(:get, '/questions/featured').to(controller: 'questions', action: 'featured') }
 
   let(:question) {create(:question)}
 
@@ -16,6 +17,21 @@ describe QuestionsController do
     let(:questions) {create_list(:question, 3)}
 
     before {get :index}
+
+    it 'populates an array of all questions' do
+      expect(assigns(:questions)).to match_array(questions)
+    end
+
+    it { should render_template('index') }
+  end
+
+  describe 'GET #featured' do
+    let(:questions) {create_list(:featured_question, 3)}
+
+    before do
+      create_list(:question, 3)
+      get :featured
+    end
 
     it 'populates an array of all questions' do
       expect(assigns(:questions)).to match_array(questions)

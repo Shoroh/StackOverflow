@@ -1,24 +1,48 @@
 module ApplicationHelper
 
-  # Проверяем какой контроллер сейчас активен
+  # Check which controller is active at the moment?
+  # @param controller [string] name of the controller
+  # @example - if controller?('questions')
+  # @return [boolean]
   def controller?(*controller)
     controller.include?(params[:controller])
   end
 
-  # Проверяем какой метод контроллера сейчас активен
+  # Check which action is active at the moment?
+  # @param action [string] name of the action
+  # @example - if action?('featured')
+  # @return [boolean]
   def action?(*action)
     action.include?(params[:action])
   end
 
-  # Делаем активные ссылки в меню с классом active:
-  def nav_link(link_text, link_path)
-    class_name = current_page?(link_path) ? 'menu_item_active' : ''
+  # Generates link in sort_panel menu, to sort questions by
+  #   criteria, and add 'active' css class to <a> tag.
+  # @param link_text [string] — text of the link
+  # @param link_path [string] - path/url of the link
+  #
+  # @example = sort_link('Featured', featured_questions_path)
+  # @return [string]
+  #   <a class="btn btn-xs btn-info (active)" href='link_path'>link_text</a>
+  def sort_link(link_text, link_path)
+    class_name = current_page?(link_path) ? 'active' : ''
 
-    content_tag(:li, :class => class_name) do
-      link_to link_text, link_path
+    link_to link_text, link_path, class: "#{class_name} btn btn-xs btn-info"
+  end
+
+  # Generates title of the page like <title>'Title' — Stack Overflow</title>)
+  # @param page_title [String] name of the title
+  # @example
+  #   - title 'Recent Questions'
+  # @return [string] 'Recent Questions —'
+  def title(page_title)
+    if page_title
+      content_for(:title) { page_title  + " — " }
     end
   end
 
+
+  # For Devise tests
   def resource_name
     :user
   end
@@ -29,19 +53,6 @@ module ApplicationHelper
 
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
-  end
-
-  # Generates title of the page like <title>'Title' — Stack Overflow</title>)
-  #
-  # @param page_title [String] name of the title
-  #
-  # @example
-  #   - title 'Recent Questions'
-  # @return [string] 'Recent Questions —'
-  def title(page_title)
-    if page_title
-      content_for(:title) { page_title  + " — " }
-    end
   end
 
 end

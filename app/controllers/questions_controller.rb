@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
 
+
   # Stats. Writes log by parameters: #show, ip_address
   # @example In View — @question.impressionist_count
   # @note TODO — add :ip_address to unique: in production mode
@@ -9,12 +10,12 @@ class QuestionsController < ApplicationController
 
   def index
     @title = "Recent Questions"
-    @questions = Question.recent.page(params[:page])
+    @questions = pager(Question.recent)
   end
 
   def featured
     @title = "Featured Questions"
-    @questions = Question.featured.page(params[:page])
+    @questions = pager(Question.featured)
     render 'questions/index'
   end
 
@@ -61,6 +62,14 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def pager(obj)
+    obj.page(params[:page])
+  end
+
+  def render_index
+    render 'questions/index'
+  end
 
   def set_question
     @question = Question.find(params[:id])
