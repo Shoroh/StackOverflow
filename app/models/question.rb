@@ -24,6 +24,9 @@ class Question < ActiveRecord::Base
   # Generate featured questions:
   scope :featured, -> { where(featured: true) }
 
+  #scope :popular, -> { active.sort { |a,b| b.unique_views <=> a.unique_views } }
+  scope :popular, -> { active.order(unique_views: :desc) }
+
   # Quantity questions per page by default (last 10)
   paginates_per 5
 

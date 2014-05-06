@@ -23,4 +23,17 @@ feature 'Sort questions on root page' do
     expect(page).to have_title('Featured Questions — Stack Overflow')
   end
 
+  scenario "User clicks 'popular' button and sees popular questions" do
+    old_question = create(:question)
+    new_question = create(:question)
+
+    visit "/questions/#{old_question.id}"
+    visit "/questions"
+
+    click_link 'Popular'
+
+    expect(new_question.title).to appear_before(old_question.title)
+    expect(page).to have_title('Popular Questions — Stack Overflow')
+  end
+
 end

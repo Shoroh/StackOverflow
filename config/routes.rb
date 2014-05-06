@@ -17,7 +17,10 @@ Rails.application.routes.draw do
 
 
   resources :questions, concerns: :pageable do
-    get 'featured(/page/:page)' => 'questions#featured', on: :collection, as: :featured
+    collection do
+      get 'featured(/page/:page)' => 'questions#featured', as: :featured
+      get 'popular(/page/:page)' => 'questions#popular', as: :popular
+    end
   end
 
 end

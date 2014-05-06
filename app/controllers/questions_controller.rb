@@ -13,9 +13,17 @@ class QuestionsController < ApplicationController
     @questions = pager(Question.recent)
   end
 
+  # If featured field has true — it means featured question
   def featured
     @title = "Featured Questions"
     @questions = pager(Question.featured)
+    render 'questions/index' # TODO можно ли убрать render в after_action?
+  end
+
+  # Sort by unique_views, desc
+  def popular
+    @title = "Popular Questions"
+    @questions = pager(Question.popular)
     render 'questions/index'
   end
 
