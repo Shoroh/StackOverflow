@@ -9,15 +9,19 @@ class QuestionsController < ApplicationController
   impressionist :actions=>[:show], :unique => [:impressionable_id, :session_hash, :impressionable_type ]
 
   def index
-    @title = "Recent Questions"
-    @questions = pager(Question.recent)
+    if params[:tag]
+      @questions = pager(Question.recent.tagged_with(params[:tag]))
+    else
+      @title = "Recent Questions"
+      @questions = pager(Question.recent)
+    end
   end
 
   # If featured field has true — it means featured question
   def featured
     @title = "Featured Questions"
     @questions = pager(Question.featured)
-    render 'questions/index' # TODO можно ли убрать render в after_action?
+    render 'questions/index'
   end
 
   # Sort by unique_views, desc
@@ -35,6 +39,9 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    unless @question.user == current_user
+      redirect_to @question, :flash => {:warning => "You don't have permissions to edit this question!" }
+    end
   end
 
   def create
@@ -84,7 +91,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, :tag_list)
   end
 
 end

@@ -15,6 +15,16 @@ class Question < ActiveRecord::Base
       deleted:      2
   }
 
+  # Quantity questions per page by default (last 10)
+  paginates_per 5
+
+  # Stats. Used to know how many unique IP_address have seen the page.
+  #   Uses impressions_count field in :questions table to cache counter.
+  is_impressionable :counter_cache => true, column_name: :unique_views, unique: :all
+
+  # Tags
+  acts_as_taggable
+
   # Orders questions by default
   default_scope -> { order(created_at: :desc) }
 
@@ -25,13 +35,6 @@ class Question < ActiveRecord::Base
   scope :featured, -> { where(featured: true) }
 
   #scope :popular, -> { active.sort { |a,b| b.unique_views <=> a.unique_views } }
-  scope :popular, -> { active.order(unique_views: :desc) }
-
-  # Quantity questions per page by default (last 10)
-  paginates_per 5
-
-  # Stats. Used to know how many unique IP_address have seen the page.
-  #   Uses impressions_count field in :questions table to cache counter.
-  is_impressionable :counter_cache => true, column_name: :unique_views, unique: :all
+  scope :popular, -> { unscope(:order).active.order(unique_views: :desc) }
 
 end

@@ -31,6 +31,9 @@ gem 'gon'
 # User registration
 gem 'devise'
 
+# Tags
+gem 'acts-as-taggable-on'
+
 # Stats
 gem 'impressionist'
 

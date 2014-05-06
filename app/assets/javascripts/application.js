@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require flatui-checkbox
 //= require bootstrap-switch
+//= require bootstrap-tagsinput.min
 //= require_tree .

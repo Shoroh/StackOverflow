@@ -37,5 +37,9 @@ module StackOverflow
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
+    # Tag's configs
+    ActsAsTaggableOn.force_lowercase = true
+    ActsAsTaggableOn.delimiter = ','
+
   end
 end

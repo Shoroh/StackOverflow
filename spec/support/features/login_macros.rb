@@ -18,8 +18,6 @@ module LoginMacros
     fill_in 'Password', :with => password
 
     click_button 'Sign in'
-
-    user_sees_alert 'Signed in successfully.'
   end
 
 end

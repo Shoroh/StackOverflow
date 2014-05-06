@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "Question" do
+feature "Question create" do
 
   before(:each) do
     login_user_warden
@@ -16,10 +16,13 @@ feature "Question" do
 
     fill_in "Title", :with => "How to patch KDE under FreeBSD?"
     fill_in "Body", with: 'It is elementary, Watson!'
+    fill_in "Tags", with: 'Tag1, tag2, tag3'
     click_button "Create Question"
     expect(@user.questions.first.title).to eq('How to patch KDE under FreeBSD?')
-    expect(page).to have_css '.alert', text: 'Question was successfully created!'
+    expect(@user.questions.first.tag_list).to eq(['tag1', 'tag2', 'tag3'])
+    user_sees_alert 'Question was successfully created!'
   end
+
 
   scenario "User clicks to Questions link and get index of questions page" do
     visit "/"

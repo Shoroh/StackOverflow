@@ -1,4 +1,5 @@
 = simple_form_for @question, role: "form" do |f|
-    = f.input :title
-    = f.input :body
+    = f.input :title, autofocus: true, :input_html => {maxlength: 255}
+    = f.input :body, :input_html => {:rows => 8, maxlength: 6000}
+    = f.input :tag_list, :input_html => {maxlength: 255, :"data-role" => "tagsinput"}, label: 'Tags'
     = f.submit class: "btn btn-info"

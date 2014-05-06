@@ -32,7 +32,7 @@ feature 'Sort questions on root page' do
 
     click_link 'Popular'
 
-    expect(new_question.title).to appear_before(old_question.title)
+    expect(old_question.title).to appear_before(new_question.title)
     expect(page).to have_title('Popular Questions — Stack Overflow')
   end
 
