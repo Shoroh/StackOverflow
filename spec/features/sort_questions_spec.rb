@@ -19,6 +19,7 @@ feature 'Sort questions on root page' do
 
     click_link 'Featured'
 
+    # TODO Заменить на with_in
     expect(page.find("#question-summary-#{featured_questions.first.id}")).to have_css('.fui-heart')
     expect(page).to have_title('Featured Questions — Stack Overflow')
   end

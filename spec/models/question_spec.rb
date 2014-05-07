@@ -16,22 +16,26 @@ describe Question do
 
   it { should allow_value('active', 'pending', 'deleted').for(:status) }
 
-  it "should show only active questions when 'recent'" do
-    expect(Question.recent.last.active?).to be_true
-    expect(Question.recent.count).to eq(4)
+  describe '.recent' do
+    it "should show only active questions when 'recent'" do
+      expect(Question.recent.last.active?).to be_true
+      expect(Question.recent.count).to eq(4)
+    end
+
+    it "should not show deleted questions when 'recent'" do
+      expect(Question.recent.last.deleted?).to be_false
+    end
+
+    it "should not show pending questions when 'recent'" do
+      expect(Question.recent.last.pending?).to be_false
+    end
   end
 
-  it "should not show deleted questions when 'recent'" do
-    expect(Question.recent.last.deleted?).to be_false
-  end
-
-  it "should not show pending questions when 'recent'" do
-    expect(Question.recent.last.pending?).to be_false
-  end
-
-  it "should show only featured questions when 'featured'" do
-    expect(Question.featured.last.featured?).to be_true
-    expect(Question.featured.count).to eq(2)
+  describe '.featured' do
+    it "should show only featured questions when 'featured'" do
+      expect(Question.featured.last.featured?).to be_true
+      expect(Question.featured.count).to eq(2)
+    end
   end
 
 end

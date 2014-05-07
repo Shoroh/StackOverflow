@@ -16,7 +16,7 @@ class Question < ActiveRecord::Base
   }
 
   # Quantity questions per page by default (last 10)
-  paginates_per 5
+  paginates_per 10
 
   # Stats. Used to know how many unique IP_address have seen the page.
   #   Uses impressions_count field in :questions table to cache counter.
@@ -34,7 +34,7 @@ class Question < ActiveRecord::Base
   # Generate featured questions:
   scope :featured, -> { where(featured: true) }
 
-  #scope :popular, -> { active.sort { |a,b| b.unique_views <=> a.unique_views } }
+  # Generate popular questions by quantity of unique_views field
   scope :popular, -> { unscope(:order).active.order(unique_views: :desc) }
 
 end

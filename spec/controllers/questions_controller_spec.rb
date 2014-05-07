@@ -80,14 +80,14 @@ describe QuestionsController do
     context 'with User is authorized' do
       before do
         @user1 = create(:user, email: 'shoroh362@gmail.com', password: 'super_secret', password_confirmation: 'super_secret')
-        sign_in_form 'shoroh362@gmail.com', 'super_secret'
+        # sign_in_form 'shoroh362@gmail.com', 'super_secret'
+        sign_in(:user, @user1)
         @question1 = create(:question, user: @user1)
 
         get :edit, id: @question1
       end
 
-      # TODO Какая то херня с этим тестом, перестал работать.
-      # it { should render_template('edit') }
+      it { should render_template('edit') }
 
       it 'assigns the requested question to @question' do
         expect(assigns(:question)).to eq @question1

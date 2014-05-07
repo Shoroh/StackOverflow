@@ -82,10 +82,6 @@ class QuestionsController < ApplicationController
     obj.page(params[:page])
   end
 
-  def render_index
-    render 'questions/index'
-  end
-
   def set_question
     @question = Question.find(params[:id])
   end

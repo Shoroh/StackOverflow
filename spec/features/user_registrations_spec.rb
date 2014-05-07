@@ -16,6 +16,7 @@ feature 'User Registration' do
         fill_form_with_valid_data(email: email)
       end
 
+      # TODO Убрать проверку базы и записывать в одну строку, заменить экспект на сообщения и возможность залогинится.
       scenario 'new user is created' do
         expect do
           register
