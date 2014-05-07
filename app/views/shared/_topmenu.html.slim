@@ -1,7 +1,8 @@
 .container
   nav.navbar.navbar-inverse role="navigation"
-    = link_to 'Stack Overflow', root_path, class: 'navbar-brand'
-    .collapse.navbar-collapse
+    .navbar-header
+      = link_to 'Stack Overflow', root_path, class: 'navbar-brand'
+    .navbar-collapse
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           li.dropdown

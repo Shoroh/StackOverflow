@@ -1,8 +1,12 @@
 #submenu
   .row
     .col-sm-8.col-md-9.col-xs-8
-      = link_to 'Questions', questions_path, class: "btn btn-md #{controller?('questions') ? 'btn-carrot' : 'btn-concrete'}"
-      = link_to 'Tags', '#', class: "btn btn-md btn-concrete disabled"
-      = link_to 'Users', users_path, class: "btn btn-md #{current_page?(users_path) ? 'btn-carrot' : 'btn-concrete'}"
+      ul.nav-pills.nav
+        = nav_link 'Questions', questions_path
+        li class="#{params[:tag] ? 'active' : ''}"
+          a data-toggle="modal" data-target="#tags_window" Tags
+        = nav_link 'Users', users_path
     .col-sm-4.col-md-3.col-xs-4
       =link_to 'Ask Question', new_question_path, class: "btn #{current_page?(new_question_path) ? 'btn-carrot' : 'btn-concrete'} btn-embossed btn-block"
+
+= render 'shared/tags_cloud_modal'

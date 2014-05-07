@@ -27,7 +27,19 @@ module ApplicationHelper
   def sort_link(link_text, link_path)
     class_name = current_page?(link_path) ? 'active' : ''
 
-    link_to link_text, link_path, class: "#{class_name} btn btn-xs btn-info"
+    content_tag(:li, :class => class_name) do
+      link_to link_text, link_path
+    end
+  end
+
+
+  # Делаем активные ссылки в меню с классом active:
+  def nav_link(link_text, link_path)
+    class_name = current_page?(link_path) ? 'active' : ''
+
+    content_tag(:li, :class => class_name) do
+      link_to link_text, link_path
+    end
   end
 
   # Generates title of the page like <title>'Title' — Stack Overflow</title>)

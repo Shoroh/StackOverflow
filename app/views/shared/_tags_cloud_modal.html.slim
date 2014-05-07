@@ -1,0 +1,14 @@
+#tags_window.modal.fade.bs-example-modal-sm-2 aria-hidden="true" aria-labelledby="mySmallModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+        h4.modal-title Фильтр записей по тегам
+      .modal-bofy
+      .modal-body
+        p Сущности:
+        .tag_cloud
+          - tag_cloud Question.tag_counts.sort { |a, b| a.name <=> b.name }, %w{css1 css2 css3 css4 css5} do |tag, css_class|
+            =' link_to tag.name, tag_questions_path(tag.name), class: css_class
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Отмена
