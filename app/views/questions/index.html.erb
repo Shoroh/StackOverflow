@@ -1,12 +1,9 @@
 <% title @title %>
 
-<div class="high_box">
+<%= render 'questions/sort_panel' %>
 
-  <%= render 'questions/sort_panel' %>
+<%= render 'questions/question_summary', locals: {questions: @questions} %>
 
-  <%= render 'questions/question_summary', locals: {questions: @questions} %>
-
-</div>
 <%= render'shared/pages' %>
 
 <% if current_page?(controller: :questions) %>

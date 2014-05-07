@@ -1,7 +1,17 @@
 - @questions.each do |q|
-  .question-summary id="question-summary-#{q.id}"
-    .summary
-      h4
+  .narrow.question-summary id="question-summary-#{q.id}"
+    .cp
+      .votes
+        .mini-counts 0
+        div votes
+      .status.unanswered
+        .mini-counts 0
+        div answers
+      .views
+        .mini-counts 2
+        div views
+    .question_box
+      h3
         = link_to q.title, q, class: "question-hyperlink"
         - if q.featured?
           span.fui-heart
