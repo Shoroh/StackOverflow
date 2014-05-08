@@ -19,6 +19,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @title = @question.title
   end
 
   def new
@@ -65,11 +66,22 @@ class QuestionsController < ApplicationController
 
   private
 
+
+  # Generates list of questions by criteria. If tags — by tags.
+  # Also generates title for application layout
+  # @param params[:action] [string] — takes it and sends to scope
+  # @return [objects] from Question class
   def sort
     action = params[:action] == 'index' ? 'recent' : params[:action]
-    @title = "#{action.capitalize} Questions"
-    @questions = Question.send(action).page(params[:page])
-    render 'questions/index'
+    if params[:tag]
+      @title = params[:tag]
+      @questions = Question.send(action).tagged_with(params[:tag]).page(params[:page])
+      render 'questions/index'
+    else
+      @title = action.capitalize
+      @questions = Question.send(action).page(params[:page])
+      render 'questions/index'
+    end
   end
 
   def set_question
