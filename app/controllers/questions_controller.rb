@@ -1,34 +1,21 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
-
+  before_action :sort, only: [:popular, :featured, :index]
 
   # Stats. Writes log by parameters: #show, ip_address
   # @example In View — @question.impressionist_count
   # @note TODO — add :ip_address to unique: in production mode
   impressionist :actions=>[:show], :unique => [:impressionable_id, :session_hash, :impressionable_type ]
 
+
   def index
-    if params[:tag]
-      @questions = pager(Question.recent.tagged_with(params[:tag]))
-    else
-      @title = "Recent Questions"
-      @questions = pager(Question.recent)
-    end
   end
 
-  # If featured field has true — it means featured question
   def featured
-    @title = "Featured Questions"
-    @questions = pager(Question.featured)
-    render 'questions/index'
   end
 
-  # Sort by unique_views, desc
   def popular
-    @title = "Popular Questions"
-    @questions = pager(Question.popular)
-    render 'questions/index'
   end
 
   def show
@@ -78,8 +65,11 @@ class QuestionsController < ApplicationController
 
   private
 
-  def pager(obj)
-    obj.page(params[:page])
+  def sort
+    action = params[:action] == 'index' ? 'recent' : params[:action]
+    @title = "#{action.capitalize} Questions"
+    @questions = Question.send(action).page(params[:page])
+    render 'questions/index'
   end
 
   def set_question
