@@ -9,7 +9,7 @@ feature "Question edit" do
 
     visit "/questions"
     find(".edit_question_icon").click
-    expect(page).to have_title("Edit — #{@question1.title} — Stack Overflow")
+    expect(page).to have_title("#{@question1.title} — Stack Overflow")
 
     fill_in 'Title', with: 'Some different title for update checking'
     click_button('Update Question')

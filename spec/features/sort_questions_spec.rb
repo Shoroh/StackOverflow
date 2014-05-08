@@ -9,7 +9,7 @@ feature 'Sort questions on root page' do
     click_link 'Recent'
 
     expect(new_question.title).to appear_before(old_question.title)
-    expect(page).to have_title('Recent Questions — Stack Overflow')
+    expect(page).to have_title('Recent — Stack Overflow')
   end
 
   scenario "User clicks 'featured' button and sees featured questions" do
@@ -21,7 +21,7 @@ feature 'Sort questions on root page' do
 
     # TODO Заменить на with_in
     expect(page.find("#question-summary-#{featured_questions.first.id}")).to have_css('.fui-heart')
-    expect(page).to have_title('Featured Questions — Stack Overflow')
+    expect(page).to have_title('Featured — Stack Overflow')
   end
 
   scenario "User clicks 'popular' button and sees popular questions" do
@@ -34,7 +34,7 @@ feature 'Sort questions on root page' do
     click_link 'Popular'
 
     expect(old_question.title).to appear_before(new_question.title)
-    expect(page).to have_title('Popular Questions — Stack Overflow')
+    expect(page).to have_title('Popular — Stack Overflow')
   end
 
 end

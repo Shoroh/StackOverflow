@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   before_action :sort, only: [:popular, :featured, :index]
+  before_action :title, only: [:show, :edit]
 
   # Stats. Writes log by parameters: #show, ip_address
   # @example In View — @question.impressionist_count
@@ -19,7 +20,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @title = @question.title
   end
 
   def new
@@ -65,6 +65,10 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def title
+    @title = @question.title
+  end
 
 
   # Generates list of questions by criteria. If tags — by tags.
