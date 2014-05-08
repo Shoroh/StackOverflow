@@ -51,6 +51,14 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
   config.after(:each) do
     DatabaseCleaner.clean
   end

@@ -6,10 +6,11 @@
         div votes
       .status.unanswered
         .mini-counts
-          = q.answers.count
+          = q.answers.size
         div answers
       .views
-        .mini-counts 2
+        .mini-counts
+          = q.unique_views
         div views
     .question_box
       h3

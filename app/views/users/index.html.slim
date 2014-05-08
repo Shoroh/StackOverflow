@@ -2,4 +2,9 @@
 
 ul
 - @users.each do |u|
-  li= link_to u.name, u
+  li
+    p
+      = link_to u.name, u
+    p
+      = u.questions.size
+

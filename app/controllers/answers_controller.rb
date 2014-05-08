@@ -9,9 +9,11 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         format.html { redirect_to @question, :flash => {:info => "Answer was successfully added!" }}
+        format.js
       else
         @question = Question.find(params[:question_id])
         format.html { render 'questions/show' }
+        format.js
       end
     end
   end
