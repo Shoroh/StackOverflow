@@ -5,7 +5,8 @@
         .mini-counts 0
         div votes
       .status.unanswered
-        .mini-counts 0
+        .mini-counts
+          = q.answers.count
         div answers
       .views
         .mini-counts 2

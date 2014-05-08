@@ -4,3 +4,22 @@ hr
 p
   ' Views by IP:
   = @question.impressionist_count
+
+- if @question.answers.any?
+  p
+    = pluralize(@question.answers.count, 'answer')
+    | :
+
+  ul
+    = render @question.answers
+- else
+  | This question has not been answered yet.
+
+
+- if signed_in?
+  = render 'answers/answer_form'
+- else
+  ' Please
+  =' link_to 'login', '#', data: {target: "#signin_modal", toggle: "modal"}
+  | to post answer.
+

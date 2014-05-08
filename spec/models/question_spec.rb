@@ -13,6 +13,7 @@ describe Question do
   it { should ensure_length_of(:body).is_at_least(20).is_at_most(6000) }
 
   it { should belong_to(:user) }
+  it { should have_many(:answers)}
 
   it { should allow_value('active', 'pending', 'deleted').for(:status) }
 

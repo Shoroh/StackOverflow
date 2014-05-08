@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get 'popular(/page/:page)' => 'questions#popular', as: :popular
       get 'tags/:tag', to: 'questions#index', as: :tag
     end
+    resources :answers, only: [:create]
   end
 
 end

@@ -2,6 +2,7 @@ class Question < ActiveRecord::Base
 
   # Questions should have the owner.
   belongs_to :user, counter_cache: true
+  has_many :answers, dependent: :destroy
 
   validates :title, :body, :presence => true
 

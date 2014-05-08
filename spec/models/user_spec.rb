@@ -10,6 +10,7 @@ describe User do
   it { should ensure_length_of(:name).is_at_least(3).is_at_most(60) }
 
   it { should have_many(:questions) }
+  it { should have_many(:answers)}
   it { should have_one(:profile) }
 
   it { should allow_value('Jim_Carry').for(:name) }
