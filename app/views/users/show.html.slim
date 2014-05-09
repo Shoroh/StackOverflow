@@ -9,12 +9,12 @@
 
   .user_info
     dl
-      - if @user.profile.display_name
+      - if @user.display_name
         dt Name
-        dd = @user.profile.display_name
-      - if @user.profile.age
+        dd = @user.display_name
+      - if @user.age
         dt Age
-        dd = @user.profile.age
-      - if @user.profile.facebook_id
+        dd = @user.age
+      - if @user.facebook_id
         dt Facebook
-        dd = @user.profile.facebook_id
+        dd = @user.facebook_id

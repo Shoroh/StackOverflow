@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   after_create :set_profile
 
-
+  delegate :age, :facebook_id, :display_name, to: :profile
 
   private
 
