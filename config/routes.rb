@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     get 'page/:page', :action => :index, on: :collection
   end
 
+  concern :userable do
+    get 'user/:user_id', on: :collection
+  end
+
   devise_for :users
 
   # Routes for users and their profiles

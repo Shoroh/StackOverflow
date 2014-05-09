@@ -24,8 +24,9 @@ module ApplicationHelper
   # @example = sort_link('Featured', featured_questions_path)
   # @return [string]
   #   <a class="btn btn-xs btn-info (active)" href='link_path'>link_text</a>
-  def sort_link(link_text, link_path, action)
+  def sort_link(link_text, link_path, action, class_li = "pull-right")
     class_name = action?(action) ? 'active' : ''
+    class_name << " #{class_li}"
 
     content_tag(:li, :class => class_name) do
       link_to link_text, link_path

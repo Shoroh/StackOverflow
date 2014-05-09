@@ -39,6 +39,7 @@ class Question < ActiveRecord::Base
   scope :popular, -> { unscope(:order).active.order(unique_views: :desc) }
 
   # Generates questions without answers
-  scope :unanswered, -> { where("answers_count = '0'")}
+  scope :unanswered, -> { where("answers_count = '0'") }
+
 
 end
