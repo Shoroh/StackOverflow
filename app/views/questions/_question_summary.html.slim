@@ -6,12 +6,12 @@
         div votes
       .status class="#{ q.answers.any? ? 'answered' : 'unanswered'}"
         .mini-counts
-          = q.answers_count
-        div answers
+          = q.answers.size
+        div = ('answer').pluralize(q.answers.size)
       .views
         .mini-counts
           = q.unique_views
-        div views
+        div = ('view').pluralize(q.unique_views)
 
     .question_box
       h3
