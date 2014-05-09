@@ -3,8 +3,6 @@
     .col-sm-8.col-md-9.col-xs-8
       ul.nav-pills.nav
         = nav_link 'Questions', questions_path, 'questions'
-        li class="#{params[:tag] ? 'active' : ''}"
-          a href="#" data-toggle="modal" data-target="#tags_window" Tags
         = nav_link 'Users', users_path, 'users'
     .col-sm-4.col-md-3.col-xs-4
       =link_to 'Ask Question', new_question_path, class: "btn #{current_page?(new_question_path) ? 'btn-carrot' : 'btn-concrete'} btn-embossed btn-block"
