@@ -15,26 +15,52 @@
 .question_list_item
   border-bottom: 1px solid #eaeaea
   overflow: hidden
-  padding: 30px 0
+  padding: 15px 0
 
 
 .question_info
-  margin-right: 10px
-  width: 125px
+  width: 150px
   height: 50px
   float: left
   font-size: 10px
   text-align: center
+  .votes, .status, .views
+    width: 40px
+    float: left
+    padding: 5px
+    margin-right: 3px
+    .mini-counts
+      font-size: 20px
+      margin-bottom: 5px
+      font-weight: bold
+  .status
+    width: 50px
+  .unanswered
+    color: lightcoral
+  .answered
+    background-color: #75845c
+    color: #ffffff
+
+  .views
+    color: gray
 
 .question_box
-  width: 80%%
+  width: 79%
   float: left
   position: relative
+  .asked_by
+    float: right
+    color: darkgray
+    a
+      text-transform: capitalize
   h3
     margin: 0
     font-size: 20px
     font-weight: normal
     margin-bottom: 10px
+    .fui-heart
+      margin-left: 15px
+      color: lightpink
     small
       a
         color: gainsboro

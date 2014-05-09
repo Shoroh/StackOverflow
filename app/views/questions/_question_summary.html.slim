@@ -4,7 +4,7 @@
       .votes
         .mini-counts 0
         div votes
-      .status.unanswered
+      .status class="#{ q.answers.any? ? 'answered' : 'unanswered'}"
         .mini-counts
           = q.answers.size
         div answers
@@ -28,8 +28,5 @@
         ' asked
         =' time_ago_in_words q.created_at
         ' ago by
-        = q.user.name
-      small.view_counter
-        ' Views —
-        = q.unique_views
+        = link_to q.user.profile.display_name ? q.user.profile.display_name : q.user.name, user_path(q.user)
   .clearfix

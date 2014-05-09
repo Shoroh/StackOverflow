@@ -5,7 +5,10 @@ feature 'Guest turns the page' do
     create_list(:question, 60)
 
     visit "/questions"
-    click_link('2')
+
+    within '.pagination' do
+      click_link('2')
+    end
 
     expect(current_path).to eq('/questions/page/2')
   end
