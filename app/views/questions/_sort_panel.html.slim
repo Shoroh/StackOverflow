@@ -1,6 +1,6 @@
 ul.nav.nav-tabs.sort_panel
-  li.disabled
-    a href="#" Unanswered
+
+  = sort_link 'Unanswered', unanswered_questions_path, 'unanswered'
   = sort_link 'Popular', popular_questions_path, 'popular'
   = sort_link 'Featured', featured_questions_path, 'featured'
   = sort_link 'Recent', questions_path, 'index'

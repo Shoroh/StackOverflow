@@ -29,13 +29,16 @@ class Question < ActiveRecord::Base
   # Orders questions by default
   default_scope -> { order(created_at: :desc) }
 
-  # Generate last recent questions:
+  # Generates last recent questions:
   scope :recent, -> { active }
 
-  # Generate featured questions:
+  # Generates featured questions:
   scope :featured, -> { where(featured: true) }
 
-  # Generate popular questions by quantity of unique_views field
+  # Generates popular questions by quantity of unique_views field
   scope :popular, -> { unscope(:order).active.order(unique_views: :desc) }
+
+  # Generates questions without answers
+  scope :unanswered, -> { where("answers_count = '0'")}
 
 end

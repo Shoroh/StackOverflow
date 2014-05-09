@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     collection do
       get 'featured(/page/:page)' => 'questions#featured', as: :featured
       get 'popular(/page/:page)' => 'questions#popular', as: :popular
+      get 'unanswered(/page/:page)' => 'questions#unanswered', as: :unanswered
       get 'tags/:tag', to: 'questions#index', as: :tag
     end
     resources :answers, only: [:create]

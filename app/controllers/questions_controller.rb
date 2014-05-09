@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
-  before_action :sort, only: [:popular, :featured, :index]
+  before_action :sort, only: [:popular, :featured, :index, :unanswered]
   before_action :title, only: [:show, :edit]
 
   # Stats. Writes log by parameters: #show, ip_address
@@ -17,6 +17,9 @@ class QuestionsController < ApplicationController
   end
 
   def popular
+  end
+
+  def unanswered
   end
 
   def show
