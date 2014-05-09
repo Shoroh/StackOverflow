@@ -24,8 +24,8 @@ module ApplicationHelper
   # @example = sort_link('Featured', featured_questions_path)
   # @return [string]
   #   <a class="btn btn-xs btn-info (active)" href='link_path'>link_text</a>
-  def sort_link(link_text, link_path)
-    class_name = current_page?(link_path) ? 'active' : ''
+  def sort_link(link_text, link_path, action)
+    class_name = action?(action) ? 'active' : ''
 
     content_tag(:li, :class => class_name) do
       link_to link_text, link_path
@@ -34,8 +34,8 @@ module ApplicationHelper
 
 
   # Делаем активные ссылки в меню с классом active:
-  def nav_link(link_text, link_path)
-    class_name = current_page?(link_path) ? 'active' : ''
+  def nav_link(link_text, link_path, controller)
+    class_name = controller?(controller) ? 'active' : ''
 
     content_tag(:li, :class => class_name) do
       link_to link_text, link_path
