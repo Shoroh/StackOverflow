@@ -3,7 +3,6 @@
 FactoryGirl.define do
   factory :comment do
     user nil
-    quetion nil
-    answer nil
+    assosiation :commentable
   end
 end

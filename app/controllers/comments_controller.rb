@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :initialize_commentable_object, only: :create
   before_action :initialize_question
+  before_action :authenticate_user!, :only => [:create]
 
 
   def create
