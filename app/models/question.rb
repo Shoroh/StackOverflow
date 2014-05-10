@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   # Questions should have the owner.
   belongs_to :user, counter_cache: :questions_count
   has_many :answers, dependent: :destroy
+  has_many :comments, as: :commentable
 
   validates :title, :body, :presence => true
 

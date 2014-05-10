@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get 'tags/:tag', to: 'questions#index', as: :tag
     end
     resources :answers, only: [:create]
+    resources :comments, only: [:create]
   end
 
 end

@@ -1,0 +1,3 @@
+= simple_form_for([@question, @comment], role: "form", remote: true) do |f|
+  = f.input :body, label: 'Your comment'
+  = f.submit 'Add comment', class: 'btn btn-info'
