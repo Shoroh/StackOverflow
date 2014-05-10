@@ -5,6 +5,7 @@ FactoryGirl.define do
     association :user
     title {Faker::Lorem.sentence(10)}
     body {Faker::Lorem.paragraph}
+    tag_list 'tag1, tag2, tag3'
     status 0
     factory :deleted_question do
       status 2

@@ -10,6 +10,9 @@ describe QuestionsController do
   it { should route(:patch, '/questions/1').to(controller: 'questions', action: 'update', id: 1) }
   it { should route(:post, '/questions').to(controller: 'questions', action: 'create') }
   it { should route(:get, '/questions/featured').to(controller: 'questions', action: 'featured') }
+  it { should route(:get, '/questions/popular').to(controller: 'questions', action: 'popular') }
+  it { should route(:get, '/questions/unanswered').to(controller: 'questions', action: 'unanswered') }
+
 
   let(:question) {create(:question)}
 
