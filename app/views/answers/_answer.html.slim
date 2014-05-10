@@ -1,5 +1,10 @@
-li
-  p.answer_block = answer.body
-  p
-   ' by
-   = answer.user.name
+.answer_item
+  .answer_meta
+    .answer_author
+      = link_to answer.user.name, user_path(answer.user)
+      | :
+    .answer_date
+      = answer.created_at.to_formatted_s(:short)
+
+  .answer_body
+    = answer.body

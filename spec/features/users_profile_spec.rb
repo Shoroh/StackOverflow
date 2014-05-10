@@ -8,12 +8,12 @@ feature 'User profiles' do
   end
 
   scenario 'sees list of registered users' do
-    expect(page).to have_link(@user1.name)
-    expect(page).to have_link(@user2.name)
+    expect(page).to have_link(@user1.nick)
+    expect(page).to have_link(@user2.nick)
   end
 
   scenario "guest clicks to user's link" do
-    click_link @user1.name
+    click_link @user1.nick
     expect(page).to have_content @user1.profile.display_name
   end
 

@@ -18,8 +18,9 @@ feature 'User sees stats' do
   scenario 'Goes to questions#show page and sees 1 views' do
     visit root_path
     click_link @question.title
-
-    expect(page).to have_content "Views by IP: 1"
+    within ".meta" do
+      expect(page).to have_content "1"
+    end
   end
 
 end

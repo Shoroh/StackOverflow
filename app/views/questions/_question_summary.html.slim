@@ -28,5 +28,5 @@
         ' asked
         =' time_ago_in_words q.created_at
         ' ago by
-        = link_to q.user.display_name.presence ? q.user.display_name : q.user.name, user_path(q.user)
+        = link_to q.user.nick, user_path(q.user)
   .clearfix

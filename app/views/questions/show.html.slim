@@ -1,21 +1,33 @@
-h3=@question.title
-p=@question.body.html_safe
-hr
-p
-  ' Views by IP:
-  = @question.impressionist_count
+.question_show
+  .question_show_title
+    h3=@question.title
+    .meta
+      .meta_block
+        span.fui-eye
+        = @question.impressionist_count
+      .meta_block
+        span.fui-user
+        = link_to @question.user.nick, user_path(@question.user)
+      .meta_block
+        span.fui-calendar-solid
+        = @question.created_at.to_formatted_s(:long)
 
-.answers
-  - if @question.answers.any?
-    = render 'questions/answers'
-  - else
-    | This question has not been answered yet.
+  .question_show_body
+    p= raw @question.body
+    .question_show_tag_list
+      = raw (@question.tag_list.sort { |a, b| a <=> b }).map  {|t| link_to t, tag_questions_path(t), class: "btn btn-xs tag"}.join(" ")
 
-.answer_form
-  - if signed_in?
-    = render 'answers/answer_form'
-  - else
-    ' Please
-    =' link_to 'login', '#', data: {target: "#signin_modal", toggle: "modal"}
-    | to post answer.
+  .answers
+    - if @question.answers.any?
+      = render 'questions/answers'
+    - else
+      .answers_header This question has not been answered yet.
+
+  .answer_form
+    - if signed_in?
+      = render 'answers/answer_form'
+    - else
+      ' Please
+      =' link_to 'login', '#', data: {target: "#signin_modal", toggle: "modal"}
+      | to post answer.
 

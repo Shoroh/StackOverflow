@@ -1,6 +1,6 @@
-p
+.answers_header
   = pluralize(@question.answers.count, 'answer')
   | :
 
-ul
+.answers_block
   = render @question.answers
