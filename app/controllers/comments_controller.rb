@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :set_commentable
-  #before_action :set_question
   before_action :authenticate_user!
 
   def create
@@ -18,17 +17,8 @@ class CommentsController < ApplicationController
 
   private
 
-  def set_comment
-    @comment = Comment.find(params[:id])
-
-  end
-
   def comment_params
     params.require(:comment).permit(:body)
-  end
-
-  def set_question
-    @question = Question.find params[:question_id]
   end
 
   def set_commentable
