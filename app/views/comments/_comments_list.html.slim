@@ -1,4 +1,4 @@
-= link_to '#', class: 'spoiler-btn' do
+= link_to '#', class: 'spoiler-btn', id: "quantity-#{object.class.to_s.downcase}-#{object.id}" do
   = "#{!object.comments.any? ? 'To comment' : pluralize(object.comments.count, 'comment')} <b class='caret'></b>".html_safe
 .spoiler-body
   .comment_list id="#{object.class.to_s.downcase}-#{object.id}"
