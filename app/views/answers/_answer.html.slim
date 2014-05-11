@@ -8,3 +8,5 @@
 
   .answer_body
     = raw answer.body
+    .question_show_comments
+      = render 'comments/comments_list', object: answer

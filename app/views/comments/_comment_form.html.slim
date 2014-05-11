@@ -1,3 +1,4 @@
-= simple_form_for([@question, @comment], role: "form", remote: true) do |f|
-  = f.input :body, label: 'Your comment'
+- form_for = [object.try(:question), object, Comment.new]
+= simple_form_for(form_for, role: "form", remote: true) do |f|
+  = f.input :body, label: 'Your comment', input_html: { id: "input-#{object.class.to_s.downcase}-#{object.id}" }
   = f.submit 'Add comment', class: 'btn btn-info'

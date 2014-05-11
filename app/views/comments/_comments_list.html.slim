@@ -1,0 +1,14 @@
+= link_to '#', class: 'spoiler-btn' do
+  = "#{!object.comments.any? ? 'To comment' : pluralize(object.comments.count, 'comment')} <b class='caret'></b>".html_safe
+.spoiler-body
+  .comment_list id="#{object.class.to_s.downcase}-#{object.id}"
+    - if object.comments.any?
+      - object.comments.each do |comment|
+        = render 'comments/comment', comment: comment
+  .comment_form
+    - if signed_in?
+      = render "comments/comment_form", object: object
+    - else
+      ' Please
+      =' link_to 'login', '#', data: {target: "#signin_modal", toggle: "modal"}
+      | to add comment.

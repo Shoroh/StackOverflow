@@ -1,20 +1,15 @@
 class CommentsController < ApplicationController
-  before_action :initialize_commentable_object, only: :create
-  before_action :initialize_question
-  before_action :authenticate_user!, :only => [:create]
-
+  before_action :set_commentable
+  before_action :set_question
+  before_action :authenticate_user!
 
   def create
-    @comment = Comment.new(comment_params)
-    @comment.commentable = @commentable_object
+    @comment = @commentable.comments.build(comment_params)
     @comment.user = current_user
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @question, notice: 'Комментарий был успешно добавлен!' }
+    if @comment.save!
+      respond_to do |format|
+        format.html {redirect_to @question}
         format.js
-      else
-        format.html { redirect_to @question, alert: 'Комментарий не был добавлен!' }
-        format.js { render "shared/error", locals:{object: @comment} }
       end
     end
   end
@@ -30,16 +25,16 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body)
   end
 
-  def initialize_question
+  def set_question
     @question = Question.find params[:question_id]
   end
 
-  def initialize_commentable_object
+  def set_commentable
     case
       when params[:answer_id].present?
-        @commentable_object = Answer.find(params[:answer_id])
+        @commentable = Answer.find(params[:answer_id])
       when params[:question_id].present?
-        @commentable_object = Question.find(params[:question_id])
+        @commentable= Question.find(params[:question_id])
       else
     end
   end

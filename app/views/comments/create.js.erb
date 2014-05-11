@@ -1,3 +1,2 @@
-$('.comment_list').html('<%= j render 'questions/comments' %>');
-$('.comment_list').html('<%= j render 'questions/comments' %>');
-$('#comment_body').val('');
+$("#<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").append('<%= j render "comment", comment:@comment%>');
+$("#input-<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").val("");

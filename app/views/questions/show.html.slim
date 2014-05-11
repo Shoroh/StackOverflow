@@ -17,18 +17,7 @@
     .question_show_tag_list
       = raw (@question.tag_list.sort { |a, b| a <=> b }).map  {|t| link_to t, tag_questions_path(t), class: "btn btn-xs tag"}.join(" ")
     .question_show_comments
-      = link_to "#{!@question.comments.any? ? 'To comment' : pluralize(@question.comments.count, 'comment')} <b class='caret'></b>".html_safe, "#", class: 'spoiler-btn'
-      .spoiler-body
-        .comment_list
-          - if @question.comments.any?
-            = render 'questions/comments'
-        .comment_form
-          - if signed_in?
-            = render 'comments/comment_form'
-          - else
-            ' Please
-            =' link_to 'login', '#', data: {target: "#signin_modal", toggle: "modal"}
-            | to add comment.
+      = render 'comments/comments_list', object: @question
 
   .answers
     - if @question.answers.any?
