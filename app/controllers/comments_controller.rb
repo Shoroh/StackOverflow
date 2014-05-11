@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_commentable
-  before_action :set_question
+  #before_action :set_question
   before_action :authenticate_user!
 
   def create
-    @comment = @commentable.comments.build(comment_params)
+    @comment = Comment.new(comment_params)
+    @comment.commentable = @commentable
     @comment.user = current_user
     if @comment.save!
       respond_to do |format|
@@ -19,6 +20,7 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = Comment.find(params[:id])
+
   end
 
   def comment_params
@@ -30,13 +32,7 @@ class CommentsController < ApplicationController
   end
 
   def set_commentable
-    case
-      when params[:answer_id].present?
-        @commentable = Answer.find(params[:answer_id])
-      when params[:question_id].present?
-        @commentable= Question.find(params[:question_id])
-      else
-    end
+    @commentable = params[:commentable_type].classify.constantize.find(params[:commentable_id])
   end
 
 end
