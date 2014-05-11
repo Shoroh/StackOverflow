@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save!
       respond_to do |format|
-        format.html {redirect_to @question}
+        format.html {redirect_to @commentable.try(:question) || @commentable}
         format.js
       end
     end
