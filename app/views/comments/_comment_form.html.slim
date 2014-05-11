@@ -1,3 +1,3 @@
-= simple_form_for(:comment, url: comments_url(object.class.to_s.underscore, object.id ), role: "form") do |f|
+= simple_form_for(:comment, url: comments_url(object.class.to_s, object.id ), role: "form", remote: true) do |f|
   = f.input :body, label: 'Your comment', input_html: { id: "input-#{object.class.to_s.downcase}-#{object.id}" }
   = f.submit 'Add comment', class: 'btn btn-info'
