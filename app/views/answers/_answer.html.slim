@@ -3,8 +3,13 @@
     .answer_author
       = link_to answer.user.nick, user_path(answer.user)
       | :
+    .answer_tools
       - if answer.user == current_user
-        = link_to 'Edit', edit_question_answer_path(answer.question, answer), remote: true
+        .tool
+          = link_to 'Edit', edit_question_answer_path(answer.question, answer), remote: true
+        .tool
+          = link_to question_answer_path(answer.question, answer), remote: true, method: :delete do
+            span.glyphicon.glyphicon-trash
     .answer_date
       = answer.created_at.to_formatted_s(:short)
   .answer_body

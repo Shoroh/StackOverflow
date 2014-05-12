@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question
-  before_action :set_answer, only: [:edit, :update]
+  before_action :set_answer, only: [:edit, :update, :destroy]
 
   def create
     @answer = @question.answers.build(answer_params)
@@ -34,6 +34,14 @@ class AnswersController < ApplicationController
       else
         format.html { render action: 'edit' }
       end
+    end
+  end
+
+  def destroy
+    @answer.destroy
+    respond_to do |format|
+      format.html { redirect_to @question, :flash => {:info => "Answer was successfully deleted!"} }
+      format.js
     end
   end
 

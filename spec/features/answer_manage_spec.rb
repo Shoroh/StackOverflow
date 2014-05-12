@@ -43,6 +43,27 @@ feature 'Answer Create, Edit and Delete' do
     within '.answers' do
       expect(page).to have_content "New title for old question."
     end
+  end
 
+  scenario 'Registered User deletes his answer', js: true do
+    sign_in_form(user.email, user.password)
+    visit question_path(question)
+
+    fill_in 'Your answer', with: "I have an answer. But I won't tell you."
+    click_on 'Create Answer'
+
+    expect(current_path).to eq question_path(question)
+    within '.answers' do
+      expect(page).to have_content "I have an answer. But I won't tell you."
+    end
+
+    within ".answers" do
+      find(:css, "a[href='/questions/#{question.id}/answers/#{Answer.last.id}']").click
+    end
+
+    expect(current_path).to eq question_path(question)
+    within '.answers' do
+      expect(page).to_not have_content "I have an answer. But I won't tell you."
+    end
   end
 end
