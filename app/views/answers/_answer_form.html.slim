@@ -1,3 +1,3 @@
 = simple_form_for([@question, @answer], role: "form", remote: true) do |f|
-  = f.input :body, :input_html => {:rows => 8, maxlength: 6000}, autofocus: true, label: 'Your answer'
+  = f.input :body, :input_html => {:rows => 8, maxlength: 6000}, label: 'Your answer'
   = f.submit 'Post answer', class: 'btn btn-info'
