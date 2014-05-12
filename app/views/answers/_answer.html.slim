@@ -1,12 +1,13 @@
-.answer_item
+.answer_item id="item-answer-#{answer.id}"
   .answer_meta
     .answer_author
-      = link_to answer.user.name, user_path(answer.user)
+      = link_to answer.user.nick, user_path(answer.user)
       | :
+      - if answer.user == current_user
+        = link_to 'Edit', edit_question_answer_path(answer.question, answer), remote: true
     .answer_date
       = answer.created_at.to_formatted_s(:short)
-
   .answer_body
     = raw simple_format(answer.body)
-    .question_show_comments
-      = render 'comments/comments_list', object: answer
+  .question_show_comments
+    = render 'comments/comments_list', object: answer

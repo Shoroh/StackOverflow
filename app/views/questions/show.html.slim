@@ -21,9 +21,14 @@
 
   .answers
     - if @question.answers.any?
-      = render 'questions/answers'
+      .answers_header
+        #answers_qty
+          = pluralize(@question.answers.count, 'answer')
+          | :
+      = render @question.answers.recent
     - else
-      .answers_header This question has not been answered yet.
+      #answers_qty
+        .answers_header This question has not been answered yet.
 
   .answer_form
     - if signed_in?

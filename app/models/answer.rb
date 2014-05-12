@@ -14,4 +14,6 @@ class Answer < ActiveRecord::Base
       deleted:      2
   }
 
+  scope :recent, -> { order(created_at: :asc) }
+
 end

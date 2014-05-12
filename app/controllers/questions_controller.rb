@@ -64,7 +64,7 @@ class QuestionsController < ApplicationController
     @question.destroy
     respond_to do |format|
       format.html { redirect_to questions_path, :flash => {:info => "Question was successfully deleted!"} }
-      format.json { head :no_content }
+      format.js
     end
   end
 

@@ -1,2 +1,4 @@
-$('.answers').html('<%= j render 'questions/answers' %>');
+$("#answers_qty").html("<%= pluralize(@question.answers.count, 'answer') %>:");
+$(".answers").append('<%= j render "answer", answer: @answer%>');
+
 $('#answer_body').val('');

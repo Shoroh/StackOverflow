@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       get 'unanswered(/page/:page)' => 'questions#unanswered', as: :unanswered
       get 'tags/:tag', to: 'questions#index', as: :tag
     end
-    resources :answers, only: [:create]
+    resources :answers
   end
 
 end
