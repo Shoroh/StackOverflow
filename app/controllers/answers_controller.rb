@@ -14,7 +14,7 @@ class AnswersController < ApplicationController
       else
         @question = Question.find(params[:question_id])
         format.html { render 'questions/show' }
-        format.js
+        format.js { render action: 'new' }
       end
     end
   end
@@ -33,6 +33,7 @@ class AnswersController < ApplicationController
         format.js
       else
         format.html { render action: 'edit' }
+        format.js { render action: 'edit' }
       end
     end
   end
