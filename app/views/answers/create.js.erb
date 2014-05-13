@@ -1,7 +1,7 @@
 <% if @answer.errors.any? %>
-$(".answer_form").html("<%= j render 'answers/answer_form' %>");
+    $(".answer_form").html("<%= j render 'answers/answer_form' %>");
 <% else %>
-$("#answers_qty").html("<%= pluralize(@question.answers.count, 'answer') %>:");
-$(".answers").append('<%= j render "answer", answer: @answer%>');
-$('#answer_body').val('');
+    $("#answers_qty").html("<%= pluralize(@question.answers.count, 'answer') %>:");
+    $(".answers").append('<%= j render "answer", answer: @answer%>');
+    $('#answer_body').val('');
 <% end %>
