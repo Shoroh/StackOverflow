@@ -53,6 +53,11 @@ describe AnswersController do
           expect(assigns(:answer)).to eq answer
         end
 
+        it 'assigns the requested question to @question' do
+          patch :update, id: answer, question_id: question.id, answer: attributes_for(:answer), format: :js
+          expect(assigns(:question)).to eq question
+        end
+
         it 'changes answer attributes' do
           patch :update, id: answer, question_id: question.id, answer: attributes_for(:answer, body: 'This is an answer'), format: :js
           answer.reload
