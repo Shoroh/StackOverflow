@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_question
+  before_action :set_question, except: :update
   before_action :set_answer, only: [:edit, :update, :destroy]
 
   def create
@@ -27,6 +27,7 @@ class AnswersController < ApplicationController
 
 
   def update
+    @question = @answer.question
     respond_to do |format|
       if @answer.update(answer_params)
         format.html { redirect_to @question, :flash => {:info => "Answer was successfully updated!"} }
