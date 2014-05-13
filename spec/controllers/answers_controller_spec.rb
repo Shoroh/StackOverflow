@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AnswersController do
-  let(:question){create(:question)}
+  let!(:question) { create(:question) }
   it { should route(:post, "/questions/#{question.id}/answers").to(controller: 'answers', action: 'create', question_id: question.id) }
 
   describe 'POST #create' do
@@ -10,10 +10,9 @@ describe AnswersController do
         login_user
       end
 
-      let(:question){create(:question)}
       context 'with valid attributes' do
         it 'saves a new answer in the database' do
-          expect {post :create, answer: attributes_for(:answer), user_id: @user.id, question_id: question.id}.to change(question.answers, :count).by(1)
+          expect { post :create, answer: attributes_for(:answer), user_id: @user.id, question_id: question.id }.to change(question.answers, :count).by(1)
         end
 
         it 'redirect to the question view' do
@@ -24,7 +23,7 @@ describe AnswersController do
 
       context 'with invalid attributes' do
         it 'does not save a new answer' do
-          expect {post :create, answer: attributes_for(:invalid_answer), user_id: @user.id, question_id: question.id}.to_not change(Answer, :count)
+          expect { post :create, answer: attributes_for(:invalid_answer), user_id: @user.id, question_id: question.id }.to_not change(Answer, :count)
         end
 
         it 're-renders question show page' do
@@ -42,5 +41,36 @@ describe AnswersController do
     end
   end
 
+  describe 'PATCH #update' do
+    context 'with User is authorized' do
+      before do
+        login_user
+      end
+      let(:answer){create(:answer, question: question, user: @user)}
+      context 'with valid attributes' do
+        it 'assigns the requested answer to @answer' do
+          patch :update, id: answer, question_id: question.id, answer: attributes_for(:answer), format: :js
+          expect(assigns(:answer)).to eq answer
+        end
+
+        it 'changes answer attributes' do
+          patch :update, id: answer, question_id: question.id, answer: attributes_for(:answer, body: 'This is an answer'), format: :js
+          answer.reload
+          expect(answer.body).to eq('This is an answer')
+        end
+      end
+
+      context 'with User is not authorized' do
+        it 're-render template' do
+          patch :update, id: answer, question_id: question.id, answer: attributes_for(:answer), format: :js
+          expect(response).to render_template :update
+        end
+      end
+
+
+    end
+
+
+  end
 
 end
