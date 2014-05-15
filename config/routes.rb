@@ -20,8 +20,10 @@ Rails.application.routes.draw do
   patch 'profile/edit' => 'users#update'
 
   scope :path => '/:commentable_type/:commentable_id' do
-    resources :comments
+    resources :comments, only: :create
   end
+
+  resources :comments, except: :create
 
 
   # TODO Надо отрефакторить вложенные геты — у них одинаковые параметры страниц.

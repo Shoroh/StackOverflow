@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_commentable
+  before_action :set_commentable, only: :create
   before_action :authenticate_user!
 
   def create
@@ -14,6 +14,24 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+    unless @comment.user == current_user
+      redirect_to @comment.commentable.try(:question) || @comment.commentable, :flash => {:warning => "You don't have permissions to edit this comment!" }
+    end
+  end
+
+
+  def update
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.js { render :update }
+      else
+        format.js { render action: 'edit' }
+      end
+    end
+  end
 
   private
 
