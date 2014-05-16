@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def title
-    @title = params[:action].capitalize
+  def growl(message, *options)
+    render template: 'shared/growl', locals: {message: message, options: options}, format: :js
   end
 
   def configure_permitted_parameters

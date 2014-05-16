@@ -13,6 +13,7 @@
  *= require bootstrap
  *= require flat-ui
  *= require bootstrap-tagsinput
+ *= require jquery.jgrowl.min
  *= require_tree .
  *= require_self
  */

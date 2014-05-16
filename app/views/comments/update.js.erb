@@ -1,1 +1,2 @@
 $("#comment-<%= @comment.id %>").replaceWith("<%= j render 'comments/comment', comment: @comment %>");
+$.jGrowl("<p>Comment was updated!</p>", {theme: 'growl_success'});

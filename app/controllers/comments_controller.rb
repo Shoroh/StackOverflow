@@ -1,46 +1,45 @@
 class CommentsController < ApplicationController
   before_action :set_commentable, only: :create
   before_action :authenticate_user!
+  before_action :set_comment, except: :create
+  before_action :check_owner, except: :create
+  respond_to :js
 
   def create
     @comment = Comment.new(comment_params)
     @comment.commentable = @commentable
     @comment.user = current_user
-    if @comment.save
-      respond_to do |format|
-        format.html {redirect_to @commentable.try(:question) || @commentable}
-        format.js
-      end
-    end
+    @comment.save
+    #respond_with @comment
   end
 
   def edit
-    @comment = Comment.find(params[:id])
-    unless @comment.user == current_user
-      redirect_to @comment.commentable.try(:question) || @comment.commentable, :flash => {:warning => "You don't have permissions to edit this comment!" }
-    end
   end
 
   def update
-    @comment = Comment.find(params[:id])
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.js { render :update }
-      else
-        format.js { render action: 'edit' }
-      end
+    if @comment.update(comment_params)
+      render :update
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
-    respond_to do |format|
-      format.js
-    end
+    respond_with @comment
   end
 
   private
+
+  def check_owner
+    unless @comment.user == current_user
+      growl("You don't have permission to manage this comment", ["theme: 'growl_alert'"])
+    end
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:body)
