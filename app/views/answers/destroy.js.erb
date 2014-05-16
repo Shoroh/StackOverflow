@@ -1,2 +1,3 @@
 $("#answers_qty").html("<%= pluralize(@question.answers.count, 'answer') %>:");
 $("#item-answer-<%= @answer.id %>").remove();
+$.jGrowl("<p>Answer was deleted</p>", {theme: 'growl_notice'});

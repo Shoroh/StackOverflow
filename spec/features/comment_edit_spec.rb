@@ -13,7 +13,7 @@ feature 'Edit Comment' do
     within ".question_show_body" do
       click_on('1 comment')
 
-      click_on('Edit')
+      find(:css, "a[href='/comments/#{comment.id}/edit']").click
 
       fill_in 'Edit your comment', with: "It's just a new version of old comment to question."
       click_on 'Update Comment'

@@ -14,7 +14,7 @@ feature "Question edit" do
     fill_in 'Title', with: 'Some different title for update checking'
     click_button('Update Question')
     user_sees_alert('Question was successfully updated!')
-    # TODO Добавить тест на то, что название темы изменилось.
+    expect(page).to have_content('Some different title for update checking')
   end
 
 

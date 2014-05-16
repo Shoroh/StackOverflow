@@ -5,9 +5,14 @@
       | :
     .comment_date
       = comment.created_at.to_formatted_s(:short)
-    .tools
-      = link_to 'Edit', edit_comment_path(comment), remote: true
-      = link_to 'Delete', comment, method: :delete, remote: true
+    .comment_tools
+      - if comment.user == current_user
+        .tool
+          = link_to edit_comment_path(comment), remote: true do
+            span.fui-new
+        .tool
+          = link_to comment, method: :delete, remote: true do
+            span.glyphicon.glyphicon-trash
 
   .comment_body
-    = raw comment.body
+    = raw simple_format comment.body

@@ -20,4 +20,7 @@ module LoginMacros
     click_button 'Sign in'
   end
 
+  def sign_out_form
+    visit destroy_user_session_path
+  end
 end
