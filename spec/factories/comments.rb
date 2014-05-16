@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :comment do
     user nil
-    assosiation :commentable
+    association :commentable
+    body "Just comment"
   end
 end

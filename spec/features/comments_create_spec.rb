@@ -1,11 +1,12 @@
 require 'spec_helper'
 
-feature 'Create Comment to Question' do
+feature 'Create Comment' do
 
   given!(:user) {create(:user)}
   given!(:question) {create(:question, user: user)}
+  given!(:answer) {create(:answer, user: user, question: question)}
 
-  scenario 'Registered User creates coment', js: true do
+  scenario 'Registered User creates comment for Question', js: true do
     sign_in_form(user.email, user.password)
     visit question_path(question)
 
@@ -13,7 +14,7 @@ feature 'Create Comment to Question' do
       click_on('To comment')
 
       fill_in 'Your comment', with: "It's just a comment to question."
-      click_on 'Add comment'
+      click_on 'Add Comment'
 
       expect(current_path).to eq question_path(question)
 
@@ -25,4 +26,29 @@ feature 'Create Comment to Question' do
 
   end
 
+  scenario 'Registered User creates comment for Answer', js: true do
+    sign_in_form(user.email, user.password)
+    visit question_path(question)
+
+    within "#item-answer-#{answer.id}" do
+      click_on('To comment')
+
+      fill_in 'Your comment', with: "It's just a comment to answer."
+      click_on 'Add Comment'
+    end
+
+    expect(current_path).to eq question_path(question)
+
+    within "#item-answer-#{answer.id}" do
+      expect(page).to have_content "It's just a comment to answer."
+    end
+
+  end
+
+  scenario 'Unregistered User tries to create comment', js: true do
+    visit question_path(question)
+
+    expect(page).to_not have_content "Add comment"
+
+  end
 end
