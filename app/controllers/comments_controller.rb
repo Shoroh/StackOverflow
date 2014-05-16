@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.commentable = @commentable
     @comment.user = current_user
-    if @comment.save!
+    if @comment.save
       respond_to do |format|
         format.html {redirect_to @commentable.try(:question) || @commentable}
         format.js
@@ -21,7 +21,6 @@ class CommentsController < ApplicationController
     end
   end
 
-
   def update
     @comment = Comment.find(params[:id])
     respond_to do |format|
@@ -30,6 +29,14 @@ class CommentsController < ApplicationController
       else
         format.js { render action: 'edit' }
       end
+    end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.js
     end
   end
 

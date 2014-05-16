@@ -13,13 +13,14 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  # todo resources
   # Routes for users and their profiles
   get 'users' => 'users#index'
   get 'user/:id' => 'users#show', as: :user
   get 'profile/edit' => 'users#edit', as: :profile
   patch 'profile/edit' => 'users#update'
 
-  scope :path => '/:commentable_type/:commentable_id' do
+  scope path: '/:commentable_type/:commentable_id' do
     resources :comments, only: :create
   end
 

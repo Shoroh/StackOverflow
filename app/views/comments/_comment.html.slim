@@ -7,6 +7,7 @@
       = comment.created_at.to_formatted_s(:short)
     .tools
       = link_to 'Edit', edit_comment_path(comment), remote: true
+      = link_to 'Delete', comment, method: :delete, remote: true
 
   .comment_body
     = raw comment.body

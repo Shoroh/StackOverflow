@@ -1,0 +1,2 @@
+$("#quantity-<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").html("<%= pluralize(@comment.commentable.comments.count, 'comment') %> <b class='caret'></b>");
+$("#comment-<%= @comment.id %>").remove();
