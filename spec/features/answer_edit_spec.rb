@@ -55,6 +55,6 @@ feature 'Answer Edit' do
     answer = create(:answer, question: question, user: user)
     visit question_path(question)
 
-    expect(page).to_not have_link "Edit"
+    expect(page).to_not have_selector('.answer_edit_icon')
   end
 end
