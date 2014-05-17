@@ -2,7 +2,10 @@ class CommentsController < ApplicationController
   before_action :set_commentable, only: :create
   before_action :authenticate_user!
   before_action :set_comment, except: :create
-  before_action :check_owner, except: :create
+  before_action except: :create do
+    check_permissions(@comment)
+  end
+
   respond_to :js
 
   def create
@@ -30,12 +33,6 @@ class CommentsController < ApplicationController
   end
 
   private
-
-  def check_owner
-    unless @comment.user == current_user
-      growl("You don't have permission to manage this comment", ["theme: 'growl_alert'"])
-    end
-  end
 
   def set_comment
     @comment = Comment.find(params[:id])
