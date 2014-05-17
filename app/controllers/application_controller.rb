@@ -7,9 +7,13 @@ class ApplicationController < ActionController::Base
   protected
 
   def check_permissions(object)
-    growl("You don't have permission to manage this #{object.class.to_s.downcase}!", ["theme: 'growl_alert'"]) unless object.user == current_user
+    unless object.user == current_user
+      respond_to do |format|
+        format.html { redirect_to root_path, flash: {alert: "You don't have permission to manage this #{object.class.to_s.downcase}!"}}
+        format.js { growl("You don't have permission to manage this #{object.class.to_s.downcase}!", ["theme: 'growl_alert'"]) }
+      end
+    end
   end
-
 
   def growl(message, *options)
     render template: 'shared/growl', locals: {message: message, options: options}, format: :js

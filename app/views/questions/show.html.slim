@@ -11,11 +11,13 @@
       .meta_block
         span.fui-calendar-solid
         = @question.created_at.to_formatted_s(:short)
+      - if @question.user == current_user
+        .meta_block
+          = link_to 'Edit', edit_question_path, remote: true
 
   .question_show_body
-    = raw simple_format(@question.body)
-    .question_show_tag_list
-      = raw (@question.tag_list.sort { |a, b| a <=> b }).map  {|t| link_to t, tag_questions_path(t), class: "btn btn-xs tag"}.join(" ")
+    div id="question-body-#{@question.id}"
+      = render 'questions/body'
     .question_show_comments
       = render 'comments/comments_list', object: @question
 

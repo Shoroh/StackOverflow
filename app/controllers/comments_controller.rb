@@ -1,11 +1,10 @@
 class CommentsController < ApplicationController
-  before_action :set_commentable, only: :create
   before_action :authenticate_user!
+  before_action :set_commentable, only: :create
   before_action :set_comment, except: :create
   before_action except: :create do
     check_permissions(@comment)
   end
-
   respond_to :js
 
   def create
@@ -35,7 +34,7 @@ class CommentsController < ApplicationController
   private
 
   def set_comment
-    @comment = Comment.find(params[:id])
+    @comment ||= Comment.find(params[:id])
   end
 
   def comment_params

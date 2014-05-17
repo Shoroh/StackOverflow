@@ -1,8 +1,11 @@
 <% if @answer.errors.any? %>
-    $(".answer_form").html("<%= j render 'answers/answer_form' %>");
+    $("#answer-body-new").parent().parent().addClass('has-error');
+    $(".help-block").remove();
+    $("#answer-body-new").parent().append("<span class='help-block'><%= @answer.errors.full_messages.first %></span>");
 <% else %>
     $("#answers_qty").html("<%= pluralize(@question.answers.count, 'answer') %>:");
     $(".answers").append('<%= j render "answer", answer: @answer%>');
-    $(".answer_form").html("<%= j render 'answers/answer_form' %>");
-    $('#answer_body').val('');
+    $("#answer-body-new").parent().parent().removeClass('has-error');
+    $(".help-block").remove();
+    $("#answer-body-new").val('');
 <% end %>

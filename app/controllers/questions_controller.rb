@@ -1,8 +1,11 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :sort, only: [:popular, :featured, :index, :unanswered]
   before_action :title, only: [:show, :edit]
+  before_action only: [:edit, :update, :destroy] do
+    check_permissions(@question)
+  end
 
   # Stats. Writes log by parameters: #show, ip_address
   # @example In View — @question.impressionist_count
@@ -31,9 +34,6 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    unless @question.user == current_user
-      redirect_to @question, :flash => {:warning => "You don't have permissions to edit this question!" }
-    end
   end
 
   def create
@@ -52,10 +52,10 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       if @question.update(question_params)
         format.html { redirect_to @question, :flash => {:info => "Question was successfully updated!"} }
-        format.json { head :no_content }
+        format.js
       else
         format.html { render action: 'edit' }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -93,7 +93,7 @@ class QuestionsController < ApplicationController
   end
 
   def set_question
-    @question = Question.find(params[:id])
+    @question ||= Question.find(params[:id])
   end
 
   def question_params
