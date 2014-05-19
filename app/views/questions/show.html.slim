@@ -14,6 +14,8 @@
       - if @question.user == current_user
         .meta_block
           = link_to 'Edit', edit_question_path, remote: true
+        .meta_block
+          = link_to 'Delete', question_path, data: {confirm: "Are you sure?"}, method: :delete
 
   .question_show_body
     div id="question-body-#{@question.id}"

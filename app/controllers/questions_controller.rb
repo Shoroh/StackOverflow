@@ -41,6 +41,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
+        format.js
         format.html { redirect_to @question, :flash => {:info => "Question was successfully created!" }}
       else
         format.html { render action: 'new' }
@@ -64,7 +65,6 @@ class QuestionsController < ApplicationController
     @question.destroy
     respond_to do |format|
       format.html { redirect_to questions_path, :flash => {:info => "Question was successfully deleted!"} }
-      format.js
     end
   end
 
