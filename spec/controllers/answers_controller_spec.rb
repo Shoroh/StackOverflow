@@ -12,23 +12,13 @@ describe AnswersController do
 
       context 'with valid attributes' do
         it 'saves a new answer in the database' do
-          expect { post :create, answer: attributes_for(:answer), user_id: @user.id, question_id: question.id }.to change(question.answers, :count).by(1)
-        end
-
-        it 'redirect to the question view' do
-          post :create, answer: attributes_for(:answer), user_id: @user.id, question_id: question.id
-          expect(response).to redirect_to question_path(question)
+          expect { xhr :post, :create, answer: attributes_for(:answer), user_id: @user.id, question_id: question.id }.to change(question.answers, :count).by(1)
         end
       end
 
       context 'with invalid attributes' do
         it 'does not save a new answer' do
-          expect { post :create, answer: attributes_for(:invalid_answer), user_id: @user.id, question_id: question.id }.to_not change(Answer, :count)
-        end
-
-        it 're-renders question show page' do
-          post :create, answer: attributes_for(:invalid_answer), user_id: @user.id, question_id: question.id
-          expect(response).to render_template 'questions/show'
+          expect { xhr :post, :create, answer: attributes_for(:invalid_answer), user_id: @user.id, question_id: question.id }.to_not change(Answer, :count)
         end
       end
     end

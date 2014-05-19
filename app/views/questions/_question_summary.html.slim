@@ -20,7 +20,7 @@
           span.fui-heart
         - if q.user == current_user
           small
-            = link_to "<span class='fui-new'></span>".html_safe, edit_question_path(q), alt: 'Edit Question', class: 'edit_question_icon'
+           span.fui-plus
       .excerpt
         .index_tag_list
           = raw (q.tag_list.sort { |a, b| a <=> b }).map  {|t| link_to t, tag_questions_path(t), class: "btn btn-xs tag"}.join(" ")

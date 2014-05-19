@@ -7,13 +7,11 @@ feature "Question edit" do
     sign_in_form 'shoroh362@gmail.com', 'super_secret'
     @question1 = create(:question, user: @user1)
 
-    visit "/questions"
-    find(".edit_question_icon").click
-    expect(page).to have_title("#{@question1.title} — Stack Overflow")
+    visit "/questions/#{@question1.id}"
+    click_on 'Edit'
 
     fill_in 'Title', with: 'Some different title for update checking'
     click_button('Update Question')
-    user_sees_alert('Question was successfully updated!')
     expect(page).to have_content('Some different title for update checking')
   end
 
@@ -24,8 +22,8 @@ feature "Question edit" do
     sign_in_form 'shoroh362@gmail.com', 'super_secret'
     @question1 = create(:question, user: @user2)
 
-    visit "/questions/#{@question1.id}/edit"
-    user_sees_alert("You don't have permissions to edit this question!")
+    visit "/questions/#{@question1.id}"
+    expect(page).to have_link('Edit')
   end
 
 end
