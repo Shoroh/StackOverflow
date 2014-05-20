@@ -22,6 +22,7 @@ feature 'Edit Comment' do
         find(:css, "a[href='/comments/#{comment.id}/edit']").click
 
         fill_in 'Edit your comment', with: "It's just a new version of old comment to question."
+
         click_on 'Update Comment'
 
         expect(current_path).to eq question_path(question)
@@ -40,6 +41,7 @@ feature 'Edit Comment' do
         find(:css, "a[href='/comments/#{comment.id}/edit']").click
 
         fill_in 'Edit your comment', with: "I"
+
         click_on 'Update Comment'
 
         expect(current_path).to eq question_path(question)

@@ -19,16 +19,11 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update(comment_params)
-      render :update
-    else
-      render action: 'edit'
-    end
+    @comment.update(comment_params)
   end
 
   def destroy
     @comment.destroy
-    respond_with @comment
   end
 
   private
