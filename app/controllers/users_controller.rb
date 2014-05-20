@@ -29,7 +29,6 @@ class UsersController < ApplicationController
       @profile = current_user.profile
       @user = current_user
     end
-
   end
 
   def profile_params

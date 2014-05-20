@@ -13,9 +13,6 @@ describe User do
   it { should have_many(:answers)}
   it { should have_one(:profile) }
 
-  it { should allow_value('Jim_Carry').for(:name) }
-  it { should_not allow_value("@#!,. '|'").for(:name) }
-
   # Check that user has his profile after create
   it 'should has profile after create' do
     user = create(:user, name: 'Shoroh')

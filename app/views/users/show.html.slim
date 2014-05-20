@@ -6,12 +6,12 @@
     | 's profile
 
   .tile.user_avatar
+    = image_tag "#{@user.avatar}?type=large"
 
   .user_info
     dl
-      - if @user.display_name
-        dt Name
-        dd = @user.display_name
+      dt Name
+      dd = @user.nick
       - if @user.age
         dt Age
         dd = @user.age
