@@ -1,4 +1,4 @@
-= simple_form_for @question, role: "form", remote: true do |f|
+= simple_form_for @question, role: "form", remote: @question.new_record? ? false : true do |f|
     = f.input :title, autofocus: true, :input_html => {maxlength: 255}
     = f.input :body, :input_html => {:rows => 8, maxlength: 6000}
     = f.input :tag_list, :input_html => {maxlength: 255, :"data-role" => "tagsinput"}, label: 'Tags'
