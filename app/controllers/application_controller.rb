@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # This filter could go anywhere the user needs to have a valid email address to access
   before_filter :ensure_valid_email
 
   protected
