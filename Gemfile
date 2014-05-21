@@ -30,6 +30,9 @@ gem 'gon'
 
 # User registration
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 # Tags
 gem 'acts-as-taggable-on'

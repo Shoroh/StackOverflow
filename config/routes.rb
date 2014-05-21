@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     get 'user/:user_id', on: :collection
   end
 
-  devise_for :users
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  match '/users/:id/add_email' => 'users#add_email', via: [:get, :patch, :post], :as => :add_user_email
 
   # todo resources
   # Routes for users and their profiles
