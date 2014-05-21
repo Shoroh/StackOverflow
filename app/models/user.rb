@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
       # Get the existing user by email if the OAuth provider gives us a verified email
       # If the email has not been verified yet we will force the user to validate it
       email = auth.info.email if auth.info.email
-      user = User.where(:email => email).first if email
+      user = User.where(email: email).first if email
 
       # Create the user if it is a new registration
       if user.nil?
@@ -55,7 +55,6 @@ class User < ActiveRecord::Base
             email: email ? email : TEMP_EMAIL,
             password: Devise.friendly_token[0,20]
         )
-        # user.skip_confirmation!
         user.save!
       end
     end
