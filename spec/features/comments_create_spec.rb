@@ -21,7 +21,6 @@ feature 'Create Comment' do
         within ".question_show_comments" do
         expect(page).to have_content "It's just a comment to question."
       end
-      # user_sees_alert 'Answer was successfully added!'
     end
 
   end
@@ -45,10 +44,28 @@ feature 'Create Comment' do
 
   end
 
+  scenario 'Registered User tries to create comment for Question with invalid data', js: true do
+    sign_in_form(user.email, user.password)
+    visit question_path(question)
+
+    within ".question_show_body" do
+      click_on('To comment')
+
+      fill_in 'Your comment', with: "I"
+      click_on 'Add Comment'
+
+      expect(current_path).to eq question_path(question)
+
+      within ".has-error" do
+        expect(page).to have_content "is too short (minimum is 3 characters)"
+      end
+    end
+  end
+
+
   scenario 'Unregistered User tries to create comment', js: true do
     visit question_path(question)
 
     expect(page).to_not have_content "Add comment"
-
   end
 end

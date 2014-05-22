@@ -61,11 +61,6 @@ describe AnswersController do
           expect(response).to render_template :update
         end
       end
-
-
     end
-
-
   end
-
 end

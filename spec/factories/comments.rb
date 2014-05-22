@@ -5,5 +5,8 @@ FactoryGirl.define do
     user nil
     association :commentable
     body "Just comment"
+    factory :invalid_comment do
+      body '1'
+    end
   end
 end

@@ -143,4 +143,34 @@ describe QuestionsController do
     end
   end
 
+  describe 'PATCH #update' do
+    context 'with User is authorized' do
+      before do
+        login_user
+      end
+
+      let(:question_old){create(:question, user: @user)}
+
+      context 'with valid attributes' do
+        it 'assigns the requested question to @question' do
+          patch :update, id: question_old, question: attributes_for(:question), format: :js
+          expect(assigns(:question)).to eq question_old
+        end
+
+        it 'changes question attributes' do
+          patch :update, id: question_old, question: attributes_for(:question, body: 'New edition of old question'), format: :js
+          question_old.reload
+          expect(question_old.body).to eq('New edition of old question')
+        end
+      end
+
+      context 'with User is not authorized' do
+        it 're-render template' do
+          logout_user
+          patch :update, id: question_old, question: attributes_for(:question), format: :js
+          expect(assigns(:question)).to_not eq question_old
+        end
+      end
+    end
+  end
 end

@@ -12,7 +12,6 @@ class CommentsController < ApplicationController
     @comment.commentable = @commentable
     @comment.user = current_user
     @comment.save
-    #respond_with @comment
   end
 
   def edit

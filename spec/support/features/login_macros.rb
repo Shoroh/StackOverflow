@@ -7,6 +7,10 @@ module LoginMacros
     sign_in @user
   end
 
+  def logout_user
+    sign_out @user
+  end
+
   def login_user_warden
     @user = create(:user)
     login_as @user, :scope => :user

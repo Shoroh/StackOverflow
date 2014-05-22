@@ -1,6 +1,9 @@
 require 'spec_helper'
+# require 'capybara/poltergeist'
 
 RSpec.configure do |config|
+
+  Capybara.javascript_driver = :selenium
 
   config.include Features, type: :feature
 
