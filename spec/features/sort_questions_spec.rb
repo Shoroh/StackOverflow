@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'acceptance_helper'
 
 feature 'Sort questions on root page' do
   scenario "User clicks 'recent' button and sees recent questions" do

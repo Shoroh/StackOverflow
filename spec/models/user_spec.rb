@@ -21,4 +21,6 @@ describe User do
     user = create(:user, name: 'Shoroh')
     expect(user.profile.has_attribute?(:display_name)).to be_true
   end
+
+  User.first.destroy!
 end

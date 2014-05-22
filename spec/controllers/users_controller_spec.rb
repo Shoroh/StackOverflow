@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UsersController do
 
   let(:users) {create_list(:user, 3)}
-  let(:user) {create(:user)}
+  let!(:user) {create(:user)}
 
   it { should route(:get, '/users').to(controller: 'users', action: 'index') }
   it { should route(:get, '/user/1').to(controller: 'users', action: 'show', id: 1) }
@@ -15,7 +15,7 @@ describe UsersController do
     before {get :index}
 
     it 'populates an array of all users' do
-      expect(assigns(:users)).to match_array(users)
+      expect(assigns(:users)).to match_array(users << user)
     end
 
     it { should render_template('index') }

@@ -1,4 +1,4 @@
-require "spec_helper"
+require_relative 'acceptance_helper'
 
 feature 'Guest turns the page' do
   scenario "User clicks 'ask question' button on root page" do
