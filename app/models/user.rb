@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :twitter]
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
-  validates :name, uniqueness: true, presence: true
+  validates :name, uniqueness: true, presence: true, length: 3..90
 
   after_create :set_profile
 

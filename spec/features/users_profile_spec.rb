@@ -1,20 +1,22 @@
 require 'spec_helper'
 
 feature 'User profiles' do
+
+  given!(:user1){create(:user)}
+  given!(:user2){create(:user)}
+
   background do
-    @user1 = create(:user)
-    @user2 = create(:user)
     visit users_path
   end
 
   scenario 'sees list of registered users' do
-    expect(page).to have_link(@user1.nick)
-    expect(page).to have_link(@user2.nick)
+    expect(page).to have_link(user1.nick)
+    expect(page).to have_link(user2.nick)
   end
 
   scenario "guest clicks to user's link" do
-    click_link @user1.nick
-    expect(page).to have_content @user1.profile.display_name
+    click_link user1.nick
+    expect(page).to have_content user1.profile.display_name
   end
 
   scenario "User fills his profile with valid data" do
