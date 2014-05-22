@@ -4,6 +4,7 @@ class Question < ActiveRecord::Base
   belongs_to :user, counter_cache: :questions_count
   has_many :answers, dependent: :destroy
   has_many :comments, as: :commentable
+  has_many :attachments
 
   validates :title, :body, :presence => true
 

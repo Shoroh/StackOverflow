@@ -37,6 +37,10 @@ gem 'omniauth-twitter'
 # Tags
 gem 'acts-as-taggable-on'
 
+# Attach files
+gem 'carrierwave'
+
+
 # Stats
 gem 'impressionist'
 
@@ -75,7 +79,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'capybara'
   gem 'capybara-webkit'
-  # gem 'poltergeist'
+  gem 'poltergeist'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'spring-commands-rspec'
