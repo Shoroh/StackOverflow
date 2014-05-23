@@ -54,6 +54,14 @@ describe QuestionsController do
       expect(assigns(:question).impressionist_count).to eq(1)
     end
 
+    it 'assigns a new Answer to @answer' do
+      expect(assigns(:answer)).to be_a_new(Answer)
+    end
+
+    it "builds new attachment for an answer" do
+      expect(assigns(:answer).attachments.first).to be_a_new(Attachment)
+    end
+
     it { should render_template('show') }
   end
 

@@ -15,5 +15,8 @@
       = answer.created_at.to_formatted_s(:short)
   .answer_body
     = raw simple_format(answer.body)
+    ul
+      - answer.attachments.each do |a|
+        li= link_to a.file.filename, a.file.url
   .question_show_comments
     = render 'comments/comments_list', object: answer

@@ -40,6 +40,8 @@ gem 'acts-as-taggable-on'
 # Attach files
 gem 'carrierwave'
 
+# authenticity_token: true
+gem 'remotipart'
 
 # Stats
 gem 'impressionist'

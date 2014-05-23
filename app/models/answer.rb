@@ -1,6 +1,6 @@
 class Answer < ActiveRecord::Base
   has_many :comments, as: :commentable
-  has_many :attachments, as: :attachmentable
+  has_many :attachments, as: :attachmentable, dependent: :destroy
   belongs_to :user, counter_cache: :answers_count
   belongs_to :question, counter_cache: :answers_count
   accepts_nested_attributes_for :attachments

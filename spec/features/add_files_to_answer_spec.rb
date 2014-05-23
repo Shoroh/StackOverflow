@@ -7,10 +7,10 @@ feature "Registered User could attach file to his answer" do
   end
   given!(:question){create(:question)}
 
-  scenario "User attaches file when give an answer" do
+  scenario "User attaches file when give an answer", js: true do
     visit question_path(question)
 
-    within ".answer_body" do
+    within "#new_answer" do
       fill_in "Your answer", with: 'It is elementary, Watson!'
 
       attach_file "File", "#{Rails.root}/spec/spec_helper.rb"

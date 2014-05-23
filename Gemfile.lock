@@ -165,6 +165,7 @@ GEM
     rake (10.3.1)
     rdoc (4.1.1)
       json (~> 1.4)
+    remotipart (1.2.1)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -266,6 +267,7 @@ DEPENDENCIES
   pg
   poltergeist
   rails (= 4.1.0)
+  remotipart
   rspec-rails (= 2.14)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

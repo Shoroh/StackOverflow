@@ -4,7 +4,7 @@ class Question < ActiveRecord::Base
   belongs_to :user, counter_cache: :questions_count
   has_many :answers, dependent: :destroy
   has_many :comments, as: :commentable
-  has_many :attachments, as: :attachmentable
+  has_many :attachments, as: :attachmentable, dependent: :destroy
 
   accepts_nested_attributes_for :attachments
 
