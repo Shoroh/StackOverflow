@@ -1,5 +1,7 @@
-= simple_form_for @question, role: "form", remote: @question.new_record? ? false : true do |f|
+= simple_form_for @question, role: "form", remote: @question.new_record? ? false : true, authenticity_token: true do |f|
     = f.input :title, autofocus: true, :input_html => {maxlength: 255}
     = f.input :body, :input_html => {:rows => 8, maxlength: 6000}
     = f.input :tag_list, :input_html => {maxlength: 255, :"data-role" => "tagsinput"}, label: 'Tags'
+    = f.simple_fields_for :attachments do |a|
+      = a.input :file, as: :file
     = f.submit class: "btn btn-info"

@@ -1,3 +1,6 @@
 = raw simple_format(@question.body)
 .question_show_tag_list
   = raw (@question.tag_list.sort { |a, b| a <=> b }).map  {|t| link_to t, tag_questions_path(t), class: "btn btn-xs tag"}.join(" ")
+ul
+  - @question.attachments.each do |a|
+    li = a.file.file.filename
