@@ -1,5 +1,3 @@
-[![Code Climate](https://codeclimate.com/github/Shoroh/StackOverflow.png)](https://codeclimate.com/github/Shoroh/StackOverflow)
-
 ==Stack Overflow
 
 This App has been made for study and to show to employer some of my skills. And for fun, of course :-) Actually, this is a functional clone of well known Q&A site — Stack Overflow.
