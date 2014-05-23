@@ -75,6 +75,7 @@ group :test, :development do
   gem "factory_girl_rails", "~> 4.0"
   gem 'faker'
   gem 'yard'
+  gem 'rubocop', require: false
 end
 
 group :test do
