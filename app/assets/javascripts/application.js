@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
+//= require rails-timeago
 //= require bootstrap
 //= require flatui-checkbox
 //= require bootstrap-switch

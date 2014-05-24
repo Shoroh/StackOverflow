@@ -26,7 +26,7 @@
           = raw (q.tag_list.sort { |a, b| a <=> b }).map  {|t| link_to t, tag_questions_path(t), class: "btn btn-xs tag"}.join(" ")
       small.asked_by
         ' asked
-        =' time_ago_in_words q.created_at
-        ' ago by
+        =' timeago_tag q.created_at, :nojs => true, :limit => 10.days.ago
+        ' by
         = link_to q.user.nick, user_path(q.user)
   .clearfix
