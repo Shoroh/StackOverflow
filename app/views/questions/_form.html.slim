@@ -1,4 +1,4 @@
-= simple_form_for @question, role: "form", remote: @question.new? ? false : true, authenticity_token: true, html: { multipart: true } do |f|
+= simple_form_for @question, role: "form", remote: @question.new_question? ? false : true, authenticity_token: true, html: { multipart: true } do |f|
     //= f.input_field :draft, as: :hidden, value: false
     = f.input :title, autofocus: true, :input_html => {maxlength: 255}
     = f.input :body, :input_html => {:rows => 8, maxlength: 6000}
@@ -14,6 +14,6 @@
             =' number_to_human_size a.file.size
             ' |
             = link_to "Remove this file", attachment_path(a), method: :delete, remote: true
-    = f.submit class: "btn btn-info"
+    = f.submit @question.new_question? ? "Create Question" : "Update Question", class: "btn btn-info"
 
 .upload_files = render 'attachments/form', object:@question

@@ -12,6 +12,7 @@ feature "Registered User could attach file to his question" do
     fill_in "Title", :with => "How to patch KDE under FreeBSD?"
     fill_in "Body", with: 'It is elementary, Watson!'
 
+    # TODO Как протестировать это?
     attach_file "File", "#{Rails.root}/spec/spec_helper.rb"
 
     click_button "Create Question"

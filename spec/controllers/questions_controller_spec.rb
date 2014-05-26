@@ -72,12 +72,8 @@ describe QuestionsController do
         get :new
       end
 
-      it 'assigns a new Question to @question' do
-        expect(assigns(:question)).to be_a_new(Question)
-      end
-
-      it "builds new attachment for the question" do
-        expect(assigns(:question).attachments.first).to be_a_new(Attachment)
+      it 'assigns a created draft Question to @question' do
+        expect(assigns(:question).title).to eq("Add title of question here")
       end
 
       it { should render_template('new') }
@@ -113,43 +109,6 @@ describe QuestionsController do
     context 'with User is not authorized' do
       it 'redirect to user sign in view' do
         get :edit, id: question
-        expect(response).to require_login
-      end
-    end
-  end
-
-  describe 'POST #create' do
-    context 'with User is authorized' do
-      before do
-        login_user
-      end
-
-      context 'with valid attributes' do
-        it 'saves a new question in the database' do
-         expect {post :create, question: attributes_for(:question)}.to change(Question, :count).by(1)
-        end
-
-        it 'redirect to the show view' do
-          post :create, question: attributes_for(:question)
-          expect(response).to redirect_to question_path(assigns(:question))
-        end
-      end
-
-      context 'with invalid attributes' do
-        it 'does not save a new question' do
-          expect {post :create, question: attributes_for(:invalid_question)}.to_not change(Question, :count)
-        end
-
-        it 're-renders new view' do
-          post :create, question: attributes_for(:invalid_question)
-          expect(response).to render_template :new
-        end
-      end
-    end
-
-    context 'with User is not authorized' do
-      it 'redirect to user sign in view' do
-        post :create, question: attributes_for(:question)
         expect(response).to require_login
       end
     end

@@ -31,20 +31,19 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = current_user.questions.new? || Question.create(title: "Add title of question here", body: "This are details of your question.", user: current_user, new: true, status: 1)
+    @question = current_user.questions.new_question? || Question.create(title: "Add title of question here", body: "This are details of your question.", user: current_user, status: 3)
   end
 
   def edit
   end
 
   def update
+    @question.status = 0
     respond_to do |format|
       if @question.update(question_params)
-        @question.update(new: false, status: 0)
-        format.html { redirect_to @question, :flash => {:info => "Question was successfully updated!"} }
+        format.html { redirect_to @question, flash: {info: "Question was successfully created!"} }
         format.js
       else
-        @question.update(status: 1)
         format.html { render action: 'edit' }
         format.js
       end
@@ -54,7 +53,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_path, :flash => {:info => "Question was successfully deleted!"} }
+      format.html { redirect_to questions_path, flash: {info: "Question was successfully deleted!"} }
     end
   end
 

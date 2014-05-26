@@ -12,7 +12,7 @@ class Question < ActiveRecord::Base
   validates :body, length: 20..6000
 
   # Questions could have flags:
-  enum status: { active: 0, pending: 1, deleted: 2 }
+  enum status: { active: 0, pending: 1, deleted: 2, new_question: 3 }
 
   # Quantity questions per page by default (last 10)
   paginates_per 10
@@ -31,17 +31,17 @@ class Question < ActiveRecord::Base
   scope :recent, -> { active }
 
   # Generates featured questions:
-  scope :featured, -> { where(featured: true) }
+  scope :featured, -> { recent.where(featured: true) }
 
   # Generates popular questions by quantity of unique_views field
-  scope :popular, -> { unscope(:order).active.order(unique_views: :desc) }
+  scope :popular, -> { recent.unscope(:order).active.order(unique_views: :desc) }
 
   # Generates questions without answers
-  scope :unanswered, -> { where("answers_count = '0'") }
+  scope :unanswered, -> { recent.where("answers_count = '0'") }
 
   # It's needed to check that question is new in form — remote: true or false
-  def self.new?
-    find_by(new: true) || nil
+  def self.new_question?
+    find_by(status: 3) || nil
   end
 
 end
