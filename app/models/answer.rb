@@ -4,7 +4,8 @@ class Answer < ActiveRecord::Base
   has_many :attachments, as: :attachmentable, dependent: :destroy
   belongs_to :user, counter_cache: :answers_count
   belongs_to :question, counter_cache: :answers_count
-  accepts_nested_attributes_for :attachments
+
+  accepts_nested_attributes_for :attachments, allow_destroy: true, reject_if: proc { |obj| obj.blank? }
 
   validates :body, presence: true
   validates :body, length: 3..6000

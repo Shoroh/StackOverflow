@@ -40,4 +40,9 @@ Rails.application.routes.draw do
     resources :answers
   end
 
+  scope path: '/:attachmentable_type/:attachmentable_id' do
+    resources :attachments, only: :create
+  end
+  resources :attachments, only: [:destroy]
+
 end

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby "2.1.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
@@ -14,6 +15,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+# for Heroku
+gem 'rails_12factor', group: :production
+
 # Template
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'slim-rails'
@@ -21,6 +25,8 @@ gem 'select2-rails'
 
 # For best forms
 gem 'simple_form', '~> 3.1.0.rc1'
+gem "nested_form"
+gem "jquery-fileupload-rails"
 
 # Pagination
 gem 'kaminari'

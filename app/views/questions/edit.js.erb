@@ -1,1 +1,6 @@
 $("#question-body-<%= @question.id %>").html("<%= j render 'questions/form' %>");
+
+$("#files_upload-question-<%= @question.id %>").fileupload({
+    dataType: "script",
+    dropZone: $("#attahcments-question")
+});

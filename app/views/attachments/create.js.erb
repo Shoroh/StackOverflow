@@ -1,0 +1,1 @@
+$("#attahcments-question").append("<li id='edit-attachment-<%= @attachment.id %>'><%= j link_to @attachment.file.filename, @attachment.file.url %> | <%= number_to_human_size @attachment.file.size %> | <%= j link_to 'Remove this file', attachment_path(@attachment), method: :delete, remote: true %></li>");

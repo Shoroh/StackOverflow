@@ -1,3 +1,11 @@
-$("#question-body-<%= @question.id %>").html("<%= j render 'questions/body' %>");
-$(".question_show_title h3").html("<%= @question.title %>");
-$.jGrowl("<p>Question was updated!</p>", {theme: 'growl_success'});
+<% if @question.errors.any?%>
+    $("#question_body").parent().parent().addClass('has-error');
+    $(".help-block").remove();
+    $("#question_body").parent().append("<span class='help-block'><%= @question.errors.full_messages.first %></span>");
+<% else %>
+    $(".help-block").remove();
+    $("#question_body").parent().parent().removeClass('has-error');
+    $("#question-body-<%= @question.id %>").html("<%= j render 'questions/body' %>");
+    $(".question_show_title h3").html("<%= @question.title %>");
+    $.jGrowl("<p>Question was updated!</p>", {theme: 'growl_success'});
+<% end %>

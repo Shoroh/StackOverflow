@@ -1,3 +1,11 @@
 h3 New Question
 
 = render 'questions/form'
+
+javascript:
+  $("#question_body").val('');
+  $("#question_title").val('');
+  $("#files_upload-question-#{@question.id}").fileupload({
+    dataType: "script",
+    dropZone: $("#attahcments-question")
+    });

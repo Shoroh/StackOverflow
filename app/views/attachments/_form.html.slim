@@ -1,0 +1,3 @@
+.file-uploads-form
+  = form_for(:attachment, url: attachments_url(object.class.to_s, object.id), multipart: true) do
+    = file_field_tag "files[]", type: :file, multiple: true, id: "files_upload-#{object.class.to_s.downcase}-#{object.id}", as: :file

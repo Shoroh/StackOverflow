@@ -6,8 +6,6 @@ class Question < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :attachments, as: :attachmentable, dependent: :destroy
 
-  accepts_nested_attributes_for :attachments
-
   validates :title, :body, presence: true
 
   validates :title, length: 20..255
@@ -40,4 +38,9 @@ class Question < ActiveRecord::Base
 
   # Generates questions without answers
   scope :unanswered, -> { where("answers_count = '0'") }
+
+  def self.new?
+    find_by(new: true) || nil
+  end
+
 end

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require rails-timeago
+//= require jquery-fileupload/basic
 //= require bootstrap
 //= require flatui-checkbox
 //= require bootstrap-switch

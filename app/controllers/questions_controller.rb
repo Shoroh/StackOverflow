@@ -31,31 +31,20 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new
-    @question.attachments.build
+    @question = current_user.questions.new? || Question.create(title: "Add title of question here", body: "This are details of your question.", user: current_user, new: true, status: 1)
   end
 
   def edit
   end
 
-  def create
-    @question = current_user.questions.build(question_params)
-
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to @question, :flash => {:info => "Question was successfully created!" }}
-      else
-        format.html { render action: 'new' }
-      end
-    end
-  end
-
   def update
     respond_to do |format|
       if @question.update(question_params)
+        @question.update(new: false, status: 0)
         format.html { redirect_to @question, :flash => {:info => "Question was successfully updated!"} }
         format.js
       else
+        @question.update(status: 1)
         format.html { render action: 'edit' }
         format.js
       end
@@ -98,7 +87,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body, :tag_list, attachments_attributes: [:file] )
+    params.require(:question).permit(:title, :body, :tag_list)
   end
 
 end
