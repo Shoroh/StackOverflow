@@ -39,6 +39,7 @@ class Question < ActiveRecord::Base
   # Generates questions without answers
   scope :unanswered, -> { where("answers_count = '0'") }
 
+  # It's needed to check that question is new in form — remote: true or false
   def self.new?
     find_by(new: true) || nil
   end

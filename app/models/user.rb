@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL = 'change@me.com'
   TEMP_EMAIL_REGEX = /change@me.com/
 
+  has_many :attachments, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :answers, dependent: :destroy
