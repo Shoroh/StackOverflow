@@ -15,6 +15,7 @@
 //= require jquery.remotipart
 //= require rails-timeago
 //= require jquery-fileupload/basic
+//= require jquery_nested_form
 //= require bootstrap
 //= require flatui-checkbox
 //= require bootstrap-switch
