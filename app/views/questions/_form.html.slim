@@ -1,19 +1,9 @@
-= simple_form_for @question, role: "form", remote: @question.new_question? ? false : true, authenticity_token: true, html: { multipart: true } do |f|
-    //= f.input_field :draft, as: :hidden, value: false
-    = f.input :title, autofocus: true, :input_html => {maxlength: 255}
-    = f.input :body, :input_html => {:rows => 8, maxlength: 6000}
-    = f.input :tag_list, :input_html => {maxlength: 255, :"data-role" => "tagsinput"}, label: 'Tags'
-    ul.tile id="attahcments-question"
-      a onclick="$('#files_upload-question-#{@question.id}').click()" class="btn btn-default"
-        | Add files here
-      - if @question.attachments.exists?
-        - @question.attachments.each do |a|
-          li id="edit-attachment-#{a.id}"
-            =' link_to a.file.filename, a.file.url
-            ' |
-            =' number_to_human_size a.file.size
-            ' |
-            = link_to "Remove this file", attachment_path(a), method: :delete, remote: true
-    = f.submit @question.new_question? ? "Create Question" : "Update Question", class: "btn btn-info"
+= simple_form_for @question, role: "form", remote: @question.new_record? ? false : true, authenticity_token: true do |f|
+  = f.input :title, autofocus: true, :input_html => {maxlength: 255}
+  = f.input :body, :input_html => {:rows => 8, maxlength: 6000}
+  = f.input :tag_list, :input_html => {maxlength: 255, :"data-role" => "tagsinput"}, label: 'Tags'
+  = render 'attachments/attachments_upload_and_list', object: @question
+  = f.submit class: "btn btn-info"
 
-.upload_files = render 'attachments/form', object:@question
+= render 'attachments/form', object: @question
+

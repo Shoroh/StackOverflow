@@ -1,0 +1,7 @@
+= form_for(Clip.new, multipart: true) do
+  = file_field_tag "files[]", multiple: true, id: "files-for-new-answers"
+
+  javascript:
+    $("#files-for-new-answers").fileupload({
+      dataType: "script"
+    });

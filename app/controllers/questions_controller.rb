@@ -27,20 +27,44 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = Answer.new
-    @answer.attachments.build
   end
 
   def new
-    @question = current_user.questions.new_question? || Question.create(title: "Add title of question here", body: "This are details of your question.", user: current_user, status: 3)
+    @question = Question.new
+  end
+
+  def create
+    @question = current_user.questions.build(question_params)
+
+    respond_to do |format|
+      if @question.save
+        if params[:attachment_ids]
+          params[:attachment_ids].split(",").each do |attachment|
+            @attachment = Attachment.find(attachment)
+            @attachment.attachmentable_id = @question.id
+            @attachment.save
+          end
+        end
+        format.html { redirect_to @question, :flash => {:info => "Question was successfully created!" }}
+      else
+        format.html { render action: 'new' }
+      end
+    end
   end
 
   def edit
   end
 
   def update
-    @question.status = 0
     respond_to do |format|
       if @question.update(question_params)
+        if params[:attachment_ids]
+          params[:attachment_ids].split(",").each do |attachment|
+            @attachment = Attachment.find(attachment)
+            @attachment.attachmentable_id = @question.id
+            @attachment.save
+          end
+        end
         format.html { redirect_to @question, flash: {info: "Question was successfully created!"} }
         format.js
       else

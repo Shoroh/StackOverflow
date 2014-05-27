@@ -1,1 +1,17 @@
-$("#attahcments-question").append("<li id='edit-attachment-<%= @attachment.id %>'><%= j link_to @attachment.file.filename, @attachment.file.url %> | <%= number_to_human_size @attachment.file.size %> | <%= j link_to 'Remove this file', attachment_path(@attachment), method: :delete, remote: true %></li>");
+var ClipsContainer, idContainer;
+
+ClipsContainer = $("#list-<%= @attachment.attachmentable_type.downcase %>_<%= @attachment.attachmentable_id || 'new' %>");
+idContainer =  $("#attachment_ids-<%= @attachment.attachmentable_type.downcase %>_<%= @attachment.attachmentable_id || 'new' %>");
+
+ClipsContainer.append("<li id='edit-attachment-<%= @attachment.id %>'><%= j link_to @attachment.file.filename, @attachment.file.url %> | <%= number_to_human_size @attachment.file.size %> | <%= j link_to 'Remove this file', attachment_path(@attachment), method: :delete, remote: true %></li>");
+
+if ( idContainer.val() == "" ) {
+    var arr = [];
+}
+else {
+    var arr = idContainer.val().split(',');
+}
+
+arr.push('<%= @attachment.id %>');
+arr.join(',');
+idContainer.val(arr);

@@ -1,1 +1,14 @@
 $("#edit-attachment-<%= @attachment.id %>").remove();
+
+idContainer =  $("#attachment_ids-<%= @attachment.attachmentable_type.downcase %>_<%= @attachment.attachmentable_id || 'new' %>");
+
+var array = idContainer.val().split(',');
+
+// Find and remove item from an array
+var i = array.indexOf('<%= @attachment.id %>');
+if(i != -1) {
+    array.splice(i, 1);
+}
+
+array.join(',');
+idContainer.val(array);

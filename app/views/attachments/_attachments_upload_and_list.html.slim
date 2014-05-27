@@ -1,0 +1,20 @@
+- @attachments_list = []
+- @form_id = "#{object.class.to_s.downcase}_#{object.id || 'new'}"
+.tile
+  a onclick="$('#files_upload_#{@form_id}').click()" class="btn btn-default"
+    | Add files here
+  ul id="list-#{@form_id}"
+    - if object.attachments.exists?
+      - object.attachments.each do |a|
+        - @attachments_list.push(a.id)
+        li id="edit-attachment-#{a.id}"
+          =' link_to a.file.filename, a.file.url
+          ' |
+          =' number_to_human_size a.file.size
+          ' |
+          = link_to "Remove this file", attachment_path(a), method: :delete, remote: true
+  br
+  br
+  = hidden_field_tag "attachment_ids", @attachments_list.join(',') || '', id: "attachment_ids-#{@form_id}"
+
+

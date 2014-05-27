@@ -12,6 +12,14 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build(answer_params)
     @answer.user = current_user
     @answer.save
+
+    if params[:attachment_ids]
+      params[:attachment_ids].split(",").each do |attachment|
+        @attachment = Attachment.find(attachment)
+        @attachment.attachmentable_id = @answer.id
+        @attachment.save
+      end
+    end
   end
 
   def edit
@@ -20,6 +28,14 @@ class AnswersController < ApplicationController
 
   def update
     @answer.update(answer_params)
+
+    if params[:attachment_ids]
+      params[:attachment_ids].split(",").each do |attachment|
+        @attachment = Attachment.find(attachment)
+        @attachment.attachmentable_id = @answer.id
+        @attachment.save
+      end
+    end
   end
 
   def destroy
@@ -30,7 +46,7 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:body, attachments_attributes: [:file])
+    params.require(:answer).permit(:body)
   end
 
   def set_answer

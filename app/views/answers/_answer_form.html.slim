@@ -1,8 +1,6 @@
 = simple_nested_form_for([@question, @answer], role: "form", remote: true, authenticity_token: true) do |f|
   = f.input :body, :input_html => {:rows => 8, maxlength: 6000, id: "answer-body-#{@answer.id || 'new'}"}, label: 'Your answer'
-  = f.simple_fields_for :attachments do |a|
-    = a.label :file
-    = a.input_field :file, as: :file
-    = a.link_to_remove "Remove this file"
-  = f.link_to_add "Add another file", :attachments
+  = render 'attachments/attachments_upload_and_list', object: @answer
   = f.submit class: 'btn btn-info'
+
+= render 'attachments/form', object: @answer
