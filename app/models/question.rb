@@ -12,7 +12,7 @@ class Question < ActiveRecord::Base
   validates :body, length: 20..6000
 
   # Questions could have flags:
-  enum status: { active: 0, pending: 1, deleted: 2, new_question: 3 }
+  enum status: { active: 0, pending: 1, deleted: 2 }
 
   # Quantity questions per page by default (last 10)
   paginates_per 10
@@ -38,10 +38,5 @@ class Question < ActiveRecord::Base
 
   # Generates questions without answers
   scope :unanswered, -> { recent.where("answers_count = '0'") }
-
-  # It's needed to check that question is new in form — remote: true or false
-  def self.new_question?
-    find_by(status: 3) || nil
-  end
 
 end
