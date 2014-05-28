@@ -3,7 +3,7 @@
   = f.input :body, :input_html => {:rows => 8, maxlength: 6000}
   = f.input :tag_list, :input_html => {maxlength: 255, :"data-role" => "tagsinput"}, label: 'Tags'
   = render 'attachments/attachments_upload_and_list', object: @question
-  = f.submit class: "btn btn-info"
+  = f.submit class: "btn btn-info", id: "submit_question_#{@question.new_record? ? 'new' : @question.id}"
 
 = render 'attachments/form', object: @question
 

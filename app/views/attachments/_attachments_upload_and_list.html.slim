@@ -3,6 +3,10 @@
 .tile_for_upload
   a onclick="$('#files_upload_#{@form_id}').click()" class="btn btn-default add_files_here"
     | Add files here
+  .progress id="progressall_bar_#{@form_id}"
+    .progress-bar style="width: 0%;"
+  .progress id="progress_bar_#{@form_id}"
+    .progress-bar style="width: 0%;"
   ul id="list-#{@form_id}"
     - if object.attachments.exists?
       - object.attachments.each do |a|

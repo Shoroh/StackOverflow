@@ -8,5 +8,23 @@
       = hidden_field_tag "attachmentable_id", object.id || nil, id: "id_#{@form_id}"
 javascript:
   $("#files_upload_#{@form_id}").fileupload({
-    dataType: "script"
+    dataType: "script",
+    add: function (e, data) {
+      $("#submit_#{@form_id}").attr('disabled', true);
+      $('#progressall_bar_#{@form_id} .progress-bar').css('width', '0%');
+      $('#progressall_bar_#{@form_id}').show();
+      data.submit();
+    },
+    progressall: function (e, data) {
+      var progress_all = parseInt(data.loaded / data.total * 100, 10);
+      $('#progressall_bar_#{@form_id} .progress-bar').css('width', progress_all + '%');
+      if (progress_all == 100) {
+        $('#progressall_bar_#{@form_id}').hide();
+        $('#progressall_bar_#{@form_id} .progress-bar').css('width', '0%');
+        $.jGrowl("<h6>Files have been uploaded successfully!</h6>", {theme: 'growl_success'});
+      }
+    },
+    done: function (e, data) {
+      $("#submit_#{@form_id}").attr('disabled', false);
+    }
   });
