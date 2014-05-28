@@ -10,6 +10,4 @@ describe Answer do
 
   it { should allow_value('active', 'pending', 'deleted').for(:status) }
 
-  it { should accept_nested_attributes_for :attachments}
-
 end
