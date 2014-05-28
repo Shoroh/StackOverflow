@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
         if params[:attachment_ids]
           params[:attachment_ids].split(",").each do |attachment|
             @attachment = Attachment.find(attachment)
-            @attachment.attachmentable_id = @question.id
+            @attachment.attachmentable_id = @question.id if @attachment.attachmentable_id == nil
             @attachment.save
           end
         end
@@ -61,7 +61,7 @@ class QuestionsController < ApplicationController
         if params[:attachment_ids]
           params[:attachment_ids].split(",").each do |attachment|
             @attachment = Attachment.find(attachment)
-            @attachment.attachmentable_id = @question.id
+            @attachment.attachmentable_id = @question.id if @attachment.attachmentable_id == nil
             @attachment.save
           end
         end
