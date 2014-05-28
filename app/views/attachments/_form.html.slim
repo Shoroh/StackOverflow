@@ -22,9 +22,9 @@ javascript:
         $('#progressall_bar_#{@form_id}').hide();
         $('#progressall_bar_#{@form_id} .progress-bar').css('width', '0%');
         $.jGrowl("<h6>Files have been uploaded successfully!</h6>", {theme: 'growl_success'});
+        $("#submit_#{@form_id}").attr('disabled', false);
       }
     },
     done: function (e, data) {
-      $("#submit_#{@form_id}").attr('disabled', false);
     }
   });
