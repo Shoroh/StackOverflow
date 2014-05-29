@@ -1,3 +1,5 @@
-$("#quantity-<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").html("<%= pluralize(@comment.commentable.comments.count, 'comment') %> <b class='caret'></b>");
-$("#comment-<%= @comment.id %>").remove();
-$.jGrowl("<p>Comment was deleted</p>", {theme: 'growl_notice'});
+<% publish_to "/questions/#{@comment.commentable.try(:answers) ? @comment.commentable.id : @comment.commentable.question.id}/answers" do %>
+    $("#quantity-<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").html("<%= pluralize(@comment.commentable.comments.count, 'comment') %> <b class='caret'></b>");
+    $("#comment-<%= @comment.id %>").remove();
+    $.jGrowl("<p>Comment was deleted</p>", {theme: 'growl_notice'});
+<% end %>

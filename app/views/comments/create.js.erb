@@ -3,9 +3,13 @@
     $(".help-block").remove();
     $("#input-<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").parent().append("<span class='help-block'><%= @comment.errors.full_messages.first %></span>");
 <% else %>
+    <% publish_to "/questions/#{@comment.commentable.try(:answers) ? @comment.commentable.id : @comment.commentable.question.id}/answers" do %>
+        $("#quantity-<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").html("<%= pluralize(@comment.commentable.comments.count, 'comment') %> <b class='caret'></b>");
+        $("#<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").append('<%= j render "comments/comment", comment:@comment%>');
+        $.jGrowl("<p>Comment was added</p>", {theme: 'growl_success'});
+    <% end %>
     $("#input-<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").parent().parent().removeClass('has-error');
     $(".help-block").remove();
-    $("#quantity-<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").html("<%= pluralize(@comment.commentable.comments.count, 'comment') %> <b class='caret'></b>");
-    $("#<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").append('<%= j render "comments/comment", comment:@comment%>');
     $("#input-<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").val('');
 <% end %>
+

@@ -1,4 +1,4 @@
-.question_show
+.question_show data={question_id: "#{@question.id}"}
   .question_show_title
     h3=@question.title
     .meta
@@ -42,4 +42,4 @@
       =' link_to 'login', '#', data: {target: "#signin_modal", toggle: "modal"}
       | to post answer.
 
-  = subscribe_to "/questions/#{@question.id}/answers"
+= subscribe_to "/questions/#{@question.id}/answers"

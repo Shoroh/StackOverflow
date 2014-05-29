@@ -3,6 +3,8 @@
     $(".help-block").remove();
     $("#input-<%= @comment.commentable.class.to_s.downcase %>-<%= @comment.commentable.id %>").parent().append("<span class='help-block'><%= @comment.errors.full_messages.first %></span>");
 <% else %>
-    $("#comment-<%= @comment.id %>").replaceWith("<%= j render 'comments/comment', comment: @comment %>");
-    $.jGrowl("<p>Comment was updated!</p>", {theme: 'growl_success'});
+    <% publish_to "/questions/#{@comment.commentable.try(:answers) ? @comment.commentable.id : @comment.commentable.question.id}/answers" do %>
+        $("#comment-<%= @comment.id %>").replaceWith("<%= j render 'comments/comment', comment: @comment %>");
+        $.jGrowl("<p>Comment was updated!</p>", {theme: 'growl_success'});
+    <% end %>
 <% end %>
