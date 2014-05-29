@@ -9,7 +9,8 @@ class AttachmentsController < ApplicationController
   def create
     if params[:files]
       params[:files].each do |file|
-        @attachment = Attachment.create(file: file, attachmentable_type: params[:attachmentable_type], attachmentable_id: params[:attachmentable_id] || nil)
+        # TODO тип можно не указывать!
+        @attachment = Attachment.create(file: file, attachmentable_type: params[:attachmentable_type], attachmentable_id: params[:attachmentable_id])
         @attachment.user = current_user
         @attachment.save
       end

@@ -5,13 +5,22 @@ class CommentsController < ApplicationController
   before_action except: :create do
     check_permissions(@comment)
   end
-  respond_to :js
 
   def create
     @comment = Comment.new(comment_params)
     @comment.commentable = @commentable
     @comment.user = current_user
-    @comment.save
+    # @comment.save
+    respond_to do |format|
+      if @comment.save
+        format.js
+        format.json
+      else
+        format.js
+        format.json { render status: :unprocessable_entity }
+      end
+    end
+
   end
 
   def edit

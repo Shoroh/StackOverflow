@@ -41,11 +41,3 @@
       ' Please
       =' link_to 'login', '#', data: {target: "#signin_modal", toggle: "modal"}
       | to post answer.
-
-/javascript:
-  $("#files-for-new-answers").change(function () {
-    var files = $('#files-for-new-answers')[0].files;
-    for (var i = 0; i < files.length; i++) {
-      $("#clips-list").append("<li>" + files[i].name + "</li>");
-    }
-  });

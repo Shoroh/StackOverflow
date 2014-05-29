@@ -2,7 +2,6 @@
   .comment_meta
     .comment_author
       = link_to comment.user.nick, user_path(comment.user)
-      | :
     .comment_date
       = comment.created_at.to_formatted_s(:short)
     .comment_tools

@@ -28,6 +28,10 @@ gem 'simple_form', '~> 3.1.0.rc1'
 gem "nested_form"
 gem "jquery-fileupload-rails"
 
+# Faye-Websocket
+gem "private_pub"
+gem "thin"
+
 # Pagination
 gem 'kaminari'
 

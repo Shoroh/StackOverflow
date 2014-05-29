@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 
     # If the email address was the temporarily assigned one,
     # redirect the user to the 'add_email' page
+    # TODO if user.has_email?
+    # TODO Перенести в omniauth_callbacks_controller
     if current_user && (!current_user.email || current_user.email == User::TEMP_EMAIL)
       redirect_to add_user_email_path(current_user)
     end

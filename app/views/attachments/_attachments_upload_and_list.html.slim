@@ -1,6 +1,7 @@
 - @attachments_list = []
 - @form_id = "#{object.class.to_s.downcase}_#{object.id || 'new'}"
 .tile_for_upload
+  // TODO Убрать скрипт из ссылки в отдельный скрипт.
   a onclick="$('#files_upload_#{@form_id}').click()" class="btn btn-default add_files_here"
     | Add files here
   .progress id="progressall_bar_#{@form_id}"

@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
     user = identity.user ? identity.user : signed_in_resource
 
     # Create the user if needed
-    if user.nil?
+    if user
 
       # Get the existing user by email if the OAuth provider gives us a verified email
       # If the email has not been verified yet we will force the user to validate it
@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
       user = User.where(email: email).first if email
 
       # Create the user if it is a new registration
-      if user.nil?
+      if user
         user = User.new(
             name: auth.extra.raw_info.name,
             # username: auth.info.nickname || auth.uid,

@@ -38,6 +38,8 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
+        # TODO Перенести в модель!
+        # TODO Написать спеки в модели!
         if params[:attachment_ids]
           params[:attachment_ids].split(",").each do |attachment|
             @attachment = Attachment.find(attachment)

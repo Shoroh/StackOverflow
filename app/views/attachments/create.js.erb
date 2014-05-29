@@ -1,9 +1,8 @@
-var ClipsContainer, idContainer;
+var clipsContainer = $("#list-<%= @attachment.attachmentable_type.downcase %>_<%= @attachment.attachmentable_id || 'new' %>");
+var idContainer =  $("#attachment_ids-<%= @attachment.attachmentable_type.downcase %>_<%= @attachment.attachmentable_id || 'new' %>");
 
-ClipsContainer = $("#list-<%= @attachment.attachmentable_type.downcase %>_<%= @attachment.attachmentable_id || 'new' %>");
-idContainer =  $("#attachment_ids-<%= @attachment.attachmentable_type.downcase %>_<%= @attachment.attachmentable_id || 'new' %>");
-
-ClipsContainer.append("<li id='edit-attachment-<%= @attachment.id %>'><%= j link_to @attachment.file.filename, @attachment.file.url %> | <%= number_to_human_size @attachment.file.size %> | <%= j link_to 'Remove this file', attachment_path(@attachment), method: :delete, remote: true %></li>");
+// Вынести эти строки в helper
+clipsContainer.append("<li id='edit-attachment-<%= @attachment.id %>'><%= j link_to @attachment.file.filename, @attachment.file.url %> | <%= number_to_human_size @attachment.file.size %> | <%= j link_to 'Remove this file', attachment_path(@attachment), method: :delete, remote: true %></li>");
 
 if ( idContainer.val() == "" ) {
     var arr = [];
@@ -11,7 +10,7 @@ if ( idContainer.val() == "" ) {
 else {
     var arr = idContainer.val().split(',');
 }
-
+// TODO Переделать массивы простым добавлением к строке +
 arr.push('<%= @attachment.id %>');
 arr.join(',');
 idContainer.val(arr);
