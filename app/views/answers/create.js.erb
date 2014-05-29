@@ -5,8 +5,11 @@
     $(".help-block").remove();
     $("#answer-body-new").parent().append("<span class='help-block'><%= @answer.errors.full_messages.first %></span>");
 <% else %>
-    $("#answers_qty").html("<%= pluralize(@question.answers.count, 'answer') %>:");
-    $(".answers").append('<%= j render "answer", answer: @answer%>');
+    <% publish_to "/questions/#{@question.id}/answers" do %>
+        $("#answers_qty").html("<%= pluralize(@question.answers.count, 'answer') %>:");
+        $(".answers").append('<%= j render "answer", answer: @answer%>');
+        $.jGrowl("<p>New answer was added!</p>", {theme: 'growl_success'});
+    <% end %>
     $("#answer-body-new").parent().parent().removeClass('has-error');
     $(".help-block").remove();
     $("#answer-body-new").val('');

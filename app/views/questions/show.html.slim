@@ -41,3 +41,5 @@
       ' Please
       =' link_to 'login', '#', data: {target: "#signin_modal", toggle: "modal"}
       | to post answer.
+
+  = subscribe_to "/questions/#{@question.id}/answers"

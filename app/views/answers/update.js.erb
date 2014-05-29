@@ -3,7 +3,9 @@
     $(".help-block").remove();
     $("#answer-body-<%= @answer.id %>").parent().append("<span class='help-block'><%= @answer.errors.full_messages.first %></span>");
 <% else %>
-    $("#item-answer-<%= @answer.id %>").replaceWith("<%= j render 'answers/answer', answer: @answer %>");
-    $.jGrowl("<p>Answer was updated!</p>", {theme: 'growl_success'});
+    <% publish_to "/questions/#{@question.id}/answers" do %>
+        $("#item-answer-<%= @answer.id %>").replaceWith("<%= j render 'answers/answer', answer: @answer %>");
+        $.jGrowl("<p>Answer was updated!</p>", {theme: 'growl_success'});
+    <% end %>
 <% end %>
 
