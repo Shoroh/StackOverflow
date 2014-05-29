@@ -35,18 +35,10 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.build(question_params)
-
     respond_to do |format|
       if @question.save
-        # TODO Перенести в модель!
         # TODO Написать спеки в модели!
-        if params[:attachment_ids]
-          params[:attachment_ids].split(",").each do |attachment|
-            @attachment = Attachment.find(attachment)
-            @attachment.attachmentable_id = @question.id if @attachment.attachmentable_id == nil
-            @attachment.save
-          end
-        end
+        attachments
         format.html { redirect_to @question, :flash => {:info => "Question was successfully created!" }}
       else
         format.html { render action: 'new' }
@@ -60,13 +52,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        if params[:attachment_ids]
-          params[:attachment_ids].split(",").each do |attachment|
-            @attachment = Attachment.find(attachment)
-            @attachment.attachmentable_id = @question.id if @attachment.attachmentable_id == nil
-            @attachment.save
-          end
-        end
+        attachments
         format.html { redirect_to @question, flash: {info: "Question was successfully created!"} }
         format.js
       else
@@ -84,6 +70,10 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def attachments
+    @attachment = Attachment.create_attachments(params[:attachment_ids], @question)
+  end
 
   def title
     @title = @question.title
