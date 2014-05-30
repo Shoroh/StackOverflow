@@ -16,6 +16,10 @@ class CommentsController < ApplicationController
                                           current_user)
   end
 
+  def update
+    @comment.update(comment_params)
+  end
+
   private
 
   def set_comment
