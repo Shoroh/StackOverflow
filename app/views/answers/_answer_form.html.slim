@@ -1,6 +1,6 @@
-= simple_nested_form_for([@question, @answer], role: "form", remote: true, authenticity_token: true, html: {:"data-disable-with" => 'Saving...'} ) do |f|
+= simple_nested_form_for([@question, @answer], role: "form", remote: true, authenticity_token: true) do |f|
   = f.input :body, :input_html => {:rows => 8, maxlength: 6000, id: "answer-body-#{@answer.id || 'new'}"}, label: 'Your answer'
   = render 'attachments/attachments_upload_and_list', object: @answer
-  = f.submit class: 'btn btn-info', id: "submit_answer_#{@answer.new_record? ? 'new' : @answer.id}"
+  = f.submit class: 'btn btn-info', id: "submit_answer_#{@answer.new_record? ? 'new' : @answer.id}", :"data-disable-with" => 'Savings...'
 
 = render 'attachments/form', object: @answer
