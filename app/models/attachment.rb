@@ -4,14 +4,26 @@ class Attachment < ActiveRecord::Base
   belongs_to :user
   mount_uploader :file, FileUploader
 
-  def self.create_attachments(params, object)
+  def self.assign_attachments(params, object)
     if params
       params.split(",").each do |attachment|
-        new_attachment = Attachment.find(attachment)
-        new_attachment.attachmentable = object if new_attachment.attachmentable_id == nil
-        new_attachment.save
+        attachment = Attachment.find(attachment)
+        attachment.attachmentable = object if attachment.attachmentable_id == nil
+        attachment.save
       end
     end
+  end
+
+  def self.create_attachments(files, type, id, current_user)
+    if files
+      files.each do |file|
+        # TODO тип можно не указывать!
+        @attachment = Attachment.create(file: file, attachmentable_type: type, attachmentable_id: id)
+        @attachment.user = current_user
+        @attachment.save
+      end
+    end
+    return @attachment
   end
 
 end

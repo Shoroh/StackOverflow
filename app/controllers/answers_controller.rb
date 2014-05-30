@@ -12,7 +12,6 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build(answer_params)
     @answer.user = current_user
     @answer.save
-    #attachments
   end
 
   def edit
@@ -21,7 +20,6 @@ class AnswersController < ApplicationController
 
   def update
     @answer.update(answer_params)
-    #attachments
   end
 
   def destroy
@@ -33,13 +31,9 @@ class AnswersController < ApplicationController
 
   def render *args
     if params[:attachment_ids].present? && @answer.present?
-      @attachment = Attachment.create_attachments(params[:attachment_ids], @answer)
+      @attachment = Attachment.assign_attachments(params[:attachment_ids], @answer)
     end
     super
-  end
-
-  def attachments
-    @attachment = Attachment.create_attachments(params[:attachment_ids], @answer)
   end
 
   def answer_params

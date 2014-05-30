@@ -7,14 +7,10 @@ class AttachmentsController < ApplicationController
   respond_to :js
 
   def create
-    if params[:files]
-      params[:files].each do |file|
-        # TODO тип можно не указывать!
-        @attachment = Attachment.create(file: file, attachmentable_type: params[:attachmentable_type], attachmentable_id: params[:attachmentable_id])
-        @attachment.user = current_user
-        @attachment.save
-      end
-    end
+    @attachment = Attachment.create_attachments(params[:files],
+                                                params[:attachmentable_type],
+                                                params[:attachmentable_id],
+                                                current_user)
   end
 
   def destroy

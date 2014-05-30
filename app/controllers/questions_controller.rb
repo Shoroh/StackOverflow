@@ -75,7 +75,7 @@ class QuestionsController < ApplicationController
   private
 
   def attachments
-    @attachment = Attachment.create_attachments(params[:attachment_ids], @question)
+    @attachment = Attachment.assign_attachments(params[:attachment_ids], @question)
   end
 
   def title

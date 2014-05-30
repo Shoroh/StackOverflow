@@ -40,10 +40,7 @@ Rails.application.routes.draw do
     resources :answers
   end
 
-
-  resources :attachments do
-    #post '/:attachmentable_type/:attachmentable_id' => 'attachments#create', on: :collection
-  end
+  resources :attachments
 
 
 end

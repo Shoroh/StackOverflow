@@ -5,33 +5,15 @@ class CommentsController < ApplicationController
   before_action except: :create do
     check_permissions(@comment)
   end
+  respond_to :js
+  inherit_resources
+  actions :all, except: :new
+  belongs_to :answers, :questions, optional: true
 
   def create
-    @comment = Comment.new(comment_params)
-    @comment.commentable = @commentable
-    @comment.user = current_user
-    # @comment.save
-    respond_to do |format|
-      if @comment.save
-        format.js
-        format.json
-      else
-        format.js
-        format.json { render status: :unprocessable_entity }
-      end
-    end
-
-  end
-
-  def edit
-  end
-
-  def update
-    @comment.update(comment_params)
-  end
-
-  def destroy
-    @comment.destroy
+    @comment = Comment.create_new_comment(comment_params,
+                                          @commentable,
+                                          current_user)
   end
 
   private
