@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-  before_filter :ensure_valid_email
+  before_action :ensure_valid_email
 
   protected
 
@@ -14,9 +13,7 @@ class ApplicationController < ActionController::Base
 
     # If the email address was the temporarily assigned one,
     # redirect the user to the 'add_email' page
-    # TODO if user.has_email?
-    # TODO Перенести в omniauth_callbacks_controller
-    if current_user && (!current_user.email || current_user.email == User::TEMP_EMAIL)
+    if current_user && current_user.has_not_email?
       redirect_to add_user_email_path(current_user)
     end
   end

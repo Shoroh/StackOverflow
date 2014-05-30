@@ -2,7 +2,7 @@ var clipsContainer = $("#list-<%= @attachment.attachmentable_type.downcase %>_<%
 var idContainer =  $("#attachment_ids-<%= @attachment.attachmentable_type.downcase %>_<%= @attachment.attachmentable_id || 'new' %>");
 
 // Вынести эти строки в helper
-clipsContainer.append("<li id='edit-attachment-<%= @attachment.id %>'><%= j link_to @attachment.file.filename, @attachment.file.url %> | <%= number_to_human_size @attachment.file.size %> | <%= j link_to 'Remove this file', attachment_path(@attachment), method: :delete, remote: true %></li>");
+clipsContainer.append("<%= j attachment_links_edit @attachment %>");
 
 if ( idContainer.val() == "" ) {
     var arr = [];

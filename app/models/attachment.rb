@@ -7,8 +7,9 @@ class Attachment < ActiveRecord::Base
   def self.create_attachments(params, object)
     params.split(",").each do |attachment|
       new_attachment = Attachment.find(attachment)
-      new_attachment.attachmentable_id = object.id if new_attachment.attachmentable_id == nil
+      new_attachment.attachmentable = object if new_attachment.attachmentable_id == nil
       new_attachment.save
     end
   end
+
 end

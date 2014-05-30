@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     if params[:user] && params[:user][:email]
       current_user.email = params[:user][:email]
 
+      #current_user.skip_reconfirmation!
+
       if current_user.save
         redirect_to current_user, notice: 'Your email address was successfully updated.'
       else

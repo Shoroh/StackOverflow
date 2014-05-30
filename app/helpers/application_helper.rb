@@ -54,7 +54,6 @@ module ApplicationHelper
     end
   end
 
-
   # For Devise tests
   def resource_name
     :user

@@ -22,4 +22,5 @@
 //= require bootstrap-switch
 //= require bootstrap-tagsinput.min
 //= require jquery.jgrowl.min
+
 //= require_tree .
