@@ -96,6 +96,7 @@ group :test, :development do
   gem 'spring-commands-rspec'
   gem 'spring-commands-cucumber'
   gem 'spring'
+  gem 'bullet'
 end
 
 group :test do
