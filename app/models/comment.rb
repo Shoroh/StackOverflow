@@ -5,10 +5,10 @@ class Comment < ActiveRecord::Base
 
   validates :body, presence: true, length: 3...255
 
-  def self.create_new_comment(comment_params, commentable, current_user)
-    comment = Comment.new(comment_params)
-    comment.commentable = commentable
-    comment.user = current_user
+  private
+
+  def self.create(comment_params, commentable, current_user)
+    comment = self.new(body: comment_params[:body], commentable: commentable, user: current_user)
     comment.save
     return comment
   end

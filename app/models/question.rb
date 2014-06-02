@@ -1,5 +1,8 @@
 # User can ask a questions. All questions store in this model.
 class Question < ActiveRecord::Base
+  SORTS = {
+      recent: "recent"
+  }
   # Questions should have the owner.
   belongs_to :user, counter_cache: :questions_count
   has_many :answers, dependent: :destroy
@@ -24,8 +27,12 @@ class Question < ActiveRecord::Base
   # Tags
   acts_as_taggable
 
+  def sorted_by_abc_tags
+    @tags ||= tags.sort_by {|a| a.name}
+  end
+
   # Orders questions by default
-  default_scope -> { order(created_at: :desc) }
+  default_scope -> { includes([:tags, :user, :answers]).order(created_at: :desc) }
 
   # Generates last recent questions:
   scope :recent, -> { active }

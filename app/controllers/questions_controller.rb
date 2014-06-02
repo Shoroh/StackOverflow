@@ -39,12 +39,9 @@ class QuestionsController < ApplicationController
       if @question.save
         # TODO Написать спеки в модели!
         attachments
-        format.html do
-          PrivatePub.publish_to "/questions/357/answers", answer: @question.to_json
-          redirect_to @question, :flash => {:info => "Question was successfully created!" }
-        end
+        format.html { redirect_to @question, :flash => {:info => "Question was successfully created!" } }
       else
-        format.html { render action: 'new' }
+        format.html { render 'questions/new' }
       end
     end
   end

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_profile, only: [:edit, :update]
   before_action :authenticate_user!, :only => [:edit, :update]
-  before_action :set_user, :add_email, only: :add_email
+  before_action :set_user, :add_email, only: [:add_email, :show]
 
   def add_email
     if params[:user] && params[:user][:email]
@@ -22,7 +22,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
@@ -42,13 +41,13 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user ||= User.find(params[:id])
   end
 
   def set_profile
     if current_user
-      @profile = current_user.profile
-      @user = current_user
+      @profile ||= current_user.profile
+      @user ||= current_user
     end
 
   end

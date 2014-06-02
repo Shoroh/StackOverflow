@@ -9,7 +9,7 @@ feature 'User profiles' do
     visit users_path
   end
 
-  scenario 'sees list of registered users' do
+  scenario 'sees list of registered users', js: true do
     expect(page).to have_link(user1.nick)
     expect(page).to have_link(user2.nick)
   end

@@ -11,9 +11,7 @@ class CommentsController < ApplicationController
   belongs_to :answers, :questions, optional: true
 
   def create
-    @comment = Comment.create_new_comment(comment_params,
-                                          @commentable,
-                                          current_user)
+    @comment = Comment.create(comment_params, @commentable, current_user)
   end
 
   def update

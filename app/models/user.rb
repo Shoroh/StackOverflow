@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   delegate :age, :facebook_id, :display_name, to: :profile
 
   def nick
-    self.profile.display_name.presence || self.name
+    profile.display_name.presence || name
   end
 
   def has_not_email?
