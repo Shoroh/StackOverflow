@@ -89,6 +89,9 @@ group :test, :development do
   gem "factory_girl_rails", "~> 4.0"
   gem 'faker'
   gem 'yard'
+  gem 'quiet_assets'
+  gem "better_errors"
+  gem "binding_of_caller"
   gem 'rubocop', require: false
   gem 'spring-commands-rspec'
   gem 'spring-commands-cucumber'

@@ -41,5 +41,6 @@ module StackOverflow
     ActsAsTaggableOn.force_lowercase = true
     ActsAsTaggableOn.delimiter = ','
 
+    config.quiet_assets = ture
   end
 end
