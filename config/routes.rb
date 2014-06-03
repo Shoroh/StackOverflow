@@ -26,11 +26,18 @@ Rails.application.routes.draw do
     resources :comments, only: :create
   end
 
+  # Voting
+  concern :votable do
+    post 'like' => 'votes#like', as: :like
+    post 'unlike' => 'votes#unlike', as: :unlike
+    delete 'dislike' => 'votes#destroy', as: :dislike
+  end
+
   resources :comments, except: :create
 
 
   # TODO Надо отрефакторить вложенные геты — у них одинаковые параметры страниц.
-  resources :questions, concerns: [:pageable] do
+  resources :questions, concerns: [:pageable, :votable] do
     collection do
       get 'featured(/page/:page)' => 'questions#featured', as: :featured
       get 'popular(/page/:page)' => 'questions#popular', as: :popular
@@ -40,7 +47,9 @@ Rails.application.routes.draw do
     resources :answers
   end
 
-  resources :attachments
+  resources :attachments, only: [:create, :destroy]
+
+
 
 
 end

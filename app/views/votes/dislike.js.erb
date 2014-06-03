@@ -1,0 +1,2 @@
+$('[data-like-link]').html('' +
+        '<%= j link_to "Like!", question_like_path(@question || @votable), remote: true, method: :post %>');

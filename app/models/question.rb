@@ -6,8 +6,9 @@ class Question < ActiveRecord::Base
   # Questions should have the owner.
   belongs_to :user, counter_cache: :questions_count
   has_many :answers, dependent: :destroy
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :attachments, as: :attachmentable, dependent: :destroy
+  include Votable
 
   validates :title, :body, presence: true
 

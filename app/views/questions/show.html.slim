@@ -1,6 +1,9 @@
 .question_show data={question_id: "#{@question.id}"}
   .question_show_title
     h3=@question.title
+    span data-like-link='true' =link_to "Like!", question_like_path(@question), remote: true, method: :post
+    br
+    span =link_to "unLike!", question_unlike_path(@question), remote: true, method: :post
     .meta
       .meta_block
         span.fui-eye

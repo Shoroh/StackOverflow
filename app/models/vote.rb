@@ -10,5 +10,7 @@ class Vote < ActiveRecord::Base
 
   enum value: { abstain: 0, like: 1, unlike: 2 }
 
+  scope :questions, -> { where(votable_type: 'Question') }
+  scope :answers, -> { where(votable_type: 'Answer') }
 
 end

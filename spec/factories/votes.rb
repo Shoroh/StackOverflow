@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :vote do
-    votable ""
-    voter ""
+    votable "Question"
+    user 1
   end
 end

@@ -5,7 +5,7 @@ feature 'Votes the Question' do
   given(:question) {create(:question, user: user)}
 
 
-  scenario "Registered user votes the question" do
+  scenario "Registered user votes the question", js: true do
     sign_in_form(user.email, user.password)
     visit question_path(question)
 
