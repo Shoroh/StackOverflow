@@ -12,7 +12,6 @@ feature 'Votes the Question' do
     click_on "Like!"
     expect(current_path).to eq question_path(question)
     expect(page).to have_content "You like it"
-
   end
 
 end
