@@ -1,15 +1,6 @@
 .question_show data={question_id: "#{@question.id}"}
   .question_show_title
     h3=@question.title
-
-    span data-like-link='true'
-      - if current_user
-        - if @question.voted?(current_user)
-          =link_to "You like it.", question_dislike_path(@votable || @question), remote: true, method: :delete
-        - else
-          =link_to "Like!", question_like_path(@question), remote: true, method: :post
-        br
-        span =link_to "unLike!", question_unlike_path(@question), remote: true, method: :post
     .meta
       .meta_block
         span.fui-eye
@@ -25,6 +16,8 @@
           = link_to 'Edit', edit_question_path, remote: true
         .meta_block
           = link_to 'Delete', question_path, data: {confirm: "Are you sure?"}, method: :delete
+      .meta_block data-like-link='true'
+        = render 'votes/like_links', resource: resource
 
   .question_show_body
     div id="question-body-#{@question.id}"

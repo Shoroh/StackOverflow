@@ -1,0 +1,15 @@
+div.question-like_links
+  - if current_user
+    - if resource.voted?(current_user)
+      =link_to "Don't like it", question_dislike_path(resource), remote: true, method: :delete
+    - else
+      =link_to 'Like it', question_like_path(resource), remote: true, method: :post
+  span.glyphicon.glyphicon-thumbs-up
+  - if resource.votes.any?
+    - if resource.voted?(current_user)
+      ' You
+    - if resource.votes.size > 1
+      ' and
+      =' pluralize(resource.votes.size, 'person') if resource.votes.size > 1
+    ' like it
+

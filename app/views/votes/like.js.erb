@@ -1,6 +1,5 @@
 <% if resource.persisted? %>
 
-$('[data-like-link]').html('' +
-        '<%= j link_to "You like it.", question_dislike_path(@votable || @question), remote: true, method: :delete %>');
+$('[data-like-link]').html("<%= j render 'votes/like_links', resource: parent %>");
 
 <% end %>
