@@ -16,7 +16,7 @@ feature "Question create" do
     click_button "Create Question"
     expect(@user.questions.first.title).to eq('How to patch KDE under FreeBSD?')
     expect(@user.questions.first.tag_list).to eq(['tag1', 'tag2', 'tag3'])
-    user_sees_alert 'Question was successfully created!'
+    have_rendered 'questions/show'
   end
 
 end

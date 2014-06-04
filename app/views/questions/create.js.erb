@@ -1,0 +1,7 @@
+<% if @question.errors.any?%>
+    $("#question_body").parent().parent().addClass('has-error');
+    $(".help-block").remove();
+    $("#question_body").parent().append("<span class='help-block'><%= @question.errors.full_messages.first %></span>");
+<% else %>
+    window.location = "/questions/<%= @question.id %>";
+<% end %>

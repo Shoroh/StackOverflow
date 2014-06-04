@@ -7,13 +7,13 @@ module Votable
 
   def like(user)
     unless voted?(user)
-      self.votes.create(user: user, value: 1)
+      self.votes.create(user: user, value: :like)
     end
   end
 
   def unlike(user)
     unless voted?(user)
-      self.votes.create(user: user, value: 2)
+      self.votes.create(user: user, value: 'unlike')
     end
   end
 

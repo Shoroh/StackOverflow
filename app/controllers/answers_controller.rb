@@ -1,4 +1,4 @@
-class AnswersController < ApplicationController
+class AnswersController < InheritedResources::Base
   before_action :authenticate_user!
   before_action :set_answer, only: [:edit, :update, :destroy]
   before_action :set_question, except: :create
@@ -6,6 +6,8 @@ class AnswersController < ApplicationController
     check_permissions(@answer)
   end
   respond_to :js
+  actions :create, :update, :destroy
+  belongs_to :question
 
   def create
     @question ||= Question.find(params[:question_id])
@@ -16,7 +18,6 @@ class AnswersController < ApplicationController
 
   def edit
   end
-
 
   def update
     @answer.update(answer_params)

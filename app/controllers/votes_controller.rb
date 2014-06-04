@@ -1,43 +1,23 @@
-class VotesController < ApplicationController
+class VotesController < InheritedResources::Base
   before_action :authenticate_user!
-  before_action :set_votable, only: [:like, :unlike, :destroy]
-  before_action :set_vote, only: :destroy
-  before_action only: :dislike do
-    check_permissions(@vote)
-  end
-
+  before_action :check_permissions, only: :destroy
   respond_to :js
+  belongs_to :question, :answer, polymorphic: true
+  custom_actions resource: [:like, :unlike]
+  actions :destroy
 
   def like
-    if @votable.like(current_user)
-      render 'votes/like'
-    else
-      render nothing: true
-    end
+    parent.like(current_user)
   end
 
   def unlike
-    if @votable.unlike(current_user)
-      render 'votes/vote'
-    else
-      render nothing: true
-    end
+    parent.unlike(current_user)
   end
 
-  def destroy
-    @vote.destroy
-    render 'votes/dislike'
-  end
+  protected
 
-  private
-
-  def set_vote
-    @vote ||= Vote.find_by(votable_id: @votable.id, votable_type: @votable.class.name, user_id: current_user)
-  end
-
-  def set_votable
-    parent = %w(answer question).find {|p| params.has_key?("#{p}_id")}
-    @votable ||= parent.classify.constantize.find(params["#{parent}_id"])
+  def resource
+    @vote ||= end_of_association_chain.find_by(user: current_user)
   end
 
 end

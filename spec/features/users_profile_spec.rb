@@ -15,8 +15,8 @@ feature 'User profiles' do
   end
 
   scenario "guest clicks to user's link" do
-    click_link user2.nick
-    expect(page).to have_content user2.profile.display_name
+    click_link user1.nick
+    expect(page).to have_content user1.profile.display_name
   end
 
   scenario "User fills his profile with valid data" do

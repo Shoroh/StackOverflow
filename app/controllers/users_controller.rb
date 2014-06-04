@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_profile, only: [:edit, :update]
   before_action :authenticate_user!, :only => [:edit, :update]
+  before_action :set_profile, only: [:edit, :update]
   before_action :set_user, :add_email, only: [:add_email, :show]
 
   def add_email

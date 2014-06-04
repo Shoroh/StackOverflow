@@ -8,7 +8,6 @@ feature 'User sees stats' do
 
   scenario 'Goes to root page and sees 0 views of question' do
     visit root_path
-
     within '.views' do
       expect(page).to have_content "0"
     end

@@ -1,2 +1,6 @@
+<% if resource.persisted? %>
+
 $('[data-like-link]').html('' +
         '<%= j link_to "You like it.", question_dislike_path(@votable || @question), remote: true, method: :delete %>');
+
+<% end %>

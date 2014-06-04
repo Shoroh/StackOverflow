@@ -22,9 +22,11 @@ Rails.application.routes.draw do
   get 'profile/edit' => 'users#edit', as: :profile
   patch 'profile/edit' => 'users#update'
 
+  # Comments
   scope path: '/:commentable_type/:commentable_id' do
     resources :comments, only: :create
   end
+  resources :comments, except: :create
 
   # Voting
   concern :votable do
@@ -32,9 +34,6 @@ Rails.application.routes.draw do
     post 'unlike' => 'votes#unlike', as: :unlike
     delete 'dislike' => 'votes#destroy', as: :dislike
   end
-
-  resources :comments, except: :create
-
 
   # TODO Надо отрефакторить вложенные геты — у них одинаковые параметры страниц.
   resources :questions, concerns: [:pageable, :votable] do

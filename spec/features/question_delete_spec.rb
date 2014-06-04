@@ -24,7 +24,7 @@ feature 'Delete Question' do
       expect(page).to_not have_content("#{question.title}")
 
 
-      user_sees_alert 'Question was successfully deleted!'
+      user_sees_alert 'Question was successfully destroyed.'
 
     end
   end

@@ -1,12 +1,11 @@
-class CommentsController < ApplicationController
+class CommentsController < InheritedResources::Base
+  respond_to :js
   before_action :authenticate_user!
   before_action :set_commentable, only: :create
   before_action :set_comment, except: :create
   before_action except: :create do
     check_permissions(@comment)
   end
-  respond_to :js
-  inherit_resources
   actions :all, except: :new
   belongs_to :answers, :questions, optional: true
 

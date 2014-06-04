@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_permissions(object)
+  def check_permissions (object = nil )
+    object ||= resource
     unless object.user == current_user
       respond_to do |format|
         format.html { redirect_to root_path, flash: {alert: "You don't have permission to manage this #{object.class.to_s.downcase}!"}}

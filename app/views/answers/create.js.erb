@@ -5,6 +5,7 @@
     $(".help-block").remove();
     $("#answer-body-new").parent().append("<span class='help-block'><%= @answer.errors.full_messages.first %></span>");
 <% else %>
+// TODO Сделать проверку в обоих на предмет существования ответа в DOM
     <% publish_to "/questions/#{@question.id}/answers" do %>
         $("#answers_qty").html("<%= pluralize(@question.answers.count, 'answer') %>:");
         $(".answers").append('<%= j render "answer", answer: @answer%>');

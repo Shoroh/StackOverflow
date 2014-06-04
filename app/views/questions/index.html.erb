@@ -2,7 +2,7 @@
 
 <%= render 'questions/sort_panel' %>
 
-<%= render 'questions/question_summary', locals: {questions: @questions} %>
+<%= render 'questions/question_summary', collection: @questions || collection %>
 
 <%= render'shared/pages' %>
 
