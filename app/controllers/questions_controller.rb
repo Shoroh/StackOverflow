@@ -14,11 +14,6 @@ class QuestionsController < InheritedResources::Base
   # @note TODO — add :ip_address to unique: in production mode
   impressionist :actions=>[:show], :unique => [:impressionable_id, :session_hash, :impressionable_type ]
 
-  def update
-    attachments
-    super
-  end
-
   protected
 
   def create_resource(object)

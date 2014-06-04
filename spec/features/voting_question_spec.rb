@@ -9,9 +9,9 @@ feature 'Votes the Question' do
     sign_in_form(user.email, user.password)
     visit question_path(question)
 
-    click_on "Like!"
+    click_on "Like it"
     expect(current_path).to eq question_path(question)
-    expect(page).to have_content "You like it"
+    expect(page).to have_content "Don't like it"
   end
 
 end
