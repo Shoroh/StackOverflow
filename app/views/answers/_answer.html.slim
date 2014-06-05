@@ -11,6 +11,8 @@
         .tool
           = link_to question_answer_path(answer.question, answer), remote: true, method: :delete, class: 'answer_delete_icon' do
             span.glyphicon.glyphicon-trash
+        .tool data-like-link="answer-#{answer.id}"
+          = render 'votes/like_links', resource: answer
     .answer_date
       = answer.created_at.to_formatted_s(:short)
   .answer_body

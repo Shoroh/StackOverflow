@@ -1,5 +1,5 @@
 <% if resource.persisted? %>
 
-$('[data-like-link]').html("<%= j render 'votes/like_links', resource: parent %>");
+$("[data-like-link=<%= parent.class.name.downcase %>-<%= parent.id %>]").html("<%= j render 'votes/like_links', resource: parent %>");
 
 <% end %>

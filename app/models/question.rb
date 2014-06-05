@@ -1,8 +1,5 @@
 # User can ask a questions. All questions store in this model.
 class Question < ActiveRecord::Base
-  SORTS = {
-      recent: "recent"
-  }
   # Questions should have the owner.
   belongs_to :user, counter_cache: :questions_count
   has_many :answers, dependent: :destroy

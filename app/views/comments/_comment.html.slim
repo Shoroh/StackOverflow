@@ -1,17 +1,17 @@
-.comment_item id="comment-#{comment.id}"
+.comment_item id="comment-#{resource.id}"
   .comment_meta
     .comment_author
-      = link_to comment.user.nick, user_path(comment.user)
+      = link_to resource.user.nick, user_path(resource.user)
     .comment_date
-      = comment.created_at.to_formatted_s(:short)
+      = resource.created_at.to_formatted_s(:short)
     .comment_tools
-      - if comment.user == current_user
+      - if resource.user == current_user
         .tool
-          = link_to edit_comment_path(comment), remote: true, class: 'comment_edit_icon' do
+          = link_to edit_polymorphic_path([resource.commentable,resource]), remote: true, class: 'comment_edit_icon' do
             span.fui-new
         .tool
-          = link_to comment, method: :delete, remote: true, class: 'comment_delete_icon' do
+          = link_to polymorphic_path([resource.commentable,resource]), method: :delete, remote: true, class: 'comment_delete_icon' do
             span.glyphicon.glyphicon-trash
 
   .comment_body
-    = raw simple_format comment.body
+    = raw simple_format resource.body

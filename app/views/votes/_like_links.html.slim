@@ -1,9 +1,9 @@
-div.question-like_links
+div.like_links
   - if current_user
     - if resource.voted?(current_user)
-      =link_to "Don't like it", question_dislike_path(resource), remote: true, method: :delete
+      =link_to "Don't like it", send("#{resource.class.name.downcase}_dislike_path", resource), remote: true, method: :delete
     - else
-      =link_to 'Like it', question_like_path(resource), remote: true, method: :post
+      =link_to 'Like it', send("#{resource.class.name.downcase}_like_path", resource), remote: true, method: :post
   - else
       = link_to 'Like it', '#', data: {target: "#signin_modal", toggle: "modal"}
   span.glyphicon.glyphicon-thumbs-up

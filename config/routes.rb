@@ -23,10 +23,10 @@ Rails.application.routes.draw do
   patch 'profile/edit' => 'users#update'
 
   # Comments
-  scope path: '/:commentable_type/:commentable_id' do
-    resources :comments, only: :create
+  concern :commentable do
+    resources :comments
   end
-  resources :comments, except: :create
+  resources :comments
 
   # Voting
   concern :votable do
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   end
 
   # TODO Надо отрефакторить вложенные геты — у них одинаковые параметры страниц.
-  resources :questions, concerns: [:pageable, :votable] do
+  resources :questions, concerns: [:pageable, :votable, :commentable] do
     collection do
       get 'featured(/page/:page)' => 'questions#featured', as: :featured
       get 'popular(/page/:page)' => 'questions#popular', as: :popular
@@ -45,6 +45,8 @@ Rails.application.routes.draw do
     end
     resources :answers
   end
+
+  resources :answers, only: [], concerns: [:votable, :commentable]
 
   resources :attachments, only: [:create, :destroy]
 

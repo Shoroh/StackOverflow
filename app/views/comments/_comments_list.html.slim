@@ -4,7 +4,7 @@
   .comment_list id="#{object.class.to_s.downcase}-#{object.id}"
     - if object.comments.any?
       - object.comments.each do |comment|
-        = render 'comments/comment', comment: comment
+        = render 'comments/comment', resource: comment
   .comment_form
     - if signed_in?
       = render "comments/comment_form", object: object
