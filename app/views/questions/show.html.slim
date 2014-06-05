@@ -16,7 +16,7 @@
           = link_to 'Edit', edit_question_path, remote: true
         .meta_block
           = link_to 'Delete', question_path, data: {confirm: "Are you sure?"}, method: :delete
-      .meta_block data-like-link="=#{resource.class.name.downcase}-#{resource.id}"
+      .meta_block data-like-link="question-#{@question.id}"
         = render 'votes/like_links', resource: resource
 
   .question_show_body
