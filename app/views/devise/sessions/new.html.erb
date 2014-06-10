@@ -4,8 +4,8 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-group">
-      <%= f.label :email, class:"sr-only" %>
-      <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control" %></div>
+      <%= f.label :login, class:"sr-only" %>
+      <%= f.text_field :login, autofocus: true, placeholder: "Email or Nickname", class: "form-control" %></div>
 
     <div class="form-group help-block">
       <%= f.label :password, class:"sr-only" %>

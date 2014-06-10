@@ -3,7 +3,10 @@ class User < ActiveRecord::Base
   TEMP_EMAIL = 'change@me.com'
   TEMP_EMAIL_REGEX = /change@me.com/
 
+  attr_accessor :login
+
   has_many :attachments, dependent: :destroy
+  has_many :identities, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :answers, dependent: :destroy
@@ -11,13 +14,16 @@ class User < ActiveRecord::Base
   has_many :votes, dependent: :destroy
 
 
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :twitter]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
+         omniauth_providers: [:facebook, :twitter],
+         authentication_keys: [:login]
 
-  validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
-  validates :name, uniqueness: true, presence: true, length: 3..90
+  validates :email, format: {without: TEMP_EMAIL_REGEX, on: :update}
+  validates :name, uniqueness: {case_sensitive: false}, presence: true, length: 3..90
 
   after_create :set_profile
 
@@ -31,7 +37,25 @@ class User < ActiveRecord::Base
     !self.email || self.email == User::TEMP_EMAIL
   end
 
+  def login=(login)
+    @login = login
+  end
+
+  def login
+    @login || self.name || self.email
+  end
+
   private
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
+    end
+  end
+
 
   def set_profile
     self.create_profile

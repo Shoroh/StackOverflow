@@ -1,8 +1,8 @@
 # Class to store any user's social relations, like FB, Twitter, etc.
 class Identity < ActiveRecord::Base
   belongs_to :user
-  validates_presence_of :uid, :provider
-  validates_uniqueness_of :uid, scope: :provider
+  validates :uid, :provider, presence: true
+  validates :uid, uniqueness: {scope: :provider}
 
   private
 
