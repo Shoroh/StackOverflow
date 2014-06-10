@@ -70,6 +70,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'inherited_resources'
+gem 'has_scope'
 
 
 # Use ActiveModel has_secure_password

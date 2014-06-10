@@ -341,6 +341,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   faker
   gon
+  has_scope
   impressionist
   inherited_resources
   jbuilder (~> 2.0)

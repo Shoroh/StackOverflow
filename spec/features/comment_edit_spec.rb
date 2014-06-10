@@ -19,7 +19,7 @@ feature 'Edit Comment' do
       within ".question_show_body" do
         click_on('1 comment')
 
-        find(:css, "a[href='/comments/#{comment.id}/edit']").click
+        find(:css, "a[href='/questions/#{question.id}/comments/#{comment.id}/edit']").click
 
         within ".edit_comment" do
           fill_in 'Edit your comment', with: "It's just a new version of old comment to question."
@@ -40,7 +40,7 @@ feature 'Edit Comment' do
       within ".question_show_body" do
         click_on('1 comment')
 
-        find(:css, "a[href='/comments/#{comment.id}/edit']").click
+        find(:css, "a[href='/questions/#{question.id}/comments/#{comment.id}/edit']").click
 
         within ".edit_comment" do
           fill_in 'Edit your comment', with: "I"

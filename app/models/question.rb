@@ -35,6 +35,8 @@ class Question < ActiveRecord::Base
   # Generates last recent questions:
   scope :recent, -> { active }
 
+  scope :oldest, -> { recent.unscope(:order).active.order(created_at: :asc) }
+
   # Generates featured questions:
   scope :featured, -> { recent.where(featured: true) }
 
