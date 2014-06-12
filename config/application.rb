@@ -45,14 +45,14 @@ module StackOverflow
 
     CarrierWave.configure do |config|
       config.storage    = :aws
-      config.aws_bucket = 'bankomatchik'
+      config.aws_bucket = ENV['AWS_BUCKET']
       config.aws_acl    = :public_read
       config.asset_host = 'http://s3-ap-southeast-1.amazonaws.com/bankomatchik'
       config.aws_authenticated_url_expiration = 60 * 60 * 24 * 365
 
       config.aws_credentials = {
-          access_key_id:     'AKIAJMFO2UO3227I23GQ',
-          secret_access_key: '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'
+          access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
+          secret_access_key: ENV['AWS_ACCESS_KEY']
       }
     end
   end

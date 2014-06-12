@@ -23,3 +23,7 @@
 
 # Ignore RubiMine project folder
 /.idea
+
+secrets.yml
+
+/config/initializers/secrets.rb

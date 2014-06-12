@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL = 'change@me.com'
   TEMP_EMAIL_REGEX = /change@me.com/
 
-  attr_accessor :login, :fullname
+  attr_accessor :login
 
   has_many :attachments, dependent: :destroy
   has_many :identities, dependent: :destroy
@@ -59,7 +59,6 @@ class User < ActiveRecord::Base
 
   def set_profile
     self.create_profile
-    self.profile.display_name = fullname if fullname
   end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
@@ -81,13 +80,17 @@ class User < ActiveRecord::Base
       # Create the user if it's a new registration
       if user.nil?
         user = User.new(
-            name: "asdsaddasda",
+            name: auth.info.fetch(:nickname) { (auth.info.name).delete(' ') },
             #username: auth.info.nickname || auth.uid,
             email: email ? email : TEMP_EMAIL,
             password: Devise.friendly_token[0,20]
         )
         #user.skip_confirmation!
         user.save!
+
+        user.profile.display_name = auth.info.name
+        user.profile.facebook_id = auth.extra.raw_info.link
+        user.profile.save
       end
     end
 
