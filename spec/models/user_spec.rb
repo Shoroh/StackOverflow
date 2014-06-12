@@ -39,11 +39,11 @@ describe User do
         let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: { email: user.email }, extra: { raw_info: { name: user.name }} ) }
 
         it 'does not create new user' do
-          expect(User.find_for_oauth(auth)).to_not change(User, :count)
+          expect {User.find_for_oauth(auth)}.to_not change(User, :count)
         end
 
         it 'creates authorization for user' do
-          expect(User.find_for_oauth(auth)).to change(user.identities, :count).by(1)
+          expect {User.find_for_oauth(auth)}.to change(user.identities, :count).by(1)
         end
 
         it 'returns the user' do

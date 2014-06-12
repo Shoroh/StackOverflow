@@ -34,6 +34,9 @@ GEM
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
     ast (2.0.0)
+    aws-sdk (1.42.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -60,6 +63,12 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    carrierwave-aws (0.4.1)
+      aws-sdk (>= 1.29)
+      carrierwave (>= 0.7)
+    carrierwave-dropbox (1.2.1)
+      carrierwave (~> 0.9)
+      dropbox-sdk (~> 1.6)
     childprocess (0.5.3)
       ffi (~> 1.0, >= 1.0.11)
     cliver (0.3.2)
@@ -82,6 +91,8 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dropbox-sdk (1.6.4)
+      json
     em-http-request (1.1.2)
       addressable (>= 2.3.4)
       cookiejar
@@ -335,6 +346,8 @@ DEPENDENCIES
   capybara
   capybara-webkit
   carrierwave
+  carrierwave-aws
+  carrierwave-dropbox
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise

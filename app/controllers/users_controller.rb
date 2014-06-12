@@ -1,7 +1,10 @@
-class UsersController < ApplicationController
+class UsersController < InheritedResources::Base
   before_action :authenticate_user!, :only => [:edit, :update]
   before_action :set_profile, only: [:edit, :update]
   before_action :set_user, :add_email, only: [:add_email, :show]
+  respond_to :html
+actions :index, :show, :update
+
 
   def add_email
     if params[:user] && params[:user][:email]
@@ -15,16 +18,6 @@ class UsersController < ApplicationController
         @show_errors = true
       end
     end
-  end
-
-  def index
-    @users = User.all
-  end
-
-  def show
-  end
-
-  def edit
   end
 
   def update
@@ -44,12 +37,12 @@ class UsersController < ApplicationController
     @user ||= User.find(params[:id])
   end
 
+
   def set_profile
     if current_user
       @profile ||= current_user.profile
       @user ||= current_user
     end
-
   end
 
   def profile_params

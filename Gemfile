@@ -49,6 +49,8 @@ gem 'acts-as-taggable-on'
 
 # Attach files
 gem 'carrierwave'
+gem 'carrierwave-dropbox'
+gem 'carrierwave-aws'
 
 # authenticity_token: true
 gem 'remotipart'
