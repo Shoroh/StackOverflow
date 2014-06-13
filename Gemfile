@@ -74,6 +74,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'inherited_resources'
 gem 'has_scope'
 
+gem 'rails-observers'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

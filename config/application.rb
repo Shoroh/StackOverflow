@@ -43,6 +43,8 @@ module StackOverflow
 
     config.quiet_assets = true
 
+    config.active_record.observers = :karma_observer
+
     CarrierWave.configure do |config|
       config.storage    = :aws
       config.aws_bucket = ENV['AWS_BUCKET']

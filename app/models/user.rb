@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   after_create :set_profile
 
-  delegate :age, :facebook_id, :display_name, to: :profile
+  delegate :age, :facebook_id, :display_name, :karma, to: :profile
 
   def nick
     profile.display_name.presence || name
