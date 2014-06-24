@@ -25,7 +25,7 @@ actions :index, :show, :update
       if @profile.update(profile_params)
         format.html { redirect_to profile_path, :flash => {:info => "Profile was successfully updated!"} }
       else
-        format.html { render action: 'edit' }
+        format.html { render :edit }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end

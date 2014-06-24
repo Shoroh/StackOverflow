@@ -1,6 +1,6 @@
-= raw simple_format(@question.body)
+= raw simple_format(resource.body)
 .question_show_tag_list
-  = all_tag_list @question
+  = all_tag_list resource
 ul
-  - @question.attachments.each do |a|
+  - resource.attachments.each do |a|
     li = link_to a.file.filename, a.file.url

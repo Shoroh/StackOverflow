@@ -46,4 +46,8 @@ class Question < ActiveRecord::Base
   # Generates questions without answers
   scope :unanswered, -> { recent.where("answers_count = '0'") }
 
+  def score
+    20
+  end
+
 end

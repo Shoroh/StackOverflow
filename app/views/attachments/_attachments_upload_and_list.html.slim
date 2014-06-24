@@ -1,17 +1,17 @@
-- @attachments_list = []
-- @form_id = "#{object.class.to_s.downcase}_#{object.id || 'new'}"
+- attachments_list = []
+- form_id = "#{object.class.to_s.downcase}_#{object.id || 'new'}"
 .tile_for_upload
   // TODO Убрать скрипт из ссылки в отдельный скрипт.
-  a onclick="$('#files_upload_#{@form_id}').click()" class="btn btn-default add_files_here"
+  a onclick="$('#files_upload_#{form_id}').click()" class="btn btn-default add_files_here"
     | Add files here
-  .progress id="progressall_bar_#{@form_id}"
+  .progress id="progressall_bar_#{form_id}"
     .progress-bar style="width: 0%;"
-  .progress id="progress_bar_#{@form_id}"
+  .progress id="progress_bar_#{form_id}"
     .progress-bar style="width: 0%;"
-  ul id="list-#{@form_id}"
+  ul id="list-#{form_id}"
     - if object.attachments.exists?
       - object.attachments.each do |a|
-        - @attachments_list.push(a.id)
+        - attachments_list.push(a.id)
         li id="edit-attachment-#{a.id}"
           =' link_to a.file.filename, a.file.url
           ' |
@@ -19,6 +19,6 @@
           ' |
           = link_to "Remove this file", attachment_path(a), method: :delete, remote: true
 
-  = hidden_field_tag "attachment_ids", @attachments_list.join(',') || '', id: "attachment_ids-#{@form_id}"
+  = hidden_field_tag "attachment_ids", attachments_list.join(',') || '', id: "attachment_ids-#{form_id}"
 
 

@@ -1,28 +1,28 @@
-- @form_id = "#{object.class.to_s.downcase}_#{object.id || 'new'}"
+- form_id = "#{object.class.to_s.downcase}_#{object.id || 'new'}"
 
 .upload_files
   .file-uploads-form
     = form_for(Attachment.new, multipart: true) do
-      = file_field_tag "files[]", type: :file, multiple: true, id: "files_upload_#{@form_id}", as: :file
-      = hidden_field_tag "attachmentable_type", object.class.to_s, id: "type_#{@form_id}"
-      = hidden_field_tag "attachmentable_id", object.id || nil, id: "id_#{@form_id}"
+      = file_field_tag "files[]", type: :file, multiple: true, id: "files_upload_#{form_id}", as: :file
+      = hidden_field_tag "attachmentable_type", object.class.to_s, id: "type_#{form_id}"
+      = hidden_field_tag "attachmentable_id", object.id || nil, id: "id_#{form_id}"
 javascript:
-  $("#files_upload_#{@form_id}").fileupload({
+  $("#files_upload_#{form_id}").fileupload({
     dataType: "script",
     add: function (e, data) {
-      $("#submit_#{@form_id}").attr('disabled', true);
-      $('#progressall_bar_#{@form_id} .progress-bar').css('width', '0%');
-      $('#progressall_bar_#{@form_id}').show();
+      $("#submit_#{form_id}").attr('disabled', true);
+      $('#progressall_bar_#{form_id} .progress-bar').css('width', '0%');
+      $('#progressall_bar_#{form_id}').show();
       data.submit();
     },
     progressall: function (e, data) {
       var progress_all = parseInt(data.loaded / data.total * 100, 10);
-      $('#progressall_bar_#{@form_id} .progress-bar').css('width', progress_all + '%');
+      $('#progressall_bar_#{form_id} .progress-bar').css('width', progress_all + '%');
       if (progress_all == 100) {
-        $('#progressall_bar_#{@form_id}').hide();
-        $('#progressall_bar_#{@form_id} .progress-bar').css('width', '0%');
+        $('#progressall_bar_#{form_id}').hide();
+        $('#progressall_bar_#{form_id} .progress-bar').css('width', '0%');
         $.jGrowl("<h6>Files have been uploaded successfully!</h6>", {theme: 'growl_success'});
-        $("#submit_#{@form_id}").attr('disabled', false);
+        $("#submit_#{form_id}").attr('disabled', false);
       }
     },
     done: function (e, data) {

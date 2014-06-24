@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     get 'page/:page', :action => :index, on: :collection
   end
 
+  # TODO Нахрена это тут?
   concern :userable do
     get 'user/:user_id', on: :collection
   end
-
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   match '/users/:id/add_email' => 'users#add_email', via: [:get, :patch, :post], as: :add_user_email
@@ -24,9 +24,8 @@ Rails.application.routes.draw do
 
   # Comments
   concern :commentable do
-    resources :comments
+    resources :comments, except:[:new]
   end
-  resources :comments
 
   # Voting
   concern :votable do

@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby "2.1.1"
+ruby "2.1.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -64,14 +64,14 @@ gem 'rails-timeago', '~> 2.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-gem 'jquery-turbolinks'
+# gem 'turbolinks'
+# gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'inherited_resources'
+gem 'inherited_resources', '1.5.0'
 gem 'has_scope'
 
 gem 'rails-observers'
@@ -89,18 +89,20 @@ gem 'rails-observers'
 # gem 'debugger', group: [:development, :test]
 
 group :test, :development do
-  gem 'rspec-rails', '2.14'
+  gem 'rspec-rails'
   gem "factory_girl_rails", "~> 4.0"
   gem 'faker'
-  gem 'yard'
+  # gem 'yard'
   gem 'quiet_assets'
   gem "better_errors"
   gem "binding_of_caller"
-  gem 'rubocop', require: false
+  # gem 'rubocop', require: false
   gem 'spring-commands-rspec'
-  gem 'spring-commands-cucumber'
   gem 'spring'
   gem 'bullet'
+  # gem 'rails_best_practices'
+  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+  gem 'pry-byebug'
 end
 
 group :test do

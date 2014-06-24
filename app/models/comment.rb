@@ -4,6 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
   validates :body, presence: true, length: 3...255
+  validates :commentable, presence: true
 
   private
 

@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_one :profile, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :karmas, dependent: :destroy
 
 
 

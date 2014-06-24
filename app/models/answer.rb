@@ -13,4 +13,9 @@ class Answer < ActiveRecord::Base
   enum status: { active: 0, pending: 1, deleted: 2 }
 
   scope :recent, -> { order(created_at: :asc) }
+
+  def score
+    10
+  end
+
 end

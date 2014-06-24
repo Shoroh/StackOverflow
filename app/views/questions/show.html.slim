@@ -1,47 +1,47 @@
-.question_show data={question_id: "#{@question.id}"}
+.question_show data={question_id: "#{resource.id}"}
   .question_show_title
-    h3=@question.title
+    h3=resource.title
     .meta
       .meta_block
         span.fui-eye
-        = @question.impressionist_count
+        = resource.impressionist_count
       .meta_block
         span.fui-user
-        = link_to @question.user.nick, user_path(@question.user)
+        = link_to resource.user.nick, user_path(resource.user)
       .meta_block
         span.fui-calendar-solid
-        = @question.created_at.to_formatted_s(:short)
-      - if @question.user == current_user
+        = resource.created_at.to_formatted_s(:short)
+      - if resource.user == current_user
         .meta_block
           = link_to 'Edit', edit_question_path, remote: true
         .meta_block
           = link_to 'Delete', question_path, data: {confirm: "Are you sure?"}, method: :delete
-      .meta_block data-like-link="question-#{@question.id}"
+      .meta_block data-like-link="question-#{resource.id}"
         = render 'votes/like_links', resource: resource
 
   .question_show_body
-    div id="question-body-#{@question.id}"
+    div id="question-body-#{resource.id}"
       = render 'questions/body'
     .question_show_comments
-      = render 'comments/comments_list', object: @question
+      = render 'comments/comments_list', object: resource
 
   .answers
-    - if @question.answers.any?
+    - if resource.answers.any?
       .answers_header
         #answers_qty
-          = pluralize(@question.answers.count, 'answer')
+          = pluralize(resource.answers.count, 'answer')
           | :
-      = render @question.answers.recent
+      = render resource.answers.recent
     - else
       #answers_qty
         .answers_header This question has not been answered yet.
 
   .answer_form
     - if signed_in?
-      = render 'answers/answer_form'
+      = render 'answers/answer_form', parent: resource, resource: @answer
     - else
       ' Please
       =' link_to 'login', '#', data: {target: "#signin_modal", toggle: "modal"}
       | to post answer.
 
-= subscribe_to "/questions/#{@question.id}/answers"
+= subscribe_to "/questions/#{resource.id}/answers"

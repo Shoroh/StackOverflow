@@ -10,4 +10,8 @@ class Vote < ActiveRecord::Base
   scope :questions, -> { where(votable_type: 'Question') }
   scope :answers, -> { where(votable_type: 'Answer') }
 
+  def score
+    15
+  end
+
 end
