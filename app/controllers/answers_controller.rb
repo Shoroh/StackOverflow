@@ -1,11 +1,13 @@
 class AnswersController < InheritedResources::Base
   before_action :authenticate_user!
-  before_action only: [:edit, :update, :destroy] do
-    check_permissions(@answer)
-  end
+  # before_action only: [:edit, :update, :destroy] do
+  #   check_permissions(@answer)
+  # end
   respond_to :js
   actions :create, :update, :destroy, :edit
   belongs_to :question
+
+  load_and_authorize_resource
 
 
   protected

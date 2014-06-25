@@ -5,5 +5,5 @@ ul.nav.nav-tabs.sort_panel
   = sort_link 'Popular', popular_questions_path, 'popular'
   = sort_link 'Featured', featured_questions_path, 'featured'
   = sort_link 'Recent', questions_path, "#{ !params[:tag] ? 'index' : '' }"
-  - if current_user && current_user.questions.any?
+  - if signed_in? && current_user.questions.any?
     = sort_link "Your's", "#", 'your_questions', "disabled"

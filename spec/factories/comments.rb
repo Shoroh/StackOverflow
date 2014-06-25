@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :comment do
-    user nil
-    association :commentable
+    association :user
+    association :commentable, factory: :answer
     body "Just comment"
     factory :invalid_comment do
       body '1'

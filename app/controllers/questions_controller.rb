@@ -4,10 +4,13 @@ class QuestionsController < InheritedResources::Base
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   before_action :title, except: [:create, :update, :destroy]
   before_action :sort, only: [:popular, :featured, :unanswered]
-  before_action only: [:edit, :update, :destroy] do
-    check_permissions(@question)
-  end
+  # before_action only: [:edit, :update, :destroy] do
+  #   check_permissions(@question)
+  # end
   before_action :build_answer, only: :show
+
+  load_and_authorize_resource
+  skip_load_and_authorize_resource only: :index
 
   # Stats. Writes log by parameters: #show, ip_address
   # @example In View — @question.impressionist_count

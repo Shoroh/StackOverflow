@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :vote do
-    votable "Question"
+    association :votable, factory: :answer
     user 1
+    value 1
   end
 end

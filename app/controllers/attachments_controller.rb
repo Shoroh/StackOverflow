@@ -1,10 +1,12 @@
 class AttachmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_attachment, except: :create
-  before_action except: :create do
-    check_permissions(@attachment)
-  end
+  # before_action except: :create do
+  #   check_permissions(@attachment)
+  # end
   respond_to :js
+
+  load_and_authorize_resource
 
   def create
     @attachment = Attachment.create_attachments(params[:files],

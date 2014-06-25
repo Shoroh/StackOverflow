@@ -1,11 +1,13 @@
 class CommentsController < InheritedResources::Base
   respond_to :js
   before_action :authenticate_user!
-  before_action except: :create do
-    check_permissions(resource)
-  end
+  # before_action except: :create do
+  #   check_permissions(resource)
+  # end
   actions :all, except: :new
   belongs_to :answer, :question, polymorphic: true
+
+  load_and_authorize_resource
 
   protected
 

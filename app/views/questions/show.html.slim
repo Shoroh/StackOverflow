@@ -11,9 +11,10 @@
       .meta_block
         span.fui-calendar-solid
         = resource.created_at.to_formatted_s(:short)
-      - if resource.user == current_user
+      - if can?(:update, resource)
         .meta_block
           = link_to 'Edit', edit_question_path, remote: true
+      - if can?(:destroy, resource)
         .meta_block
           = link_to 'Delete', question_path, data: {confirm: "Are you sure?"}, method: :delete
       .meta_block data-like-link="question-#{resource.id}"
@@ -37,7 +38,7 @@
         .answers_header This question has not been answered yet.
 
   .answer_form
-    - if signed_in?
+    - if can?(:create, Answer)
       = render 'answers/answer_form', parent: resource, resource: @answer
     - else
       ' Please

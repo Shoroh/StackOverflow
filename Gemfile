@@ -76,6 +76,8 @@ gem 'has_scope'
 
 gem 'rails-observers'
 
+gem 'cancancan', '~> 1.8'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

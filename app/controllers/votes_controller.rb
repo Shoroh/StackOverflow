@@ -7,10 +7,12 @@ class VotesController < InheritedResources::Base
   actions :destroy
 
   def like
+    authorize! :like, parent
     parent.like(current_user)
   end
 
   def unlike
+    authorize! :unlike, parent
     parent.unlike(current_user)
   end
 

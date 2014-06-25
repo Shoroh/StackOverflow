@@ -5,10 +5,11 @@
     .comment_date
       = resource.created_at.to_formatted_s(:short)
     .comment_tools
-      - if resource.user == current_user
+      - if can?(:update, resource)
         .tool
           = link_to edit_polymorphic_path([resource.commentable,resource]), remote: true, class: 'comment_edit_icon' do
             span.fui-new
+      - if can?(:destroy, resource)
         .tool
           = link_to polymorphic_path([resource.commentable,resource]), method: :delete, remote: true, class: 'comment_delete_icon' do
             span.glyphicon.glyphicon-trash

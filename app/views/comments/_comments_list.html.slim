@@ -6,7 +6,7 @@
       - object.comments.each do |comment|
         = render 'comments/comment', resource: comment
   .comment_form
-    - if signed_in?
+    - if signed_in? && can?(:create, Comment)
       = render "comments/comment_form", object: object
     - else
       ' Please
