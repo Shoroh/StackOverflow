@@ -20,7 +20,7 @@ describe User do
   # Check that user has his profile after create
   it 'should has profile after create' do
     user = create(:user, name: 'Shoroh')
-    expect(user.profile.has_attribute?(:display_name)).to be_true
+    expect(user.profile.has_attribute?(:display_name)).to be_truthy
   end
 
   describe '.find_for_oauth' do

@@ -21,22 +21,22 @@ describe Question do
 
   describe '.recent' do
     it "should show only active questions when 'recent'" do
-      expect(Question.recent.last.active?).to be_true
+      expect(Question.recent.last.active?).to be_truthy
       expect(Question.recent.count).to eq(4)
     end
 
     it "should not show deleted questions when 'recent'" do
-      expect(Question.recent.last.deleted?).to be_false
+      expect(Question.recent.last.deleted?).to be_falsey
     end
 
     it "should not show pending questions when 'recent'" do
-      expect(Question.recent.last.pending?).to be_false
+      expect(Question.recent.last.pending?).to be_falsey
     end
   end
 
   describe '.featured' do
     it "should show only featured questions when 'featured'" do
-      expect(Question.featured.last.featured?).to be_true
+      expect(Question.featured.last.featured?).to be_truthy
       expect(Question.featured.count).to eq(2)
     end
   end
