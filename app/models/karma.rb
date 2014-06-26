@@ -12,4 +12,15 @@ class Karma < ActiveRecord::Base
     SCORES[symbol]
   end
 
+  private
+
+  def self.increase(record)
+    self.create(
+        karmable: record,
+        user: record.try(:votable).try(:user) || record.user,
+        score: Karma.send(record.class.to_s.underscore) * (record.class == Vote ? 1 : 2 ),
+        action: 'increase',
+    )
+  end
+
 end
