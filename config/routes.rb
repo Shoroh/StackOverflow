@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  use_doorkeeper
   # Main page
   root to: 'welcome#index'
 
@@ -50,6 +51,14 @@ Rails.application.routes.draw do
   resources :attachments, only: [:create, :destroy]
 
 
-
+  # API
+  #
+  namespace 'api' do
+    namespace 'v1' do
+      resources :profiles do
+        get :me, on: :collection
+      end
+    end
+  end
 
 end

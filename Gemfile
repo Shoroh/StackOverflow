@@ -90,6 +90,8 @@ gem 'cancancan', '~> 1.8'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'doorkeeper'
+
 group :test, :development do
   gem 'rspec-rails'
   gem "factory_girl_rails", "~> 4.0"
@@ -115,4 +117,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'minitest'
+  gem 'json_spec'
 end
