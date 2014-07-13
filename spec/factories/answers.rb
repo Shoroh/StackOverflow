@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :answer do
-    user nil
+    association :user
     question nil
     body "MyText"
     factory :invalid_answer do

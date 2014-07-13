@@ -75,6 +75,11 @@ gem 'inherited_resources', '1.5.0'
 gem 'has_scope'
 
 gem 'rails-observers'
+gem 'active_model_serializers'
+gem 'oj'
+gem 'oj_mimic_json'
+gem 'redis-throttle', git: 'git://github.com/andreareginato/redis-throttle.git'
+
 
 gem 'cancancan', '~> 1.8'
 
@@ -101,6 +106,7 @@ group :test, :development do
   gem "better_errors"
   gem "binding_of_caller"
   # gem 'rubocop', require: false
+
   gem 'spring-commands-rspec'
   gem 'spring'
   gem 'bullet'

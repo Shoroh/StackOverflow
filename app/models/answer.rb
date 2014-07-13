@@ -14,8 +14,4 @@ class Answer < ActiveRecord::Base
 
   scope :recent, -> { order(created_at: :asc) }
 
-  def score
-    10
-  end
-
 end

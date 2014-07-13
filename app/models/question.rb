@@ -29,25 +29,12 @@ class Question < ActiveRecord::Base
     @tags ||= tags.sort_by {|a| a.name}
   end
 
-  # Orders questions by default
   default_scope -> { includes([:tags, :user, :answers]).order(created_at: :desc) }
 
-  # Generates last recent questions:
   scope :recent, -> { active }
-
   scope :oldest, -> { recent.unscope(:order).active.order(created_at: :asc) }
-
-  # Generates featured questions:
   scope :featured, -> { recent.where(featured: true) }
-
-  # Generates popular questions by quantity of unique_views field
   scope :popular, -> { recent.unscope(:order).active.order(unique_views: :desc) }
-
-  # Generates questions without answers
   scope :unanswered, -> { recent.where("answers_count = '0'") }
-
-  def score
-    20
-  end
 
 end
