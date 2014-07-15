@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Users Array API' do
+describe 'Users List API' do
   context 'authorized' do
     let!(:me){ create(:user) }
     let!(:user1){ create(:user) }
@@ -17,15 +17,15 @@ describe 'Users Array API' do
 
     %w[id name].each do |attr|
       it "returns user #{attr}" do
-        expect(response.body).to be_json_eql(me.send(attr.to_sym).to_json).at_path("profiles/0/#{attr}")
+        expect(response.body).to have_json_path("profiles/0/#{attr}")
       end
     end
 
-    # %w[admin email].each do |attr|
-    #   it "does not contain #{attr}" do
-    #     expect(response.body).to_not have_json_path("profiles/0/#{attr}")
-    #   end
-    # end
+    %w[admin email].each do |attr|
+      it "does not contain #{attr}" do
+        expect(response.body).to_not have_json_path("profiles/1/#{attr}")
+      end
+    end
 
     it 'returns array of users' do
       expect(response.body).to have_json_size(3).at_path("profiles")

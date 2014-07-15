@@ -55,7 +55,9 @@ Rails.application.routes.draw do
   #
   namespace 'api', defaults: {format: 'json'} do
     namespace 'v1' do
-      resources :questions, only: [:index, :show]
+      resources :questions, only: [:index, :show, :create] do
+        resources :answers, only: [:index, :show]
+      end
       resources :profiles do
         get :me, on: :collection
         get :all, on: :collection

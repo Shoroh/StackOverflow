@@ -1,15 +1,11 @@
-require_relative 'api_dbase_helper'
-require_relative '../../../spec/support/features/login_macros'
+require 'spec_helper'
 
 describe 'Profiles API' do
   describe 'Resource Owner Profile' do
     it_behaves_like "API Authenticable"
 
     context 'authorized' do
-      # before :all do
-      #   login_user_warden
-      # end
-      # let(:me){ @user }
+
       let(:me){ create(:user) }
       let(:access_token){ create(:access_token, resource_owner_id: me.id) }
 
