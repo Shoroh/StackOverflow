@@ -11,4 +11,15 @@ class Api::V1::AnswersController < Api::V1::BaseController
     respond_with resource, serializer: AnswerShowSerializer, root: 'answer'
   end
 
+  protected
+
+  def create_resource(object)
+    object.user = current_resource_owner
+    super
+  end
+
+  def answer_params
+    params.require(:answer).permit(:body)
+  end
+
 end

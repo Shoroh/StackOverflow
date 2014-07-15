@@ -9,12 +9,6 @@ class Api::V1::QuestionsController < Api::V1::BaseController
     respond_with resource, serializer: QuestionShowSerializer, root: 'question'
   end
 
-  # def create
-  #   create! do |success, failure|
-  #     success.json { respond_with resource }
-  #   end
-  # end
-
   protected
 
   def create_resource(object)

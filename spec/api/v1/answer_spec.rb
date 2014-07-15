@@ -3,6 +3,17 @@ require 'spec_helper'
 describe 'Answer API' do
   let!(:question){ create(:question) }
   let!(:answer){ create(:answer, question: question) }
+
+  describe "Create new Question" do
+    let!(:me){ create(:user) }
+    let!(:access_token){ create(:access_token, resource_owner_id: me.id) }
+
+    it "create" do
+      expect {post "api/v1/questions/#{question.id}/answers", answer: {body: "It's just a new_question.body"}, \
+      access_token:access_token.token}.to change(Answer, :count).by(1)
+    end
+  end
+
   describe 'GET one' do
     it_behaves_like "API Authenticable"
 

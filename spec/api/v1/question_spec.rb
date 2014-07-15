@@ -10,16 +10,8 @@ describe 'Question API' do
     let!(:access_token){ create(:access_token, resource_owner_id: me.id) }
 
     it "create" do
-      new_question = build(:question, user: me)
-      post 'api/v1/questions', title: new_question.title, body: new_question.body, access_token:access_token.token
-
-      %w[title body].each do |attr|
-        expect(response.body).to be_json_eql(new_question.send(attr.to_sym).to_json).at_path("#{attr}")
-      end
-    end
-
-    def do_request(options = {})
-      post "api/v1/questions/", {format: :json}.merge(options)
+      expect {post 'api/v1/questions', question: {title: "It's just a new_question.title", body: "It's just a new_question.body"}, \
+      access_token:access_token.token}.to change(Question, :count).by(1)
     end
   end
 
